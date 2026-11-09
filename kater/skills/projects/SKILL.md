@@ -45,7 +45,7 @@ Read the part for what you do:
 
 ## The inbox
 
-Run `kater inbox` when the person asks what waits for them, or to see whether something waiting is about what they ask. It lists what waits for the person, newest first, each with its reason, its title and the command that reads its place. The inbox is the one place Kater tells a person something, so it also lists a promotion request to review and the objects with no owner, each with its own words and no place to read when it is about Kater itself. When they asked what waits, say it: "Two things wait for you: ...", then ask which one to talk through. Otherwise raise only an item about what they ask, such as a draft snapshot of the app their question is about.
+Run `kater inbox` when the person asks what waits for them, or to see whether something waiting is about what they ask. It lists what waits for the person, newest first, each with its reason, its title and the command that reads its place. The inbox is the one place Kater tells a person something, so it also lists a promotion request to review and the objects no one manages, each with its own words and no place to read when it is about Kater itself. When they asked what waits, say it: "Two things wait for you: ...", then ask which one to talk through. Otherwise raise only an item about what they ask, such as a draft snapshot of the app their question is about.
 
 `kater inbox show <id>` gives one item: its messages, the prompt for it, and its project's open decisions and newest entries.
 

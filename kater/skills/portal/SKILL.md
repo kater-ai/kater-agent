@@ -72,7 +72,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | An old app or project address | `/app/<old address>`, `/projects/<old address>` | An address of an old shape, such as `/app/rel1_…` or `/projects/prj_…`, says it names no app or project the person can open, and nothing redirects it. The app's and the project's key opens it. | none |
 | Talk it through with AI | `/agent` | Hands an inbox item's prompt to the person's own agent. | `item` |
 | AI Tools | `/ai-tools/starters`, `/ai-tools/agents`, `/ai-tools/skills` | Finds a starter, or reads and edits the agents and skills of the AI tools, each named by its key: `connection`, `name` and, for a person's own, `user`. | `connection`, `name`, `user`, `view`, `q` |
-| AI Tools, History | Any AI Tools tab with `history=open` | Sees who changed what and when in the connection's AI tools and their own `about.md`, the same list on every tab, Kater's nightly update and each decision too, each file linking to where it is now. What Kater changed in a file the organisation edited is not on the page: the person asks you, and you answer with `kater ai-tools status`, `diff` and `update --decide`. | `history`, `change` |
+| AI Tools, History | Any AI Tools tab with `history=open` | Sees who changed what and when in the connection's AI tools and their own `about.md`, the same list on every tab, the nightly update of the shipped text and each decision too, each file linking to where it is now. What Kater changed in a file the organisation edited is not on the page: the person asks you, and you answer with `kater ai-tools status`, `diff` and `update --decide`. | `history`, `change` |
 | About you | `/ai-tools/about` | Reads and edits what their agent knows about them and the company. | `doc`, `connection`, `user`, `view`, `history` |
 | Theme Builder | `/theme-builder` | Makes and edits a theme for apps. | `theme`, `tab`, `sidebar` |
 
@@ -97,7 +97,7 @@ Only an admin opens these pages.
 | Page | Address | What a person does there | Keys |
 | --- | --- | --- | --- |
 | Admin dashboard | `/admin` | Sees how people use Kater: views, what people ask, the answers in AI apps, the AI apps people connected, and what needs attention. | `window`, `staleDays`, `theme` |
-| Objects | `/admin/objects` | Lists every object, finds stale ones and those with no owner, reviews promotions, and restores and fixes every delete (`status=deleted`, `status=fix`) and every retired field (`status=retired`). | `q`, `kind`, `owner`, `status`, `object`, `promotion`, `item` |
+| Objects | `/admin/objects` | Lists every object, finds stale ones and those no one manages, reviews promotions, and restores and fixes every delete (`status=deleted`, `status=fix`) and every retired field (`status=retired`). | `q`, `kind`, `owner`, `status`, `object`, `promotion`, `item` |
 | Conversations | `/admin/conversations` | Sees whether people get correct answers and what to fix: how the answers stand, What works, What to fix and each conversation with a verdict for each answer, the calls the agent made and the rows behind each figure. | `window`, `q`, `person`, `topic`, `verdict`, `takeaway`, `conversation`, `used`, `context`, `step`, `sql`, `raw` |
 | Users | `/admin/settings/manage-users` | Invites, changes and removes the people of the organisation. | `user`, `q`, `new`, `remove`, `cancel` |
 | Check access | `/admin/settings/manage-users/check-access` | Checks what one person can read and change, folder by folder. | `user`, `path` |
