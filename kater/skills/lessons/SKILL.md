@@ -49,7 +49,7 @@ A lesson that only one person needs goes in their own files, never in the compan
 
 ## A lesson about one of Kater's skills
 
-A skill's lessons are `lessons.md` in the folder named for it: `connections/{connection}/ai_tools/skills/{name}/lessons.md`, for a skill that is one file, such as `skills/compare.md`, too. The shipped text in the skill stays as Kater ships it, so Kater's updates to the skill keep arriving. The lessons move with the skill, no update of Kater's deletes them, and only a removal of the skill removes them with it. `kater ai-tools list` names a skill's `lessons` when it has some: read them with the skill. To add a line, propose the whole file, the lines it holds already too, as below. Never edit the skill's own text for a lesson.
+A skill's lessons are `lessons.md` in the folder named for it: `connections/{connection}/ai_tools/skills/{name}/lessons.md`, for a skill that is one file, such as `skills/compare.md`, too. The shipped text in the skill stays as it ships, so the shipped updates to the skill keep arriving. The lessons move with the skill, no shipped update deletes them, and only a removal of the skill removes them with it. `kater ai-tools list` names a skill's `lessons` when it has some: read them with the skill. To add a line, propose the whole file, the lines it holds already too, as below. Never edit the skill's own text for a lesson.
 
 ## Change, then tell: the person's own files
 

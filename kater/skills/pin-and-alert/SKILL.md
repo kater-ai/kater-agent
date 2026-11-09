@@ -72,7 +72,7 @@ kater alert change ALERT --when below:2.5
 kater alert remove ALERT
 ```
 
-- **What it starts on.** `--when` is `below:<value>`, `above:<value>`, `change:<percent>` or `normal`, for outside its normal range. `--better` is `higher`, `lower` or `none`. What you leave out is what Kater recommends: a marker on the figure first, else what Kater worked out from its weeks. `kater alert recommend` shows that and why. Most people do not know what number to write, so offer the recommendation.
+- **What it starts on.** `--when` is `below:<value>`, `above:<value>`, `change:<percent>` or `normal`, for outside its normal range. `--better` is `higher`, `lower` or `none`. What you leave out takes the recommended value: a marker on the figure first, else the value worked out from its weeks. `kater alert recommend` shows that and why. Most people do not know what number to write, so offer the recommendation.
 - **What it holds.** The alert holds the values it was set with. They do not change by themselves. A level from a marker follows it: a move of either moves the other.
 - **Where it tells them.** Every alert is a row of their Inbox. `--tell-in` adds `slack`, `email` or `brief`, once for each place, and `inbox` alone means the Inbox only. That is the person's choice, so never pick it for them: left out, it starts from where their newest alert goes. Slack needs the organisation's Slack and their own account connected, and the command says when it does not.
 - **When it tells them.** Kater checks each alert every night. It tells the person once for each crossing, and one figure speaks once on one morning, also when it is in their project too.
