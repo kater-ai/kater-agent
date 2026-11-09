@@ -1,0 +1,15 @@
+{
+  "name": "kater",
+  "description": "Answer questions about your company's business data from its governed warehouse, and build charts, dashboards and reports on it.",
+  "owner": {
+    "name": "Kater",
+    "url": "https://kater.ai"
+  },
+  "plugins": [
+    {
+      "name": "kater",
+      "source": "./kater",
+      "description": "Answer questions about your company's business data from its governed warehouse, and build charts, dashboards and reports on it."
+    }
+  ]
+}

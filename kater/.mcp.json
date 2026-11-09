@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "kater": {
+      "type": "http",
+      "url": "https://mcp.kater.ai/mcp"
+    }
+  }
+}

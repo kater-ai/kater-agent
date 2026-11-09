@@ -1,0 +1,20 @@
+{
+  "name": "kater",
+  "displayName": "Kater",
+  "description": "Answer questions about your company's business data from its governed warehouse, and build charts, dashboards and reports on it.",
+  "author": {
+    "name": "Kater",
+    "url": "https://kater.ai"
+  },
+  "homepage": "https://kater.ai",
+  "keywords": [
+    "analytics",
+    "data",
+    "warehouse",
+    "dashboards"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/kater-ai/kater-agent",
+  "privacyPolicyUrl": "https://landing.kater.ai/legal/privacy/",
+  "version": "0.2.2882+96add0d788b2"
+}

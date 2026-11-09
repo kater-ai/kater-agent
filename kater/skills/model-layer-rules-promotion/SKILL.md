@@ -1,0 +1,50 @@
+---
+name: model-layer-rules-promotion
+description: "Model layer rules: Explore, the Sandbox, custom calculations and promotion. Use it when the person asks for: \"Ask the data team to add it\", a field or a filter that everyone should share."
+---
+
+This skill is Kater's guide `vfs://guides/model-layer-rules-promotion.md`.
+
+# Model layer rules: Explore, the Sandbox, custom calculations and promotion
+
+A part of [Model layer rules](vfs://guides/model-layer-rules.md).
+
+## Explore and the Catalog
+
+Explore belongs to the shared layer. It is what a data team ships so that someone building a workspace has a place to start, and the handoff runs one way: a card or use case leaves Explore as an ordinary query (and chart) written into a workspace, and nothing in a workspace is explored or read back into Explore. The policy states this per model type as `explore` (Kater datasets and semantic models). Read it through `explorable` in Python and `isExplorable` in the editor; never list the eligible kinds in a consumer.
+
+The server holds the rule where a reader's choice enters: every public Explore operation loads its source through one reader that refuses a model the policy does not mark explorable, so the editor, the CLI and the MCP get the same refusal. Explore definitions live beside the shared model they explore, never in a workspace folder. The temporary query models Explore builds while chaining an analysis are internal and never reach a reader as a source. A written query carries no card id or link back to Explore, and Explore does not track which workspaces its cards reached; that would mean reading every workspace from a shared model, which is the direction this handoff rules out.
+
+## The Sandbox
+
+The `sandbox` layer has one model type, `scratch`: a user's own worksheet of statements, any `.sql` file at any depth in `connections/<connection>/users/<email>/brainstorm/` except in a topic's `workspaces/` and `apps/` folders, never versioned ([Sandbox](vfs://guides/sandbox-scratch-files.md)). Its identity is connection, user and its path in the brainstorm folder, as a workspace's is its complete path, so two people can each have `unnamed_scratch_1` and two topics can each hold a `checks.sql`; the `ScratchNamespace` names the brainstorm folder. `kater_model_contracts.scratch` holds the path rules: `is_scratch_path`, and `is_brainstorm_path` for anything in the brainstorm folder. `statement: "statements"` makes the parse read one frontmatter block and then any number of statements separated by semicolons, which `kater_model_contracts.scratch` splits; every other model type is one statement. The `scratch` entry governs parsing, frontmatter keys (`name`, `model_type`, `label`, `description`, `parameters`, `charts` and `from`, the query a draft came from, which places its statements in that query's workspace), creation, and Explore and Catalog eligibility, which it has none of. A statement's conditions are optional filters over the parameters its file's frontmatter declares, as a query's are: a statement on the query route compiles with the ones it reads, and a run switches its own filters on. `compile_through: sandbox` means a whole scratch file is never compiled (`scratch_file_not_compiled`); each statement compiles on the route what it reads picks, under that route's own model type: a query in an in-memory workspace rooted in the one shared model it reads, an anonymous semantic model over several, or warehouse SQL run as written. Nothing lists `scratch` in its `select_from`, so no model, picker, completion or Catalog page can read a scratch file, as none can read a test. The Sandbox is not `.kater/sandbox`, the in-memory workspace a statement on the query route, a test path and anonymous Explore compile in.
+
+A workspace copy in a brainstorm topic, `connections/<connection>/users/<email>/brainstorm/<topic>/workspaces/<name>/`, is the Workspace layer with its rules unchanged, so every operation works on it. Its namespace is a `WorkspaceNamespace` whose path is that folder, and its identity is that complete path, as every workspace's is, so it never collides with the workspace it copies, whose name it usually keeps. `is_brainstorm_path` tells it apart, and nothing outside its brainstorm folder reads it: whole compiles, the Catalog, Explore and Add to leave it out, and it is never a dependent of a change. A scratch statement reads it only by its full address, `workspace."<path>".<root name>`; `workspace.<name>` never reaches a copy. Its owner and admins can read it, as the rest of the Personal folder.
+
+## Custom calculations
+
+A custom calculation is a value a model computes over its own result rows, such as a rank, a running total, a lag or a share of total. A query's result is an analysis, so only a query publishes one; a shared model's rows and a workspace root's rows are data other models build on. The policy states this per model type as `custom_calculations`: true on `query`, and on `test`, which compiles as a query. Read it through `allows_custom_calculations` in Python and `allowsCustomCalculations` in the editor; never list the kinds in a consumer.
+
+The formula decides a field's type, not its wrapper. The binder decides it once (`NamedFieldBinder.classify`), and the published contract, lineage and the inferred contract all carry its answer. In a query, a window a SELECT runs, or anything built from one, is a custom calculation, named or not; `CUSTOM_CALCULATION('name', formula)` names one. A wrapper that disagrees with its formula gets a warning with a fix that swaps it, and the formula's type is published anyway: a `DIMENSION` over a window gets `custom_calculation_declared_as_dimension`, and a `CUSTOM_CALCULATION` over a row value or an aggregate gets `dimension_declared_as_custom_calculation`. A `MEASURE` over a window is an error in every layer, `measure_over_window`, because a reader evaluates a measure one group at a time and the window would see only that group. A query that selects another query's custom calculation unchanged keeps it a custom calculation; grouped by, it's a dimension. In a Kater dataset or a semantic model, a window is a dimension, and `CUSTOM_CALCULATION` is an error, `custom_calculation_not_allowed`, whose fix declares it as a `DIMENSION`. A workspace root can't run a window at all (`window_not_allowed`): its optional filters apply first, so the value would change with each reader's filters. The policy states which models may run a window as `windows`, false on `workspace`, `chart` and `db_dataset`. An unnamed output has its formula's type too, a dimension or a custom calculation but never a measure: having no name only means no other model can read it, and the editor offers a fix that names it.
+
+A custom calculation never reaches a shared model, so it can't be promoted as it is ([promotion](#promotion) says what moves in its place). Where a measure computes the same numbers, its menu converts it to that measure in place ([converting to a measure](vfs://guides/window.md#converting-to-a-measure)). What a reading query can do with one is under [reading another query's custom calculations](vfs://guides/query-contract.md#reading-another-querys-custom-calculations).
+
+## Promotion
+
+A promotion moves a field or a filter up, from a query into its workspace root, or from a query or a root into a shared model, so that every place that defined it reads it instead. Nothing moves one down. Its meaning must not change. One set of rules decides what can move, read from the same policy as everything above: a person's own promotion to their workspace root (`kater model promote`), a promotion request to the data team (`kater promotion request`) and a recommendation the nightly scan makes all ask it.
+
+| What moves | To the workspace root | To a shared model |
+| --- | --- | --- |
+| A measure or a dimension | Yes | Yes |
+| A field that reads a parameter | Yes. The parameter's declaration moves to the root with it | No. A shared model has no parameters (`parameters`) |
+| A `REQUIRED_FILTER` | Yes. It then restricts every query of the workspace | Yes, when every query that reads the shared model keeps its results |
+| An `OPTIONAL_FILTER` | Yes, with the parameter it reads | Only with a value written in for each parameter, since a shared model has no filter a reader switches on (`optional_filters`). It then always applies, so the data team confirms it over every model it reaches |
+| A custom calculation a measure computes the same as | Yes, as that measure | Yes, as that measure |
+| A window over a model's own rows | No. A root runs no window (`windows`) | Yes, as a dimension, where no filter runs before it in its query or its workspace root |
+| Any other custom calculation | No | No. A rank, a running total or a total of an average needs its query's whole result |
+
+Every promotion is proved before it is written: every model it reaches compiles and no field computes anything else, and each query it reaches returns the same results on the warehouse. A query that takes a limited number of rows needs an `ORDER BY` for that second check. Nothing is promoted from a brainstorm copy: write the copy back to its workspace first. A field that a promotion writes into a shared model waits for a person's review before it shows as Verified, so tell the person that it is not verified.
+
+### Asking the data team
+
+`kater promotion request PATH FIELD --reason "…"` is Kater's one request to the data team: it files the field or, with `--filter NAME`, the filter, and the data team reviews it in their inbox. When a person says "ask the data team to add it", name the field and the file it is in, tell the person what you send and why, and run the request through `kater_apply` after they say yes. When the shared model has the same formula already, nothing is filed and the answer names that field: tell the person to read it. Never offer to write or send a message of your own to the data team, as no tool sends one.
