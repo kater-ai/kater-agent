@@ -41,7 +41,7 @@ A lesson goes in one place. When you cannot tell whether it is about the person 
 | A field or a filter the person made, for everyone | Not a lesson: the field's promotion request | `kater promotion request` |
 | A rule of the company | `rules.md` at the content root | A proposal |
 | How to use one of Kater's skills in this organisation | The skill's `lessons.md`, in the connection's `ai_tools/` | A proposal |
-| Kater's own text is wrong or missing: a guide, an operating rule, a tool's description or answer | A report to Kater | `kater_send_feedback` |
+| The shipped text is wrong or missing: a guide, an operating rule, a tool's description or answer | A report to Kater | `kater_send_feedback` |
 
 The person's `about.md` is `vfs://connections/{connection}/users/{email}/about.md`, where `{email}` is `person.email` of `kater_start`. Their own AI tools are in `ai_tools/` beside their `brainstorm/` folder. The connection's `about_me` skill, `ai_tools/skills/about_me.md` in the connection's folder, says under which heading of `about.md` a line goes.
 
@@ -49,7 +49,7 @@ A lesson that only one person needs goes in their own files, never in the compan
 
 ## A lesson about one of Kater's skills
 
-A skill's lessons are `lessons.md` in the folder named for it: `connections/{connection}/ai_tools/skills/{name}/lessons.md`, for a skill that is one file, such as `skills/compare.md`, too. Kater's own text in the skill stays as Kater ships it, so Kater's updates to the skill keep arriving. The lessons move with the skill, no update of Kater's deletes them, and only a removal of the skill removes them with it. `kater ai-tools list` names a skill's `lessons` when it has some: read them with the skill. To add a line, propose the whole file, the lines it holds already too, as below. Never edit the skill's own text for a lesson.
+A skill's lessons are `lessons.md` in the folder named for it: `connections/{connection}/ai_tools/skills/{name}/lessons.md`, for a skill that is one file, such as `skills/compare.md`, too. The shipped text in the skill stays as Kater ships it, so Kater's updates to the skill keep arriving. The lessons move with the skill, no update of Kater's deletes them, and only a removal of the skill removes them with it. `kater ai-tools list` names a skill's `lessons` when it has some: read them with the skill. To add a line, propose the whole file, the lines it holds already too, as below. Never edit the skill's own text for a lesson.
 
 ## Change, then tell: the person's own files
 
@@ -73,11 +73,11 @@ kater propose PATH --text-file - --why "One line: what the change is for"
 - When a proposal went to the wrong place, such as a line for a skill's `lessons.md` proposed to `rules.md`, withdraw it with `kater proposal withdraw ID` through the `kater` tool, then propose it where it belongs. It leaves every reviewer's inbox, and nobody is told.
 - `kater proposal list` shows the open proposals, and `kater proposal show ID` the people who decide.
 
-## A report: Kater's own text
+## A report: the shipped text
 
 The operating rules and the guides in `vfs://guides/` are the same for every organisation, and nobody in an organisation can change them. When one is wrong or misses something, send the lesson to Kater with `kater_send_feedback`, and Kater's engineers change it for every organisation:
 
-- `kind` is `bug` when Kater's text is wrong, and `feature_request` when something is missing from it.
+- `kind` is `bug` when the shipped text is wrong, and `feature_request` when something is missing from it.
 - `title` names the guide, the rule or the tool it is about, such as "measure.md names the wrong command for a ratio".
 - `what_happened` says what the text told you and what you did. `agent_findings` says what worked.
 - Never put the person's data, a figure, a file of the company or the company's rules in it.
