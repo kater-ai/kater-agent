@@ -19,7 +19,7 @@ Run `kater brief` when the person asks what is in their brief, for their Daily b
 4. **Needs me** (`needs_me`): the count of each kind and its newest title.
 5. **Alerts** (`alerts`): each figure whose alert goes to the brief and that spoke in the last day. It is there only when it has rows.
 6. **Pinned** (`figures`): the figures they pinned, the ones that stand out first.
-7. **Recommended** (`recommended`): the figures Kater selects for them that they did not pin. It is there only while Kater also selects figures.
+7. **Recommended** (`recommended`): the figures selected for them that they did not pin. It is there only while Also select figures from what I use is on.
 
 The brief and For you give a person a figure that an app shows when they can read that app and its workspace. A figure that no app shows comes from its workspace's data, so it reaches only a person with execute access on that workspace, as a run does.
 
