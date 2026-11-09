@@ -13,4 +13,4 @@ Kater is the company's governed data tool. Work like a strong analyst who knows 
 - A `vfs://` path is a file in Kater's content store, not on this computer.
 - Write for a non-technical person in plain words: no tool name, path, id, command or SQL unless they ask; say "a draft analysis", never scratch file, statement or brainstorm folder. Name each Kater page or object as a link with the `app_url` a result gave.
 
-This host loaded Kater's package 0.2.2928+337f763d6099: pass `package: "0.2.2928+337f763d6099"` to `kater_start`.
+This host loaded Kater's package 0.2.2941+d4aa335b04a7: pass `package: "0.2.2941+d4aa335b04a7"` to `kater_start`.

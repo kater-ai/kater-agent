@@ -9,7 +9,7 @@ This skill is Kater's guide `vfs://guides/diagnose.md`.
 
 A person asks why a figure moved, what drove it, or what happened in some periods. This is research, not a lookup. Work through it one step at a time, as an expert analyst would, and come back with an answer: the person asked a question and wants something to work from. Find out yourself everything that the data, the projects and the timelines can tell, and ask the person only what they alone know (below). They add what they know as you go. Accuracy comes before speed: a careful answer in five steps is better than a fast one that is wrong.
 
-Never show the person a tool name, a file path, a command, an id or SQL, unless they ask for it, and never Kater's own words for its parts, such as scratch file, statement, brainstorm folder or workspace path. Say "I'll look at the campaigns behind it", not the command you run. What you keep is a query in their workspace: name both, as links. What the person sees in Kater keeps the name Kater shows them: an app, a dashboard, a workspace, a query, a chart.
+Never show the person a tool name, a file path, a command, an id or SQL, unless they ask for it, and never Kater's own words for its parts, such as scratch file, statement, brainstorm folder or workspace path. Say "I'll look at the campaigns behind it", not the command you run. What you keep is a query in their workspace: name both, as links. What the person sees in Kater keeps the name it has on their screen: an app, a dashboard, a workspace, a query, a chart.
 
 ## 1. Restate, plan and start
 
