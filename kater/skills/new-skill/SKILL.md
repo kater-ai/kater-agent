@@ -22,7 +22,7 @@ Use this when the person repeats the same request, or asks for a command of thei
 3. **Name it** in lower case with `-` between words, a letter first and at most 64 characters, short, a verb where one fits, such as `weekly-roas` or `check-spend`. A name the connection's AI tools have would hide that one for them, so pick another.
 4. **Draft it** in the shape below.
 5. **Write it, then tell.** It is their own file, so write it with no question to `connections/<connection>/users/<email>/ai_tools/skills/<name>.md`, with a `summary` such as "New command /weekly-roas". Show what you wrote, and say they can change it or say undo. The Ask panel loads it, and each change to it, from their next new conversation.
-6. **Say how to use it:** `/<name>` in Ask, on the Agents page under Personal, and in their own agent's prompts, where it shows as soon as it's written (`/mcp__kater__<name>` in Claude Code). Offer to run it once now.
+6. **Say how to use it:** `/<name>` in Ask, on the Agents page under Personal, and in their own agent's prompts, where it shows as soon as it's written (`/mcp__plugin_kater_kater__<name>` in Claude Code with Kater's plugin). Offer to run it once now.
 
 ## The shape
 
