@@ -118,7 +118,7 @@ A label on paper is read once and cannot be hovered, so ask the query for labels
 
 ## Writing the words
 
-A report is a document: a workflow writes its words with each run. Put each sentence that judges the numbers in an empty `<kater-words slot="…">` on the sheets, never as typed text, and write the workflow with the app ([Make a document](vfs://guides/projects-documents.md#make-a-document)). A heading, a label and a sentence that only says what a figure is stay on the page, with each figure a `<kater-value>`.
+A report is a document: a workflow writes its words with each run. Put each sentence that judges the numbers in an empty `<kater-words name="…">` on the sheets, never as typed text, and write the workflow with the app ([Make a document](vfs://guides/projects-documents.md#make-a-document)). A heading, a label and a sentence that only says what a figure is stay on the page, with each figure a `<kater-value>`.
 
 ## Writing the queries
 

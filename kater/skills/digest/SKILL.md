@@ -1,6 +1,6 @@
 ---
 name: digest
-description: "Digest template. Use it when the person asks for: A brief to read first thing, such as each Monday."
+description: "A brief of the person's metrics on a schedule, and the digest page's template. Use it when the person asks for: a weekly digest, a Monday brief."
 ---
 
 This skill is Kater's guide `vfs://guides/digest.md`.
@@ -15,6 +15,23 @@ A digest is an app page laid out as a brief someone reads first thing, such as a
 
 The template is a stylesheet and a script the runtime serves, never a copy in the app folder, so a fix reaches every brief. It uses only the theme's tokens and follows the host's light or dark mode. It reads best in the `journal` theme: set `application.theme` to `journal` in `kater.app.yaml`.
 
+## Set up a recurring digest
+
+A digest is [brief me](vfs://guides/brief-me.md) on a schedule. When the person asks for their metrics on a schedule, such as `/digest` or "every Monday", draft it in their brainstorm folder, show one issue, then ask. Nothing is scheduled, armed or sent without their yes. For one brief now, use brief me. To hear only when a figure moves, set an alert on it ([pin and alerts](vfs://guides/pin-and-alert.md)), or use [watch](vfs://guides/watch.md) for a metric that no chart draws.
+
+**Lessons.** When `kater ai-tools list` names `lessons` for this skill, read that file before you start and follow it: it is what this organisation learned using this skill. Record a new lesson about using it there, as vfs://guides/lessons.md says.
+
+1. **Open a topic,** `brainstorm/weekly_digest.md` in the person's brainstorm folder, or named for its cadence, with its title and `Status: open`.
+2. **Settle what it covers:** the metrics in their About you, each with a verified definition as brief me finds it; the window, such as the last full week against the four before it; when it comes; and where it goes. Ask only for what you can't infer.
+3. **Draft one issue:** an app in the topic's folder, `brainstorm/weekly_digest/apps/monday_brief/`, laid out by this template with `theme: journal`: the one thing first, the week in figures, what moved, what held steady and this week's steps. Its queries go in a Monday Brief workspace of their own, `connections/<connection>/users/<email>/workspaces/monday_brief/`, as [Writing the queries](#writing-the-queries) says. No figure is typed in. Check it with `kater brainstorm show PATH` until every tag draws, then show it. After a yes, `kater app apply` moves it to their apps when they want to open it there; each scheduled run writes the week's page again in its own topic in their brainstorm folder.
+4. **Say how it can run,** naming only what exists:
+   - **A brief that runs on its own,** a workflow of kind `brief`, at its time, with its page in their brainstorm folder and its answer in their inbox ([workflows](vfs://guides/workflows.md)). [Monday Brief](vfs://guides/monday-brief.md) is the brief's template. After a yes, make their own with `kater new workflow "<Name>" --start brief --cron monday --timezone <zone> --file -`, such as "My Monday brief", whose step follows Monday Brief with the metrics and window you settled ("Follow vfs://guides/monday-brief.md, with these changes: …"). `--cron` also takes `weekday`, `friday`, `month` or a cron. It runs from then on, with the organisation's model key for scheduled workflows: there is no task to set up in their agent. [Schedule workflow](vfs://guides/schedule-workflow.md) changes, pauses or runs it.
+   - **An app they open:** after a yes, the page becomes a draft app and moves to their apps ([brainstorm](vfs://guides/brainstorm.md), Draft apps). It reads fresh rows each time it opens.
+   - **A scheduled Slack DM:** one saved query's figures, sent only to its owner after approval, with no model writing each digest. Follow vfs://guides/schedule.md, and confirm the owner's time zone and Slack connection. Never promise email, another person's delivery, or a model-written digest.
+5. **Ask once** which to set up. After a yes, set up only that, and set the note's `Status:`.
+
+Stop when none of their metrics has a verified definition: say which lack one, and offer [build query contract](vfs://guides/build-query-contract.md) to define the first.
+
 ## What a brief is for
 
 A brief answers "what do I need to know, and what do I do about it?" in the time it takes to drink a coffee. Write it for one person, from `kater brief` and their about.md: the figures they pinned, how they like answers, their targets.
@@ -23,7 +40,7 @@ A brief answers "what do I need to know, and what do I do about it?" in the time
 - **Few insights.** At most five under What moved, the biggest first. A move too small to act on goes in Held steady.
 - **Against the usual, not last week.** Compare the latest complete week with the average of the four complete weeks before it, since a single week of email or SMS visits is small. Say so once, in the masthead.
 - **Every figure is a tag.** Type no number into the page: each one is a `<kater-value>`, a frame the template draws or one of Kater's tags. A figure from outside Kater, which the person chose, is a `<kater-cite>` of its `<kater-source>` ([Sources](vfs://guides/app-sources.md#sources)). A count the prose needs, such as "six weeks in a row", is a claim the rows must support; check it before you write it.
-- **Each insight ends somewhere.** A follow-up question answered from the same run, and, for the one thing, a next step with the starter to run, such as `/deep_analysis`.
+- **Each insight ends somewhere.** A follow-up question answered from the same run, and, for the one thing, a next step with the starter to run, such as `/deep-analysis`.
 - **True for this run.** The prose is written for the week it reports. A brief, a scheduled workflow of kind `brief`, writes the page again each run, so the words and the figures stay about the same week.
 - **A run keeps what it cannot read.** A scheduled run runs every Kater figure again, but it cannot read another system. It keeps each linked figure, its `<kater-cite>` and its source's `read-at` as they are, and never writes a new date for a figure it did not read. Its final message names each figure it kept and the day it was read, so the person knows what to read again.
 
@@ -51,7 +68,7 @@ A brief answers "what do I need to know, and what do I do about it?" in the time
           <p>The answer, from the same run, with its figures as tags.</p>
         </details>
       </div>
-      <p class="digest-next"><span>Next step</span><span>Find out why: <span class="digest-command">/deep_analysis Why did organic search visits fall last week?</span></span></p>
+      <p class="digest-next"><span>Next step</span><span>Find out why: <span class="digest-command">/deep-analysis Why did organic search visits fall last week?</span></span></p>
     </section>
 
     <kater-frame query="…/week_scorecard"

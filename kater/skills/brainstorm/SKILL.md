@@ -47,14 +47,14 @@ Status: open
 - **A folder only when it needs one.** Checks, copies and pages go in a folder of the same name beside the note, such as `brainstorm/promote_roas/checks.sql`. A topic with only a plan is just its note.
 - **Pick a topic up again** from `kater scratch list --json`, whose `topics` give each one's note, folder, title and status.
 - **A finding can outlive its topic.** A fact about the user goes in their `about.md`, under the heading it fits: Role, Projects I follow, How I like answers or Who I work with; write it with no question and tell them. A fact about the data belongs in `connection_context.md`, which is everyone's, so propose it with `kater propose`. [lessons.md](vfs://guides/lessons.md) says where each lesson goes.
-- **Skills with steps use topics too.** The connection's `ai_tools/` skills with steps, such as deep_analysis, write each run's plan to `brainstorm/<slug>.md`, and any other files to `brainstorm/<slug>/`, as their manifests say. They track the run in flight in `brainstorm/skill-status.yaml`.
+- **Skills with steps use topics too.** A skill with steps, such as [deep analysis](vfs://guides/deep-analysis.md), writes each run's plan to `brainstorm/<slug>.md`, and any other files to `brainstorm/<slug>/`, as its steps say. It tracks the run in flight in `brainstorm/skill-status.yaml` ([skill steps](vfs://guides/skill-steps.md)).
 
 ## The loop
 
 Plan, try, check, show, ask, apply. Say one short line before each step, so the user can follow along: "Writing the plan in your brainstorm folder."
 
 1. **Plan.** Write the topic's note, `brainstorm/<topic>.md`: its title, `Status: open`, the question, what you'll try, and what will answer it, or for a goal, the plan [plans.md](vfs://guides/plans.md) shapes. When the user asked only for a plan, stop here: one line, the note's path, and the choices only the user can make.
-2. **Try.** Make scratch statements and run them, copy a workspace and change the copy (Copies, below), or draft a page or an app ([Draft apps](#draft-apps)). Make every query and statement here as anywhere else, by `connections/<connection>/ai_tools/skills/query_authoring.md`: from picks, with SQL only when no pick makes the change. To make a field several queries compute one field on the workspace's root, such as ROAS, change the copy with `kater model promote`, never by hand ([Promoting a field](#promoting-a-field)).
+2. **Try.** Make scratch statements and run them, copy a workspace and change the copy (Copies, below), or draft a page or an app ([Draft apps](#draft-apps)). Make every query and statement here as anywhere else, by [query authoring](vfs://guides/query-authoring.md): from picks, with SQL only when no pick makes the change. To make a field several queries compute one field on the workspace's root, such as ROAS, change the copy with `kater model promote`, never by hand ([Promoting a field](#promoting-a-field)).
 3. **Check.** Run what answers the question. Record what ran and the verdicts in the note, not the rows. For a dashboard in a copy, look at the copy with `kater dashboard look COPY` and fix what it finds ([Look at it](vfs://guides/dashboard-look.md#look-at-it)).
 4. **Show.** Report in the shape below.
 5. **Ask.** One question: whether to apply it, and where.
@@ -88,7 +88,7 @@ One line, then the thing itself. Never a paragraph about it.
 
 ## Scratch statements
 
-A scratch file is any `.sql` file at any depth under `brainstorm/`: a worksheet of statements over shared models, one of your workspaces or the warehouse. Make each statement from picks, as the query_authoring skill makes a query: [Writing a statement](vfs://guides/sandbox-scratch-files.md#writing-a-statement) says how, and [Sandbox](vfs://guides/sandbox-running.md) says how to run one.
+A scratch file is any `.sql` file at any depth under `brainstorm/`: a worksheet of statements over shared models, one of your workspaces or the warehouse. Make each statement from picks, as the query-authoring skill makes a query: [Writing a statement](vfs://guides/sandbox-scratch-files.md#writing-a-statement) says how, and [Sandbox](vfs://guides/sandbox-running.md) says how to run one.
 
 - **New ones go at the top,** as `unnamed_scratch_<n>.sql` (`kater new scratch`). A topic's checks go in the folder beside its note, such as `promote_roas/checks.sql` (`kater new scratch --folder promote_roas`).
 - **A file's identity is its path under `brainstorm/`,** so two topics can each hold a `checks.sql`.
@@ -106,7 +106,7 @@ A copy of a workspace is a real workspace in the topic's folder, `brainstorm/<to
 - **The original's apps stay with it.**
 - **Never for real work.** A copy is for trying a change. Answer the user's questions from their real workspace, and never choose a copy when you choose a workspace.
 - **It works like any workspace.** `kater compile --select COPY`, `kater run --select FILE`, `kater compare --left ORIGINAL --right COPY` and every typed edit work on it, each named by its full path.
-- **Make a query in it** by `connections/<connection>/ai_tools/skills/query_authoring.md`, with the copy's full path as the workspace: `kater query fields COPY`, then `kater query new COPY --request-file -`, with no `namespace` in the request: the command sends the copy's. Change it with `kater model edit`, as the skill says.
+- **Make a query in it** by [query authoring](vfs://guides/query-authoring.md), with the copy's full path as the workspace: `kater query fields COPY`, then `kater query new COPY --request-file -`, with no `namespace` in the request: the command sends the copy's. Change it with `kater model edit`, as the skill says.
 - **A save never fails.** A copy's file saves even when it doesn't compile, and the result's `errors` say what's wrong. A typed edit on a broken file refuses and says why.
 - **A scratch statement reads it by its full address,** `workspace."connections/<connection>/users/<email>/brainstorm/<topic>/workspaces/<name>".<root name>`, where the root name is the copy's folder name, which its `workspace.sql`'s `name` repeats. `sandbox.statement.write` with the copy as its `workspace` writes it for you. `workspace.<name>` reads your real workspace or a connection workspace, never a copy.
 - **It stays in the folder.** Workspace lists mark it `brainstorm`, and nothing offers it: not the Catalog, Explore, Add to or a workspace picker. An app outside `brainstorm/` never reads it; a page in your brainstorm folder may.

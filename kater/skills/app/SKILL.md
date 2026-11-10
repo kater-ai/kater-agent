@@ -15,7 +15,7 @@ Draft it in your brainstorm folder first and show it there ([brainstorm](vfs://g
 
 A file or a mention names an app by its folder from the content root, such as `connections/<connection>/users/<email>/apps/<app>`. A `kater` command and a portal address take its key, `<connection>/users/<user_id>/<app>`, or its id (`rel1_…`), and a command takes its folder too. An app over one workspace, the person's or the connection's, is in that workspace's `apps/<app>/`, and its key has `workspaces/<workspace>/` before its name, such as `<connection>/workspaces/<workspace>/<app>`. A draft app has no id. `kater app list` and `kater app search` give each app's folder, key and id. A page is named by its file's name, such as `index`.
 
-To show an app that exists, run `kater brainstorm show` on its folder, such as `connections/<connection>/users/<email>/apps/<app>`, or on one of its pages. It says whether each tag draws, on an installed app's page what the page showed as it was last drawn after a change (`drawn`), and in a chat that draws apps it shows the app itself.
+To show an app that exists, run `kater brainstorm show` on its folder, such as `connections/<connection>/users/<email>/apps/<app>`, or on one of its pages. It says whether each tag draws, on an installed app's page with a custom chart what its drawing after the app's latest change found there (`drawn`: its `says` gives where it stands and the next step), and in a chat that draws apps it shows the app itself.
 
 ## The steps
 

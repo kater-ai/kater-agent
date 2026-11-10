@@ -16,7 +16,7 @@ A question about why the chart moved, or what happened in the selected periods, 
 - **Restate from the prompt.** The selected rows are what the person sees. Restate the change from them before any call.
 - **The chart's query is how the figure is computed.** Read the file that declares it and `vfs://<workspace>/workspace.sql`: the shared model it reads, each `REQUIRED_FILTER`, each series' value as the rows hold it, and the labels and formats the chart shows. The prompt names the query as `<workspace>/<name>`; `kater query list <workspace>` gives its file (`path`), which can hold several queries and is not named after them. Use the same labels and formats in your statements, so your charts read as the person's chart does.
 - **Read `kater answer <id>`** only when the prompt says its rows are cut short.
-- **What people recorded about the chart is on its app:** `kater project list --app <app folder>` lists the projects that follow it, and `kater timeline read <app folder> --since <date>` and `kater history <app folder>` show its decisions, notes and changes.
+- **What people recorded about the chart is on its app:** `kater project list --app <app folder>` lists the projects that follow it, and `kater timeline read <app folder> --since <first selected period's first day> --before <last selected period's last day>` shows its decisions, notes and changes in the selected periods.
 - **A picture the person pastes** shows what they see. Take every figure from a result, never from the picture.
 
 ## Offers a chart allows

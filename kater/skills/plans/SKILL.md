@@ -7,15 +7,13 @@ This skill is Kater's guide `vfs://guides/plans.md`.
 
 # Plans
 
-A plan is a topic note in your [brainstorm folder](vfs://guides/brainstorm.md) that gets to a goal in phases. Each phase is small enough that someone with no other context can build it from its brief and prove it's done. Write one when a goal takes more than one change, such as a workspace and its queries, a dashboard over them, then an app. One analytical question is the connection's `deep_analysis` skill instead, and one query is its `build_query_contract` skill.
+A plan is a topic note in your [brainstorm folder](vfs://guides/brainstorm.md) that gets to a goal in phases. Each phase is small enough that someone with no other context can build it from its brief and prove it's done. Write one when a goal takes more than one change, such as a workspace and its queries, a dashboard over them, then an app. One analytical question is [deep analysis](vfs://guides/deep-analysis.md) instead, and one query is [build query contract](vfs://guides/build-query-contract.md).
 
-Where the connection has `ai_tools/`, three skills do the work:
+Three skills do the work:
 
-- **Write it with the person:** the Planner's `ai_tools/skills/planning.md`.
-- **Run one phase:** the Developer's `ai_tools/skills/run_phase.md`.
-- **Run them all:** the Conductor's `ai_tools/skills/run_plan.md`, so the person never has to.
-
-Where it doesn't, follow this guide alone.
+- **Write it with the person:** [planning](vfs://guides/planning.md), which the Planner agent uses.
+- **Run one phase:** [run phase](vfs://guides/run-phase.md), which the Developer agent uses.
+- **Run them all:** [run plan](vfs://guides/run-plan.md), so the person never has to.
 
 ## Where it lives
 
@@ -36,7 +34,7 @@ The five region managers want to see last week's net sales for their own region,
 
 ## Phases
 
-Run one phase: "Run phase P1 of `connections/<connection>/users/<email>/brainstorm/region_weekly_sales.md`". Run them all: "Run `…/brainstorm/region_weekly_sales.md`". Each phase follows `connections/<connection>/ai_tools/skills/run_phase.md`. A phase starts once every phase it depends on is Done.
+Run one phase: "Run phase P1 of `connections/<connection>/users/<email>/brainstorm/region_weekly_sales.md`". Run them all: "Run `…/brainstorm/region_weekly_sales.md`". Each phase follows `vfs://guides/run-phase.md`. A phase starts once every phase it depends on is Done.
 
 | ID | Phase | Depends on | Status | Notes |
 | --- | --- | --- | --- | --- |

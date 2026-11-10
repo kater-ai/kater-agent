@@ -18,7 +18,7 @@ A chart offers four things, and each does one thing. Say what each does, and use
 
 A figure is one field at one row of a query, written `<field>[:<row key>]`, such as `platform_roas:TikTok Ads`. A query is its workspace's path and its name.
 
-Each command sends what the page sends, so the person sees the result on the chart, on Home and on the Alerts page at once. A pin and an alert are kept by Kater, in no file. A marker for everyone is in the chart's file ([Markers](#markers)).
+Each command sends what the page sends, so the person sees the result on the chart, on Home and on the Alerts page at once. A pin and an alert are kept in Kater, in no file. A marker for everyone is in the chart's file ([Markers](#markers)).
 
 ## Markers
 

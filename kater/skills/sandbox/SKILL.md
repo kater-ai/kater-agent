@@ -18,7 +18,7 @@ Each statement is written from picks, never typed. This is the whole path for on
 1. **Write the picks** with `kater scratch statement.write --request-file -`. The picks go inside `picks`. What the statement reads goes beside them: a shared semantic model or Kater dataset as a typed `source`, or one of your workspaces as `workspace`, by its folder.
 
    ```json
-   {"namespace": {"kind": "scratch", "connection": "<connection>", "user": "<your email>"},
+   {"namespace": {"kind": "scratch", "connection": "<connection>", "user_id": "<your user id>"},
     "path": "connections/<connection>/users/<your email>/brainstorm/<topic>/checks.sql",
     "source": {"name": "ad_reporting", "model_type": "semantic", "namespace": {"kind": "shared", "connection": "<connection>"}},
     "picks": {"fields": [{"field": "platform"}, {"field": "sum__spend"}],
@@ -26,7 +26,7 @@ Each statement is written from picks, never typed. This is the whole path for on
               "order": [{"field": "sum__spend", "descending": true}]}}
    ```
 
-   It saves nothing. Its answer's `sql` is the statement, and its `parameters` are what the statement's conditions read.
+   The scratch `namespace` names you by your `user_id`, which is `person.user_id` of `kater_start`; your email names only your folder in `path`. It saves nothing. Its answer's `sql` is the statement, and its `parameters` are what the statement's conditions read.
 2. **Put it in the file** with `kater scratch append --request-file -`: `{"connection": "<connection>", "path": "<the same path>", "title": "July 2026 spend by platform", "sql": "<the answer's sql>", "parameters": <the answer's parameters>}`. A file that isn't saved yet is made.
 3. **Run it** with `kater run --select <the path>`.
 

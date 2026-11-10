@@ -41,15 +41,15 @@ A lesson goes in one place. When you cannot tell whether it is about the person 
 | A field or a filter the person made, for everyone | Not a lesson: the field's promotion request | `kater promotion request` |
 | A rule of the company | `rules.md` at the content root | A proposal |
 | How to use one of Kater's skills in this organisation | The skill's `lessons.md`, in the connection's `ai_tools/` | A proposal |
-| The shipped text is wrong or missing: a guide, an operating rule, a tool's description or answer | A report to Kater | `kater_send_feedback` |
+| The shipped text is wrong or missing: a guide, Kater's instructions, a tool's description or answer | A report to Kater | `kater_send_feedback` |
 
-The person's `about.md` is `vfs://connections/{connection}/users/{email}/about.md`, where `{email}` is `person.email` of `kater_start`. Their own AI tools are in `ai_tools/` beside their `brainstorm/` folder. The connection's `about_me` skill, `ai_tools/skills/about_me.md` in the connection's folder, says under which heading of `about.md` a line goes.
+The person's `about.md` is `vfs://connections/{connection}/users/{email}/about.md`, where `{email}` is `person.email` of `kater_start`. Their own AI tools are in `ai_tools/` beside their `brainstorm/` folder. [About me](vfs://guides/about-me.md) says under which heading of `about.md` a line goes.
 
 A lesson that only one person needs goes in their own files, never in the company's. A lesson about how one skill does its work, such as "every deep analysis compares a week with the same week last year", goes in that skill's `lessons.md`, even when the whole team works that way: `rules.md` holds only what every answer follows.
 
 ## A lesson about one of Kater's skills
 
-A skill's lessons are `lessons.md` in the folder named for it: `connections/{connection}/ai_tools/skills/{name}/lessons.md`, for a skill that is one file, such as `skills/compare.md`, too. The shipped text in the skill stays as it ships, so the shipped updates to the skill keep arriving. The lessons move with the skill, no shipped update deletes them, and only a removal of the skill removes them with it. `kater ai-tools list` names a skill's `lessons` when it has some: read them with the skill. To add a line, propose the whole file, the lines it holds already too, as below. Never edit the skill's own text for a lesson.
+Kater's skills are Kater's text, in `vfs://guides/`, and nobody in an organisation changes them. The organisation's lessons for one are `lessons.md` in the connection's `ai_tools/`, in the folder named for the skill: `connections/{connection}/ai_tools/skills/{name}/lessons.md`, such as `skills/brief-me/lessons.md` for [brief me](vfs://guides/brief-me.md). The lessons are the organisation's, and no release of Kater changes them. `kater ai-tools list` names a skill's `lessons` when it has some: read them with the skill. To add a line, propose the whole file, the lines it holds already too, as below.
 
 ## Change, then tell: the person's own files
 
@@ -75,14 +75,14 @@ kater propose PATH --text-file - --why "One line: what the change is for"
 
 ## A report: the shipped text
 
-The operating rules and the guides in `vfs://guides/` are the same for every organisation, and nobody in an organisation can change them. When one is wrong or misses something, send the lesson to Kater with `kater_send_feedback`, and Kater's engineers change it for every organisation:
+Kater's instructions and the guides in `vfs://guides/` are the same for every organisation, and nobody in an organisation can change them. When one is wrong or misses something, send the lesson to Kater with `kater_send_feedback`, and Kater's engineers change it for every organisation:
 
 - `kind` is `bug` when the shipped text is wrong, and `feature_request` when something is missing from it.
 - `title` names the guide, the rule or the tool it is about, such as "measure.md names the wrong command for a ratio".
 - `what_happened` says what the text told you and what you did. `agent_findings` says what worked.
 - Never put the person's data, a figure, a file of the company or the company's rules in it.
 
-Ask the person first, as `vfs://guides/send-feedback.md` says, and send it in one call after their yes. When the person asked you to tell Kater, such as "make sure Kater knows", that is their yes: send it.
+Ask the person first, as `vfs://guides/send-feedback.md` says, and send it in one call after their yes. When the person asked you to tell the Kater team, such as "make sure Kater knows", that is their yes: send it.
 
 ## After you record a lesson
 
@@ -90,4 +90,4 @@ Tell the person once, in one line, what you recorded or proposed and where, in p
 
 - A file you wrote, the person's own or one they said yes to: what you noted, then its undo: "I noted in your about.md that you round revenue to whole dollars. Undo: `kater undo ch_…`."
 - A proposal: "I proposed to the data team that the connection's notes say why Klaviyo counts more email revenue than Shopify."
-- A report to Kater: "I told Kater that its measure guide names the wrong command."
+- A report to Kater: "I told the Kater team that the measure guide names the wrong command."

@@ -66,20 +66,20 @@ The first statement also holds its rows to July 2026, from its `is_between` pick
 
 ## Writing a statement
 
-A statement is made the way a query is: from picks, not typed by hand. Read `connections/<connection>/ai_tools/skills/query_authoring.md` first and follow it, with two changes: the picks go to `sandbox.statement.write` instead of `query.new`, and its answer goes into the file with `sandbox.append`.
+A statement is made the way a query is: from picks, not typed by hand. Read `vfs://guides/query-authoring.md` first and follow it, with two changes: the picks go to `sandbox.statement.write` instead of `query.new`, and its answer goes into the file with `sandbox.append`.
 
 1. **List the fields.** `kater query fields WORKSPACE`, with the workspace the statement reads: one of yours, a copy in your brainstorm folder, or one over the shared model it reads. It lists each field with its menu of operations. `kater scratch catalog --request-file -` with `{"connection": "<connection>"}` lists every shared model's fields, without menus. It takes only `connection` and has no search: to find a field by a word, such as `campaign`, use `search_catalog`.
 2. **Write the picks.** Send them to `kater scratch statement.write --request-file -` inside `picks`, with the names `query.new` uses (`fields`, `conditions`, `group`, `order`, `limit`). Beside `picks`, send the scratch file's `namespace` and `path`, and what the statement reads: a `workspace` by its folder, or a shared model as a typed `source`.
 
    ```json
-   {"namespace": {"kind": "scratch", "connection": "<connection>", "user": "<your email>"},
+   {"namespace": {"kind": "scratch", "connection": "<connection>", "user_id": "<your user id>"},
     "path": "connections/<connection>/users/<your email>/brainstorm/<topic>/checks.sql",
     "workspace": "connections/<connection>/users/<your email>/workspaces/<workspace>",
     "picks": {"fields": [{"field": "platform"}, {"field": "sum__spend"}],
               "order": [{"field": "sum__spend", "descending": true}]}}
    ```
 
-   It saves nothing. Its `sql` is the statement. For a shared model, send `"source": {"name": "ad_reporting", "model_type": "semantic", "namespace": {"kind": "shared", "connection": "<connection>"}}` in place of `workspace`, as [A statement in three calls](vfs://guides/sandbox.md#a-statement-in-three-calls) does. To change a statement the file has, send its `statement` number in place of both. When Kater answers that it is not ready (`not_ready`), the request is right: wait a minute and send it again, unchanged.
+   The scratch `namespace` names you by your `user_id`, which is `person.user_id` of `kater_start`; your email names only your folder in `path`. It saves nothing. Its `sql` is the statement. For a shared model, send `"source": {"name": "ad_reporting", "model_type": "semantic", "namespace": {"kind": "shared", "connection": "<connection>"}}` in place of `workspace`, as [A statement in three calls](vfs://guides/sandbox.md#a-statement-in-three-calls) does. To change a statement the file has, send its `statement` number in place of both. When Kater answers that it is not ready (`not_ready`), the request is right: wait a minute and send it again, unchanged.
 3. **Put it in the file.** `kater scratch append --request-file -` with the `connection`, the answer's `sql` and `parameters`, a `title` and the file's `path`. The file's frontmatter then declares each parameter the answer names. A pick's condition needs none. A `path` that isn't saved yet is made, and without `path` the statement opens as a new scratch file. A changed statement replaces the old one in place, with `edit_file`, and its new `parameters` go in the frontmatter.
 4. **Write SQL only when no pick makes it,** such as a join or warehouse SQL, and say which pick you tried. Then follow the skill's rules for Kater SQL: a `KATER__` function where one exists, a field selected bare, and no CTEs or subqueries.
 5. **Run it** with `kater run --select FILE`, and read the rows before you show them.

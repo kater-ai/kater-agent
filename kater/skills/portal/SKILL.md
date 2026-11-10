@@ -28,7 +28,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | "Show me this conversation in Kater" | `/admin/conversations?conversation=<id>`, where the id is the `audit_thread_id` that `kater_start` gave you. Only a person who can read the audit log sees the page. |
 | "Where do I see every conversation people had with Kater this week?" | `/admin/conversations?window=7` |
 | "Are people getting correct answers from Kater? What should I fix?" | `/admin/conversations`, which opens on What works and What to fix for the last 30 days. |
-| "Which conversations used figures the data team does not share?" | `/admin/conversations?verdict=outside` |
+| "Which conversations used fields the data team does not share?" | `/admin/conversations?verdict=outside` |
 | "Who can open this workspace? Take me to where I change that." | The workspace's page with Share open: `kater open connections/<connection>/workspaces/<workspace> --set share=1`. An admin can also see every folder's access at `/admin/settings/access?path=<path>`. |
 | "What waits for me?" | `/inbox`, with `filter=needs` for only what needs the person |
 | "Which alerts do I have?" | `/alerts`, with `alert=<id>` for the form of one alert |
@@ -36,7 +36,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | "What reads something that was deleted?" | `/trash?tab=fix`, or for an admin every delete at `/admin/objects?status=fix` |
 | "Where are my requests to the data team?" | `/requests` |
 | "Show me the result" | `/results/<result id>` |
-| "Where do I connect Slack?" | `/admin/settings/integrations/slack` for the organisation, `/slack/connect` for the person's own account |
+| "Where do I connect Slack?" | `/admin/settings/integrations/slack` for the organisation, `/profile?slack=account` for the person's own account |
 | "Who uses Kater, and what do they ask?" | `/admin`, the admin console's dashboard |
 | "Which AI apps do people use with Kater?" | `/admin`, Connected apps on the admin console's dashboard. Set the apps up at `/admin/settings/ai?tab=mcp`. |
 | "What has no owner?" | `/admin/objects?status=orphaned` |
@@ -71,8 +71,8 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | Project | `/projects/<connection>/users/<user id>/<name>` | Follows a goal: where it stands, its metrics, its timeline and its apps. A project is named by its key, `<connection>/users/<user id>/<name>`, as `kater project list` gives it. | `entries`, `entry`, `view`, `share`, `metric` |
 | An old app or project address | `/app/<old address>`, `/projects/<old address>` | An address of an old shape, such as `/app/rel1_…` or `/projects/prj_…`, says it names no app or project the person can open, and nothing redirects it. The app's and the project's key opens it. | none |
 | Talk it through with AI | `/agent` | Hands an inbox item's prompt to the person's own agent. | `item` |
-| AI Tools | `/ai-tools/starters`, `/ai-tools/agents`, `/ai-tools/skills` | Finds a starter, or reads and edits the agents and skills of the AI tools, each named by its key: `connection`, `name` and, for a person's own, `user`. | `connection`, `name`, `user`, `view`, `q` |
-| AI Tools, History | Any AI Tools tab with `history=open` | Sees who changed what and when in the connection's AI tools and their own `about.md`, the same list on every tab, the nightly update of the shipped text and each decision too, each file linking to where it is now. The shipped change to a file the organisation edited is not on the page: the person asks you, and you answer with `kater ai-tools status`, `diff` and `update --decide`. | `history`, `change` |
+| AI Tools | `/ai-tools/starters`, `/ai-tools/agents`, `/ai-tools/skills` | Finds a starter, reads Kater's agents and skills, or reads and edits the organisation's and their own, each named by its key: `connection`, `name` and, for a person's own, `user`. Kater's are read-only. | `connection`, `name`, `user`, `view`, `q` |
+| AI Tools, History | Any AI Tools tab with `history=open` | Sees who changed what and when in the connection's AI tools and their own `about.md`, the same list on every tab, each file linking to where it is now. | `history`, `change` |
 | About you | `/ai-tools/about` | Reads and edits what their agent knows about them and the company. | `doc`, `connection`, `user`, `view`, `history` |
 | Theme Builder | `/theme-builder` | Makes and edits a theme for apps. | `theme`, `tab`, `sidebar` |
 
@@ -87,8 +87,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | Requests | `/requests` | Follows their requests to promote a field into the shared model. | `tab`, `request` |
 | Bug reports | `/reports` | Reads, sorts and searches every bug report that people in the organisation sent to Kater; closes, reopens or changes the severity of their own (an admin, of any); opens a report beside the list. | `status`, `sort`, `q`, `type`, `severity`, `by`, `report` |
 | Bug report | `/reports/<report id>` | Reads one bug report, such as `BUG-1042`, and confirms its fix. | |
-| Profile | `/profile`, `/profile/<user id>` | Their own profile: notifications, AI app, agents and links. An admin opens another person's. | `#notifications`, `#ai`, `#agents`, `remove` |
-| Slack account | `/slack/connect` | Connects their own Slack account to Kater, after they sign in with Slack. | `mode`, `action`, `outcome`, `reason` |
+| Profile | `/profile`, `/profile/<user id>` | Their own profile: notifications, their own Slack connection, AI app, agents and links. An admin opens another person's. | `#notifications`, `#ai`, `#agents`, `slack`, `reason`, `remove` |
 
 ### Admin
 
