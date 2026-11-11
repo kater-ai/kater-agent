@@ -29,7 +29,7 @@ A question with one reading, such as "what was spend last week", is a lookup: an
 
 **A why about a figure the person just saw,** such as "Why did it go up?" after a lookup, already has its figure and its two periods. Do not ask what it is compared with: it is the period before that you gave. Show the first cut at once, then go on:
 
-1. Say in one sentence what you look at first: the figure by its main part, such as each platform, channel or product, for the two periods.
+1. When the figure moved the other way from the move the person named, or held flat (under 1% either way), say first what it did, with the two figures and the change linked to their result, such as "Spend went down last week, from [$61,116.86](app_url) to [$55,661.64](app_url), down [8.9%](app_url)." Then say in one sentence what you look at first to find why it made that move: the figure by its main part, such as each platform, channel or product, for the two periods.
 2. Run that one query, with the change for each part, and show it with its chart.
 3. Say in one line what it shows, with the figures as the result gives them, such as which parts moved and which held flat.
 4. Go on from step 2 below with the part that moved most, and look for what people recorded, with no question in between: the person asked why, so answer why.
