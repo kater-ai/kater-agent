@@ -55,7 +55,7 @@ In Kater a report is live: a chart answers hover with its tooltips, its settings
 - A card has no toolbar, settings button or hover lift, and a frame has no settings button.
 - A chart or KPI card is drawn flat on the paper: a rule above it instead of a box around it, its heading in line with the sheet's text.
 - A figure in a sentence, and a figure named in a title, has no dotted underline or mark promising a card that never opens. It carries a small number instead, once per sheet, and the appendix lists it under its source with what its hover would have: its formula or definition under its line, and the query, file or system it came from. A name, such as a channel, carries none.
-- A figure from the shared layer keeps its shield, and a mock data figure keeps its MOCK DATA badge, which Hide Citations never hides. A link prints as its text.
+- A figure from the shared layer keeps its green badge, and a mock data figure keeps its MOCK DATA badge, which Hide Citations never hides. A link prints as its text.
 - A chart, table or KPI lists every figure it draws in the appendix.
 - **Show citations**, a setting under **Export**, shows or hides the numbers, and what it chose holds for every export. A report shows them by default.
 - Charts have no tooltips or legend toggles.
