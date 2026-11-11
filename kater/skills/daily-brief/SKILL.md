@@ -32,6 +32,6 @@ To talk a card through, show where it points with `kater open --new` and its `op
 The person changes their brief on its page in Kater, with Edit brief: its figures, its projects, its sections, its time and days, and Slack or email.
 
 - **Pinned**: the person's pins, the same list as Pin on a chart. Add a figure with `kater pin add QUERY --figure FIELD[:ROW]`, and take one out with `kater pin remove`. Its value comes from what Kater stored.
-- **Projects I follow**: the brief's projects, in their `about.md`, so their agent reads the same ones. Each item is the project's title, then its folder from the content root in backticks, such as ``- TikTok budget test (`connections/<connection>/users/<email>/projects/tiktok_budget_test`)``.
+- **Projects I follow**: the brief's projects, in their `about.md`, so their agent reads the same ones. Each item is the project's title, then its folder from the content root in backticks (the person's own folder is `connection.folder` of `kater_start`), such as ``- TikTok budget test (`connections/<connection>/users/<email>/projects/tiktok_budget_test`)``.
 
 Record a project the person asks to follow under Projects I follow, as the about-me skill says. The brief reads it at its next read.

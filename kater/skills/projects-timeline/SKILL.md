@@ -34,7 +34,7 @@ The person asks to add this conversation, chat, thread or session to a project, 
    - Claude Code on the web: set the session's visibility to Team, then copy its link. A reader sees the session as it is when they open it.
    - Claude Code in a terminal, in VS Code or in the desktop app: there is no share link. `/export <file name>` writes the conversation to a text file. Go to step 3.
    - A different tool, such as Codex: share the conversation as the tool lets you, then give me the link or the exported file.
-2. **With a link, log a note.** Write the note from what the person says that the conversation found or decided, in their words, in two or three sentences, with each figure as a `<kater-value>` tag. Attach the link with `--link`, and name the conversation with `--link-title`. Show the entry, and add it with `kater_apply` only after the person says yes. Tell them that the link opens only for the people that their tool lets in.
+2. **With a link, log a note.** Write the note from what the person says that the conversation found or decided, in their words, in two or three sentences, with each figure as a `<kater-value>` tag. Attach the link with `--link`, and name the conversation with `--link-title`. Show the entry, and add it with `kater_apply` only after the person says yes. Tell them that the link opens only for the people that their tool lets in. The person's own folder is `connection.folder` of `kater_start`.
 
 ```bash
 kater timeline log connections/<connection>/users/<email>/projects/paid_media_budget --kind note --title "Why Paid Social conversion fell" \

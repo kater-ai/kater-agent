@@ -43,7 +43,7 @@ A lesson goes in one place. When you cannot tell whether it is about the person 
 | How to use one of Kater's skills in this organisation | The skill's `lessons.md`, in the connection's `ai_tools/` | A proposal |
 | The shipped text is wrong or missing: a guide, Kater's instructions, a tool's description or answer | A report to Kater | `kater_send_feedback` |
 
-The person's `about.md` is `vfs://connections/{connection}/users/{email}/about.md`, where `{email}` is `person.email` of `kater_start`. Their own AI tools are in `ai_tools/` beside their `brainstorm/` folder. [About me](vfs://guides/about-me.md) says under which heading of `about.md` a line goes.
+The person's `about.md` is in their own folder, `connection.folder` of `kater_start`, such as `vfs://connections/<connection>/users/<email>/about.md`. Their own AI tools are in `ai_tools/` beside their `brainstorm/` folder. [About me](vfs://guides/about-me.md) says under which heading of `about.md` a line goes.
 
 A lesson that only one person needs goes in their own files, never in the company's. A lesson about how one skill does its work, such as "every deep analysis compares a week with the same week last year", goes in that skill's `lessons.md`, even when the whole team works that way: `rules.md` holds only what every answer follows.
 

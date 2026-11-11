@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/about-me.md`.
 
 # About me
 
-Record what the person tells you about themselves in their `about.md`, `connections/<connection>/users/<email>/about.md`. It is read before every answer, in the Ask panel and in their own agent, so one good line here changes every answer after it.
+Record what the person tells you about themselves in their `about.md`, in their own folder that `connection.folder` of `kater_start` names, such as `vfs://connections/<connection>/users/<email>/about.md`. When `kater_start` names no `connection`, ask the person which connection they work in. It is read before every answer, in the Ask panel and in their own agent, so one good line here changes every answer after it.
 
 **Lessons.** When `kater ai-tools list` names `lessons` for this skill, read that file before you start and follow it: it is what this organisation learned using this skill. Record a new lesson about using it there, as vfs://guides/lessons.md says.
 

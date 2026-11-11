@@ -13,11 +13,11 @@ A first chat with someone new. When it's done, their `about.md` says who they ar
 
 ## When to use
 
-Use this when someone is new, asks to be set up, or their `connections/<connection>/users/<email>/about.md` has no words under its headings. To change one fact later, use [about me](vfs://guides/about-me.md). Setting up the connection itself, its warehouse and first models, is an admin's `kater init`, then [model table](vfs://guides/model-table.md). Adding the organisation's Anthropic key, so the portal's Ask panel answers, is an admin's `kater init ai-key` or AI settings: never ask anyone for a key in the chat.
+Use this when someone is new, asks to be set up, or the `about.md` in their own folder, `connection.folder` of `kater_start`, has no words under its headings. To change one fact later, use [about me](vfs://guides/about-me.md). Setting up the connection itself, its warehouse and first models, is an admin's `kater init`, then [model table](vfs://guides/model-table.md). Adding the organisation's Anthropic key, so the portal's Ask panel answers, is an admin's `kater init ai-key` or AI settings: never ask anyone for a key in the chat.
 
 ## Procedure
 
-1. **Read first, without asking.** Their `connections/<connection>/users/<email>/about.md`, the root `about.md`, `connections/<connection>/connection_context.md`, and what they own or opened lately: `kater invoke workspace.browse` and `kater invoke app.browse` with `show: mine`. Note what each heading of their `about.md` already says.
+1. **Read first, without asking.** The `about.md` in their own folder (`connection.folder` of `kater_start`; when it is absent, ask which connection they work in), the root `about.md`, `connections/<connection>/connection_context.md`, and what they own or opened lately: `kater invoke workspace.browse` and `kater invoke app.browse` with `show: mine`. Note what each heading of their `about.md` already says.
 2. **Say what you see.** Greet them by first name, and in a line or two say what you can already tell, such as the team their workspaces belong to. Invite a correction.
 3. **Ask four things, one at a time,** skipping any their `about.md` already answers:
    - **Role:** what they do, and for which team.

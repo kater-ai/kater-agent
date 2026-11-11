@@ -16,7 +16,7 @@ Each test names the model it tests in `model:`, as `<kind>.<name>`, such as `mod
 | Where | Who reads it | Who writes it |
 | --- | --- | --- |
 | `connections/<connection>/modeling/kater_objects/tests/`, the shared layer's | Everyone who reads the model. | Whoever edits the shared models. Its tests are the model's own: readiness, the nightly run and the model's tests chip count only these. |
-| `connections/<connection>/users/<email>/tests/`, your own | You, whoever you share it with, and admins. | You. |
+| `connections/<connection>/users/<email>/tests/`, in your own folder (`connection.folder` of `kater_start`) | You, whoever you share it with, and admins. | You. |
 
 **A new test goes in your own file** unless you ask for the shared layer's: `--shared` on `kater new test` and `kater test generate`, "The shared layer" in Save as test, and `shared: true` on `test.create` and `test.generate`. Only someone who edits the shared models can choose it. Every person's folder starts with an empty `tests/` folder, and a file appears with its model's first test. Your own tests name their model in `model:` just as the shared ones do, so the two files hold tests of the same model and each keeps its own names. To hand a test to the data team, they copy its block into the shared file.
 

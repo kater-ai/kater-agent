@@ -13,7 +13,7 @@ Turn answers the person trusts into tests, so a later change that moves one fail
 
 ## When to use
 
-Use this when the person wants to trust a model, before or after a change to it, or after a `/check` held. Their tests of a shared model go in their own `connections/<connection>/users/<email>/tests/`, each naming the model in `model: <kind>.<name>`; the shared layer's file is only for someone who can edit the shared models and asks for it.
+Use this when the person wants to trust a model, before or after a change to it, or after a `/check` held. Their tests of a shared model go in their own folder (`connection.folder` of `kater_start`), in `connections/<connection>/users/<email>/tests/`, each naming the model in `model: <kind>.<name>`; the shared layer's file is only for someone who can edit the shared models and asks for it.
 
 ## Procedure
 

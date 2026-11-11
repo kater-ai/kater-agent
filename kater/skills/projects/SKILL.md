@@ -11,7 +11,7 @@ A project is a goal, the metrics that measure it, a list of apps and one timelin
 
 ## What a project holds
 
-Kater keeps a project in one file, `projects/<name>/kater.project.yaml`, in its owner's folder. A file or a mention names a project by its folder from the content root, such as `connections/<connection>/users/<email>/projects/<name>`. A `kater project` or `kater timeline` command and a portal address take its key, `<connection>/users/<user_id>/<name>`, or its id (`rel1_…`), and a command takes its folder too. `kater project list` gives each project's folder, key and id. Never write the file yourself. Each change is one commit that a `kater project` command makes.
+Kater keeps a project in one file, `projects/<name>/kater.project.yaml`, in its owner's folder (the person's own folder is `connection.folder` of `kater_start`). A file or a mention names a project by its folder from the content root, such as `connections/<connection>/users/<email>/projects/<name>`. A `kater project` or `kater timeline` command and a portal address take its key, `<connection>/users/<user_id>/<name>`, or its id (`rel1_…`), and a command takes its folder too. `kater project list` gives each project's folder, key and id. Never write the file yourself. Each change is one commit that a `kater project` command makes.
 
 - **Title.** A short name, such as `Paid media budget`.
 - **Goal.** One sentence that says what success is, such as "Grow attributed revenue from paid media without raising total spend." A goal is not a question.

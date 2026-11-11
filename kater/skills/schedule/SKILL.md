@@ -13,7 +13,7 @@ To hear only when a metric crosses a line, make a watch instead, and to write a 
 
 ## Write the file
 
-Save the file at `connections/<connection>/users/<your email>/schedules/<name>.yaml`. Use a simple name with letters, numbers, underscores or hyphens. Use the same connection for the schedule and its query. The file is at most 16 KB. Unknown fields are refused.
+Save the file in your own folder, `connection.folder` of `kater_start`, at `connections/<connection>/users/<your email>/schedules/<name>.yaml`. Use a simple name with letters, numbers, underscores or hyphens. Use the same connection for the schedule and its query. The file is at most 16 KB. Unknown fields are refused.
 
 ```yaml
 run: connections/snowflake_prod_connection/users/yvonne@kater.ai/workspaces/channel_performance_weekly/weekly_scorecard

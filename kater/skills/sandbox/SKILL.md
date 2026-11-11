@@ -15,7 +15,7 @@ The Sandbox is where a person tries something without choosing a workspace, a mo
 
 Each statement is written from picks, never typed. This is the whole path for one statement over a shared model:
 
-1. **Write the picks** with `kater scratch statement.write --request-file -`. The picks go inside `picks`. What the statement reads goes beside them: a shared semantic model or Kater dataset as a typed `source`, or one of your workspaces as `workspace`, by its folder.
+1. **Write the picks** with `kater scratch statement.write --request-file -`. The picks go inside `picks`. What the statement reads goes beside them: a shared semantic model or Kater dataset as a typed `source`, or one of your workspaces as `workspace`, by its folder. Your own folder is `connection.folder` of `kater_start`.
 
    ```json
    {"namespace": {"kind": "scratch", "connection": "<connection>", "user_id": "<your user id>"},

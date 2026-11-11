@@ -11,7 +11,7 @@ A part of [Sandbox](vfs://guides/sandbox.md).
 
 ## Scratch files
 
-A scratch file is yours: any `.sql` file in your brainstorm folder, `connections/<connection>/users/<your email>/brainstorm/`, at any depth, except in a topic's `workspaces/` and `apps/` folders. See [the brainstorm folder](vfs://guides/brainstorm.md) for the rest of what it holds.
+A scratch file is yours: any `.sql` file in your brainstorm folder, in your own folder (`connection.folder` of `kater_start`), `connections/<connection>/users/<your email>/brainstorm/`, at any depth, except in a topic's `workspaces/` and `apps/` folders. See [the brainstorm folder](vfs://guides/brainstorm.md) for the rest of what it holds.
 
 - **Where.** A loose file goes at the top, `brainstorm/<name>.sql`. A file for one question goes in that topic's folder, beside its plan, such as `brainstorm/promote_roas/checks.sql`. Any folder works, `brainstorm/sandbox/` included.
 - **Known by its path.** A scratch file's identity is its path in the brainstorm folder, so two topics can each hold a `checks.sql`. `name` in its frontmatter is still its file's name.

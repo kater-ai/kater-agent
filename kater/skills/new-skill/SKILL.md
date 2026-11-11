@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/new-skill.md`.
 
 # Make your own command
 
-Write a skill of the person's own: a short procedure that the agent follows whenever they type its name, in the Ask panel or in their own agent. It lives in `connections/<connection>/users/<email>/ai_tools/skills/<name>.md`, where only they change it, and the Agents page lists it under Personal.
+Write a skill of the person's own: a short procedure that the agent follows whenever they type its name, in the Ask panel or in their own agent. It lives in the person's own folder, `connection.folder` of `kater_start`, at `connections/<connection>/users/<email>/ai_tools/skills/<name>.md`, where only they change it, and the Agents page lists it under Personal.
 
 **Lessons.** When `kater ai-tools list` names `lessons` for this skill, read that file before you start and follow it: it is what this organisation learned using this skill. Record a new lesson about using it there, as vfs://guides/lessons.md says.
 

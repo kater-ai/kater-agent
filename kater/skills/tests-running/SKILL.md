@@ -46,7 +46,7 @@ Nobody has to write picker YAML by heart. In a test file the editor:
 
 Answers are recorded, not typed. Recording writes numbers at their format's precision, so the warehouse's `48947.020000000004` is kept as `48947.02`, and puts each row on one line.
 
-Each of these adds to your own `users/<email>/tests/`, to the file whose tests already name the model, else `<model>.sql`; add `--shared` to add to the shared layer's.
+Each of these adds to your own `users/<email>/tests/` (your own folder is `connection.folder` of `kater_start`), to the file whose tests already name the model, else `<model>.sql`; add `--shared` to add to the shared layer's.
 
 ```sh
 kater new test semantic.ad_reporting NAME --sql-file totals.sql --record

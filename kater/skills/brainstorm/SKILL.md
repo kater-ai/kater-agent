@@ -9,7 +9,7 @@ This skill is Kater's guide `vfs://guides/brainstorm.md`.
 
 Your brainstorm folder is where you try things before you ask. Write a plan, run checks and draft a page there without asking first. Then ask once, at the end, with the evidence in hand. Only after a yes does anything leave the folder.
 
-It's `connections/<connection>/users/<your email>/brainstorm/`, and every file and `kater` result names yours in `brainstorm`, so use that one. Like the rest of your Personal folder, only you and whoever you share that folder with can read it.
+It's in your own folder (`connection.folder` of `kater_start`), at `connections/<connection>/users/<your email>/brainstorm/`, and every file and `kater` result names yours in `brainstorm`, so use that one. Like the rest of your Personal folder, only you and whoever you share that folder with can read it.
 
 ## Rules
 

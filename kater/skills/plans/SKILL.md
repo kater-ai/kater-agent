@@ -34,7 +34,7 @@ The five region managers want to see last week's net sales for their own region,
 
 ## Phases
 
-Run one phase: "Run phase P1 of `connections/<connection>/users/<email>/brainstorm/region_weekly_sales.md`". Run them all: "Run `…/brainstorm/region_weekly_sales.md`". Each phase follows `vfs://guides/run-phase.md`. A phase starts once every phase it depends on is Done.
+The person's own folder is `connection.folder` of `kater_start`. Run one phase: "Run phase P1 of `connections/<connection>/users/<email>/brainstorm/region_weekly_sales.md`". Run them all: "Run `…/brainstorm/region_weekly_sales.md`". Each phase follows `vfs://guides/run-phase.md`. A phase starts once every phase it depends on is Done.
 
 | ID | Phase | Depends on | Status | Notes |
 | --- | --- | --- | --- | --- |
