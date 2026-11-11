@@ -52,7 +52,7 @@ In an app's manifest or a dashboard, the theme is either a name, a preset such a
 `overrides` takes only these groups. A name that is not in the list is an error.
 
 - `colors.light` and `colors.dark`: `background`, `foreground`, `primary`, `primaryForeground`, `secondary`, `secondaryForeground`, `accent`, `accentForeground`, `destructive`, `destructiveForeground`, `border`, `input`, `ring`, `muted`, `mutedForeground`, `card`, `cardForeground`, `popover`, `popoverForeground`, `sidebar`, `sidebarForeground`, `sidebarPrimary`, `sidebarPrimaryForeground`, `sidebarAccent`, `sidebarAccentForeground`, `sidebarBorder`, `sidebarRing`, and the chart palette `chart1` to `chart5`.
-- `chartColors.light` and `chartColors.dark`: `positive`, `negative`, `warning`, `grid`, `axis`, `gauge_track`, and `series`, a list of exactly three colours. The `kater_*` tokens are the colours of Kater's object marks: leave them as the preset has them.
+- `chartColors.light` and `chartColors.dark`: `positive`, `negative`, `warning`, `grid`, `axis`, `gauge_track`, and `series`, a list of exactly three colours. The `kater_*` tokens are the colours of Kater's object marks: leave them as the preset has them. The Shared layer's objects wear `positive`, the green of Verified, so a change to `positive` changes them too.
 - `typography`: `fontFamily`, `fontSerif`, `fontMono`, `fontSizeBase` (such as `15px`), `fontWeight` (such as `400`) and `letterSpacing` (such as `0em`). A font family must be one that Kater ships or a system font stack.
 - `shadow`: `light` and `dark`, each with `color` and `opacity`, and `blur`, `spread`, `offsetX` and `offsetY`.
 - `borderRadius` and `spacing`: one CSS length each, such as `0.5rem`.
