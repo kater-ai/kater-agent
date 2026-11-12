@@ -25,7 +25,7 @@ The template is a stylesheet and a small script the runtime serves, never a copy
       <header class="slide-header">
         <p class="slide-kicker">Weekly review</p>
         <h1 class="slide-title">Deck name</h1>
-        <p class="slide-subtitle">Week of <kater-value query="…/scorecard" field="report_week_label"></kater-value></p>
+        <p class="slide-subtitle"><kater-value query="…/scorecard" field="report_week" row="0"></kater-value></p>
       </header>
       <footer class="slide-footer"><span>Company, Team</span><span class="slide-number"></span></footer>
     </section>

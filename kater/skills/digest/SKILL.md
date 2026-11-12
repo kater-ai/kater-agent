@@ -136,7 +136,7 @@ Show each figure with the first of these that fits it:
 1. **A frame the template draws**, from the list above. A fix to the template reaches every brief.
 2. **One of Kater's tags**: `<kater-chart>` with any chart kind, `<kater-table>` or `<kater-kpi>` ([app](vfs://guides/app-data.md)). The brief draws it with no card around it, 20rem tall; `data-height="short"`, `"medium"` or `"tall"` makes it 16, 20 or 28rem. When a KPI's figures or a Text chart's words need more room, it grows to show all of them.
 3. **A custom chart**, `<kater-custom-chart>`, which the page draws with a script over one query's bound fields ([Custom charts](vfs://guides/app-data.md#custom-charts)), for a chart of one query that no chart kind can show. Kater draws its tooltip and its loading, and checks each figure on it.
-4. **A frame the page draws itself**, with a script ([Custom visuals](vfs://guides/app-data.md#custom-visuals)), only for a visual that is not one query's chart. Kater still draws its loading, its errors and its cog.
+4. **A frame the page draws itself**, with a script ([Custom visuals](vfs://guides/app-data.md#custom-visuals)), only for a visual that is not one query's chart. Its loading, its errors and its cog still come with the frame.
 
 Style the brief's own blocks, never what Kater draws. A page's `<style>` can size and place a tag, but the app check refuses a rule that selects inside a Kater tag, a class or attribute that Kater draws, such as `.digest-spark-plot` or `[data-slot]`, or a class that Kater's own styles use, such as `.grid`. Give the brief's blocks classes of their own.
 

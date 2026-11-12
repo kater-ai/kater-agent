@@ -2,7 +2,7 @@
 
 Answer questions about your company's business data from its governed warehouse, and build charts, dashboards and reports on it.
 
-This repository is the plugin marketplace `kater`, which holds the plugin `kater` at the version 0.2.3303+e9d37b90894f. Each Kater release updates it; nobody edits it by hand. The plugin holds Kater's instructions, its skills and the Kater MCP, which you sign in to with your Kater account.
+This repository is the plugin marketplace `kater`, which holds the plugin `kater` at the version 0.2.3318+54a54ae574e7. Each Kater release updates it; nobody edits it by hand. The plugin holds Kater's instructions, its skills and the Kater MCP, which you sign in to with your Kater account.
 
 | Host | Install | Update |
 | --- | --- | --- |

@@ -63,4 +63,4 @@ Read the part for what you do:
 - **Write a scratch file and its statements:** [scratch files and statements](vfs://guides/sandbox-scratch-files.md).
 - **Run a statement, read a workspace, use warehouse SQL, or keep a statement as a test:** [running statements](vfs://guides/sandbox-running.md).
 - **Chart a statement, or add it to a dashboard:** [charts](vfs://guides/sandbox-charts.md).
-- **Try a change to a chart that someone else made:** [changing a chart someone else made](vfs://guides/sandbox-changing-a-chart.md).
+- **Try a change to a chart that someone else made, a figure's chart on Compare or For you too:** [changing a chart someone else made](vfs://guides/sandbox-changing-a-chart.md).
