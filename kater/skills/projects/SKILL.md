@@ -11,7 +11,7 @@ A project is a goal, the metrics that measure it, a list of apps and one timelin
 
 ## What a project holds
 
-Kater keeps a project in one file, `projects/<name>/kater.project.yaml`, in its owner's folder (the person's own folder is `connection.folder` of `kater_start`). A file or a mention names a project by its folder from the content root, such as `connections/<connection>/users/<email>/projects/<name>`. A `kater project` or `kater timeline` command and a portal address take its key, `<connection>/users/<user_id>/<name>`, or its id (`rel1_…`), and a command takes its folder too. `kater project list` gives each project's folder, key and id. Never write the file yourself. Each change is one commit that a `kater project` command makes.
+A project is kept in one file, `projects/<name>/kater.project.yaml`, in its owner's folder (the person's own folder is `connection.folder` of `kater_start`). A file or a mention names a project by its folder from the content root, such as `connections/<connection>/users/<email>/projects/<name>`. A `kater project` or `kater timeline` command and a portal address take its key, `<connection>/users/<user_id>/<name>`, or its id (`rel1_…`), and a command takes its folder too. `kater project list` gives each project's folder, key and id. Never write the file yourself. Each change is one commit that a `kater project` command makes.
 
 - **Title.** A short name, such as `Paid media budget`.
 - **Goal.** One sentence that says what success is, such as "Grow attributed revenue from paid media without raising total spend." A goal is not a question.
@@ -19,7 +19,7 @@ Kater keeps a project in one file, `projects/<name>/kater.project.yaml`, in its 
 - **Tags.** Optional. Each key has a list of its values, such as `topic: [paid_media]`, as a workspace's, a query's and an app's tags are written. A search finds the project by them.
 - **Apps.** The apps it groups, each by its folder from the content root, such as `connections/<connection>/users/<email>/apps/retention_scorecard`.
 - **Charts.** One chart of an app in place of the whole app: the app's folder and the query its page draws there. The project page shows it with the app's title for it, and opens the app at it.
-- **Metrics.** The numbers the project is judged by. Each is one query, one field and one row a week, or the sum of the week's rows. One metric is the goal's. Kater computes each metric's normal range and status from its weeks, so nobody has to set a level. A metric's target draws as a line on each chart of its query, and its owner hears about its alert in their Inbox: see [pin and alerts](vfs://guides/pin-and-alert.md).
+- **Metrics.** The numbers the project is judged by. Each is one query, one field and one row a week, or the sum of the week's rows. One metric is the goal's. Each metric's normal range and status are computed from its weeks, so nobody has to set a level. A metric's target draws as a line on each chart of its query, and its owner hears about its alert in their Inbox: see [pin and alerts](vfs://guides/pin-and-alert.md).
 
 The timeline of a project holds its own entries and the entries of each app it lists that the reader can read, newest first, in weeks.
 
@@ -45,7 +45,7 @@ Read the part for what you do:
 
 ## The inbox
 
-Run `kater inbox` when the person asks what waits for them, or to see whether something waiting is about what they ask. It lists what waits for the person, newest first, each with its reason, its title and the command that reads its place. The inbox is the one place Kater tells a person something, so it also lists a promotion request to review and the objects no one manages, each with its own words and no place to read when it is about Kater itself. When they asked what waits, say it: "Two things wait for you: ...", then ask which one to talk through. Otherwise raise only an item about what they ask, such as a draft snapshot of the app their question is about.
+Run `kater inbox` when the person asks what waits for them, or to see whether something waiting is about what they ask. It lists what waits for the person, newest first, each with its reason, its title and the command that reads its place. The inbox is the one place where a person is told something, so it also lists a promotion request to review and the objects no one manages, each with its own words and no place to read when it is about Kater itself. When they asked what waits, say it: "Two things wait for you: ...", then ask which one to talk through. Otherwise raise only an item about what they ask, such as a draft snapshot of the app their question is about.
 
 `kater inbox show <id>` gives one item: its messages, the prompt for it, and its project's open decisions and newest entries.
 

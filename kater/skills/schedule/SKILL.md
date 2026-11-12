@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/schedule.md`.
 
 # Schedule a Slack DM
 
-A schedule sends one saved query’s fresh figures to its owner in Slack. It does not run an AI model, write a digest, send to a channel, or send only when a condition changes. Kater must have an installed Slack app. The owner must be a confirmed organisation member with a connected Slack account and current access to the query and its sources.
+A schedule sends one saved query’s fresh figures to its owner in Slack. It does not run an AI model, write a digest, send to a channel, or send only when a condition changes. The Kater Slack app must be installed. The owner must be a confirmed organisation member with a connected Slack account and current access to the query and its sources.
 
 To hear only when a metric crosses a line, make a watch instead, and to write a page again on a schedule, a brief (vfs://guides/workflows.md, [digest](vfs://guides/digest.md)). A brief's run keeps each linked figure (a `<kater-source>` with `origin="link"`, `"file"` or `"person"`) and its `read-at` as they are, never writes a new date for a figure it did not read, and names each figure it kept and the day it was read in its final message.
 
@@ -46,5 +46,5 @@ The worker reads each schedule each minute and keeps one Hatchet cron for each a
 
 Each run resolves the owner’s current access, runs fresh, and sends the normal result DM. Open and Ask about this refer to the owner’s result. A result that has a chart can include its private PNG. Figures use a bounded sample. Unknown source cutoffs read `Data to null.`. `Read on` is the execution time, not the last data date. An image failure leaves the figures and result link available. A run that cannot finish sends a message with no figures and its next set time, if the Slack connection remains available. If delivery is not possible, its job and `schedule_runs` receipt keep the outcome. An uncertain external delivery never automatically posts again.
 
-Select Stop in the DM to pause it. Only the linked owner can use that button. Kater saves `paused: true` and `paused_by`, the owner’s user id, as the owner’s content change. The confirmation’s Open History button opens `/files/<schedule path>?history=open`. Select Undo on the pause change to resume it. You can also save `paused: false`, or delete the file to remove the schedule. History records these changes. Unsent drafts, credentials and query rows never go in an address or schedule receipt.
+Select Stop in the DM to pause it. Only the linked owner can use that button. The pause saves `paused: true` and `paused_by`, the owner’s user id, as the owner’s content change. The confirmation’s Open History button opens `/files/<schedule path>?history=open`. Select Undo on the pause change to resume it. You can also save `paused: false`, or delete the file to remove the schedule. History records these changes. Unsent drafts, credentials and query rows never go in an address or schedule receipt.
 

@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/daily-brief.md`.
 
 # The Daily brief
 
-The Daily brief is Kater's own brief for one person: the things that stand out today in everything they can read, the projects they follow, what waits for them, what their alerts said, and the figures they keep. Kater writes it in code from a ranking it keeps each night. No model writes it, and no file holds it. Each morning at the person's time, it opens a row in their inbox, and a Slack DM or an email of it when they choose.
+The Daily brief is Kater's own brief for one person: the things that stand out today in everything they can read, the projects they follow, what waits for them, what their alerts said, and the figures they keep. It is written in code from a ranking kept each night. No model writes it, and no file holds it. Each morning at the person's time, it opens a row in their inbox, and a Slack DM or an email of it when they choose.
 
 ## Read it
 
@@ -23,7 +23,7 @@ Run `kater brief` when the person asks what is in their brief, for their Daily b
 
 The brief and For you give a person a figure that an app shows when they can read that app and its workspace. A figure that no app shows comes from its workspace's data, so it reaches only a person with execute access on that workspace, as a run does.
 
-`stand_out` counts the one thing and What moved. Every value is Kater's, from stored rows: cite it as it is, and do not run a query to check it. A section the person turned off is not in the answer. When `ranking` is in the answer, Kater ranks the figures again now: say so, and give the rest. With `set_up` false, the person has no brief yet: say what Kater would select for it, from `kater_selects` and `projects_to_follow`, and that they start it on the brief's page, `/brief`, which `kater open /brief` opens.
+`stand_out` counts the one thing and What moved. Every value is Kater's, from stored rows: cite it as it is, and do not run a query to check it. A section the person turned off is not in the answer. When `ranking` is in the answer, the figures are being ranked again now: say so, and give the rest. With `set_up` false, the person has no brief yet: say what the brief would select for it, from `kater_selects` and `projects_to_follow`, and that they start it on the brief's page, `/brief`, which `kater open /brief` opens.
 
 To talk a card through, show where it points with `kater open --new` and its `open` address, or read it as [diagnose](vfs://guides/diagnose.md) says. A figure's `field` and `workspace` name where it comes from.
 
@@ -31,7 +31,7 @@ To talk a card through, show where it points with `kater open --new` and its `op
 
 The person changes their brief on its page in Kater, with Edit brief: its figures, its projects, its sections, its time and days, and Slack or email.
 
-- **Pinned**: the person's pins, the same list as Pin on a chart. Add a figure with `kater pin add QUERY --figure FIELD[:ROW]`, and take one out with `kater pin remove`. Its value comes from what Kater stored.
+- **Pinned**: the person's pins, the same list as Pin on a chart. Add a figure with `kater pin add QUERY --figure FIELD[:ROW]`, and take one out with `kater pin remove`. Its value is the one last stored.
 - **Projects I follow**: the brief's projects, in their `about.md`, so their agent reads the same ones. Each item is the project's title, then its folder from the content root in backticks (the person's own folder is `connection.folder` of `kater_start`), such as ``- TikTok budget test (`connections/<connection>/users/<email>/projects/tiktok_budget_test`)``.
 
 Record a project the person asks to follow under Projects I follow, as the about-me skill says. The brief reads it at its next read.

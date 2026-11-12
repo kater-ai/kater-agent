@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/start.md`.
 
 # Starting something
 
-A person starts in one of two ways: from a goal, such as "get spend to a target by June", or from a thing to make, such as a deck. Kater keeps both in one list, the same one the New dialog in the portal shows. Read it with `kater start`. Never write the list from memory.
+A person starts in one of two ways: from a goal, such as "get spend to a target by June", or from a thing to make, such as a deck. Both are in one list, the same one the New dialog in the portal shows. Read it with `kater start`. Never write the list from memory.
 
 ## The commands
 
@@ -23,7 +23,7 @@ A person starts in one of two ways: from a goal, such as "get spend to a target 
 4. A choice the person does not care about takes its recommended option. Do not ask about it when the request already tells you enough to make something good.
 5. Make it with the `kater new` line the answer gives, with the values you set.
 
-Never ask about the person's time zone. A schedule's words name it, such as "8:00 AM New York time": give it to `kater start` as `--timezone America/New_York`, and the `kater new` line it answers carries it. When the words name none, leave it out, and Kater takes the person's own.
+Never ask about the person's time zone. A schedule's words name it, such as "8:00 AM New York time": give it to `kater start` as `--timezone America/New_York`, and the `kater new` line it answers carries it. When the words name none, leave it out, and the person's own is used.
 
 When the person selects options in Kater's card, their message is the first line of the request with every choice in it. Make the object from it without a question about those choices.
 
@@ -31,7 +31,7 @@ When the person selects options in Kater's card, their message is the first line
 
 Before you ask what an object is about or what it reads, look at everything the person can read, in one step: each place the Source data choice's `find` names. That is their dashboards and queries, the shared models and datasets, their apps, and their projects, which say what they work on now. Never look only at dashboards. Offer the sources that fit the person's words as options, a project's by its name. Then offer each of the choice's `also`: Find the best fit for me first, which is recommended and leaves the flag out, and Use mock data last.
 
-Use mock data makes the object now, without waiting for data: each figure that Kater has comes from Kater, and each one it does not have gets mock data. That is the person's answer for each such figure, so do not ask again for each one: give it a mock data source with what you searched and the data that replaces it, as vfs://guides/app-sources.md#sources says. Every mock figure wears the MOCK DATA badge until real data replaces it.
+Use mock data makes the object now, without waiting for data: each figure that is in Kater comes from Kater, and each one that is not gets mock data. That is the person's answer for each such figure, so do not ask again for each one: give it a mock data source with what you searched and the data that replaces it, as vfs://guides/app-sources.md#sources says. Every mock figure wears the MOCK DATA badge until real data replaces it.
 
 ## Start from a goal
 

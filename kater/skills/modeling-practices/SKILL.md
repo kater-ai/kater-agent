@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/modeling-practices.md`.
 
 # Modeling practices
 
-How to model data so that Kater groups, formats and compares it the way a person expects. Read it before you add or change a field in a Kater dataset or a semantic model, and when a field shows a grain, a type or a value that a person did not expect. Each rule below comes from a real case, which the Cases section tells: what we saw, the problem it caused, and the practice that prevents it. Kater adds a case each time a model surprises someone, with its rule in the list.
+How to model data so that it is grouped, formatted and compared the way a person expects. Read it before you add or change a field in a Kater dataset or a semantic model, and when a field shows a grain, a type or a value that a person did not expect. Each rule below comes from a real case, which the Cases section tells: what we saw, the problem it caused, and the practice that prevents it. A case is added each time a model surprises someone, with its rule in the list.
 
 ## Rules
 
@@ -18,8 +18,8 @@ How to model data so that Kater groups, formats and compares it the way a person
 - When a source does hold a date as text, parse it one time, in the Kater dataset, with its exact format: `TRY_TO_DATE(month_label, 'MON YYYY')`. Then group the parsed date. Never cast text to a timestamp and hope the warehouse reads it. (Case 1)
 - Keep the finest grain the source has. A reader can group a day by month, but it cannot get days back from a month.
 - A grain is part of the data, and it follows the field. A column that a query groups by month is a month in every query that reads it, through a plain column, a cast, `MIN` and `MAX`. So a reader of a monthly query shows Month with no `KATER__MONTH` of its own. To see days or weeks, read the source field, not the monthly query. (Case 1)
-- Union branches at one grain. A `UNION ALL` of a monthly branch and a daily branch holds days, so Kater shows its column as a raw date, not Month. Group every branch to the same grain, or group the union after it: `KATER__MONTH(u.date_day)` over the union.
-- Declare a column that already holds periods with its grain, `DIMENSION('date_month', KATER__MONTH(src.date_day))`, and name and label it for the period ("Reporting Month"). Kater then knows its grain, and a person does not group it finer by mistake. (Case 1)
+- Union branches at one grain. A `UNION ALL` of a monthly branch and a daily branch holds days, so its column shows as a raw date, not Month. Group every branch to the same grain, or group the union after it: `KATER__MONTH(u.date_day)` over the union.
+- Declare a column that already holds periods with its grain, `DIMENSION('date_month', KATER__MONTH(src.date_day))`, and name and label it for the period ("Reporting Month"). Its grain is then known, and a person does not group it finer by mistake. (Case 1)
 
 ### Codes and names
 
@@ -35,9 +35,9 @@ How to model data so that Kater groups, formats and compares it the way a person
 
 ### Case 1: Reporting Date looks like text and shows Month
 
-**What we saw.** In the Paid Media Review workspace, the query `monthly_paid_spend` showed Reporting Date as `Jul 2025`, `Aug 2025`, and so on, and the field picker ticked a grain under Reporting Date. The shared model `ad_reporting` declares the field as `DIMENSION('union__date_day', base.date_day)`, over `TO_DATE(TO_TIMESTAMP(date_day))` in its dbt CTE. It looked as if the source held month names as text, the model cast them to a timestamp, and Kater called the result Month with no `DATE_TRUNC` or `KATER__` function.
+**What we saw.** In the Paid Media Review workspace, the query `monthly_paid_spend` showed Reporting Date as `Jul 2025`, `Aug 2025`, and so on, and the field picker ticked a grain under Reporting Date. The shared model `ad_reporting` declares the field as `DIMENSION('union__date_day', base.date_day)`, over `TO_DATE(TO_TIMESTAMP(date_day))` in its dbt CTE. It looked as if the source held month names as text, the model cast them to a timestamp, and the result was called Month with no `DATE_TRUNC` or `KATER__` function.
 
-**The problem.** The source column `DATE_DAY` is a `DATE`, one row for each day. The cast to a timestamp and back to a date changes no value, but it hides that, and it reads like a parse of text. The month came from the query itself: `monthly_paid_spend` selects `KATER__MONTH(ad_reporting.union__date_day)`, which keeps the field's name `union__date_day` and its label, and Kater shows a month as `Jul 2025`. A query that reads `monthly_paid_spend`, such as `monthly_return_leaders` over `platform_monthly_return`, selects the plain column and still shows Month, because the values are first days of months: the grain follows the data, not the function in the reader's own text.
+**The problem.** The source column `DATE_DAY` is a `DATE`, one row for each day. The cast to a timestamp and back to a date changes no value, but it hides that, and it reads like a parse of text. The month came from the query itself: `monthly_paid_spend` selects `KATER__MONTH(ad_reporting.union__date_day)`, which keeps the field's name `union__date_day` and its label, and a month shows as `Jul 2025`. A query that reads `monthly_paid_spend`, such as `monthly_return_leaders` over `platform_monthly_return`, selects the plain column and still shows Month, because the values are first days of months: the grain follows the data, not the function in the reader's own text.
 
 **The practice.**
 - In the Kater dataset or the semantic model, keep `date_day` as the `DATE` it is: `base.date_day`, with no round trip through a timestamp.

@@ -42,7 +42,7 @@ Send `kind` when you know it: `custom_calculation` for a number worked out from 
 
 **Your own SQL**, only for what no recipe writes, such as one measure divided by another. Skip `field.options` and send `field.preview` the draft `{"from": "sql", "expression": "…"}`, with the query's revision from `read_file`'s `sha256`. Write each field with the alias the query's FROM gives its source, and `EVAL(…)` around a measure inside an expression: `EVAL(ad_reporting.sum__spend) / NULLIF(EVAL(ad_reporting.sum__conversions), 0)`. When what you wrote is a call a recipe writes, `reads_as` names the recipe's operation.
 
-## Never ask what Kater knows, and never invent
+## Never ask what you can read, and never invent
 
 - **Don't ask what the steps answer:** the date it runs along, what it starts over for, which way it's ordered. Say what they are when you show it.
 - **No name, label or description unless the person gave one.** Leave `naming` out and the writer names it by what it is: "Spend (Running Total)". When the person used words of their own for it, such as "cost per conversion", say the label the writer gives and offer theirs in the same question.
@@ -103,7 +103,7 @@ To change one step, use `kater field edit FIELD --step N --set NAME=VALUE`. To r
 
 To rebuild a field from a recipe, use `field.options` and `editing`, the field's name. It answers with how the field is made now (`editing`: its `make` and Kater SQL) and the settings as they are. Change what the person asked for, `make` or `parameters`, then send `field.preview` the new `draft` with `editing` set to `editing.output`, and apply on yes as above. The field keeps its name, and its place among the fields, when the recipe or the field it starts from changes. A label the writer gave it is written again for what it now is, and a label the person gave it stays. Never rewrite a field's SQL to change its recipe. A field written in its own SQL has no operation steps: change its SQL with `edit_file`, as the [public creation workflow](vfs://guides/public-creation-workflow.md) says. An Excel formula stays a formula and is changed as [Excel formulas](vfs://guides/excel-formulas.md) describes.
 
-A person can unlink a field's SQL from its steps in the form and type their own. Kater then writes `-- @custom` above the field, and never reads it back as a recipe: `field.options` answers no `make` for it, and the form opens it on its SQL, with a Custom badge. Keep `-- @custom` when you change such a field's SQL. Take it away only when the person asks for the field to go back to the steps.
+A person can unlink a field's SQL from its steps in the form and type their own. `-- @custom` is then written above the field, and the field is never read back as a recipe: `field.options` answers no `make` for it, and the form opens it on its SQL, with a Custom badge. Keep `-- @custom` when you change such a field's SQL. Take it away only when the person asks for the field to go back to the steps.
 
 ## Worked examples
 

@@ -82,7 +82,7 @@ Kater's instructions and the guides in `vfs://guides/` are the same for every or
 - `what_happened` says what the text told you and what you did. `agent_findings` says what worked.
 - Never put the person's data, a figure, a file of the company or the company's rules in it.
 
-Ask the person first, as `vfs://guides/send-feedback.md` says, and send it in one call after their yes. When the person asked you to tell the Kater team, such as "make sure Kater knows", that is their yes: send it.
+Ask the person first, as `vfs://guides/send-feedback.md` says, and send it in one call after their yes. When the person asked you to tell the Kater team, such as "make sure the Kater team knows", that is their yes: send it.
 
 ## After you record a lesson
 

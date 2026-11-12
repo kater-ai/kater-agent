@@ -11,7 +11,7 @@ A part of [Tests of shared models](vfs://guides/tests.md).
 
 ## The file
 
-Each test names the model it tests in `model:`, as `<kind>.<name>`, such as `model: semantic.ad_reporting`. It is required, and every test of one file names the same model. The file's name is only a label: Kater finds a model's tests by their `model:`, whatever the file is called. A model's first test goes in a file named after the model, `tests/ad_reporting.sql` for `semantic.ad_reporting`, and each test after it goes in the file that already names the model. When the model is renamed, each test's `model:` changes in the same change, and a test file named after the model moves to the new name. When a field is renamed, each test that reads it changes in the same change: its SQL, its picker, and its `expect.columns` and `tolerance` where the test outputs the field by its own name. A name the picker made from the field, such as `across_channel__orders`, keeps its name. There are two places for it:
+Each test names the model it tests in `model:`, as `<kind>.<name>`, such as `model: semantic.ad_reporting`. It is required, and every test of one file names the same model. The file's name is only a label: a model's tests are found by their `model:`, whatever the file is called. A model's first test goes in a file named after the model, `tests/ad_reporting.sql` for `semantic.ad_reporting`, and each test after it goes in the file that already names the model. When the model is renamed, each test's `model:` changes in the same change, and a test file named after the model moves to the new name. When a field is renamed, each test that reads it changes in the same change: its SQL, its picker, and its `expect.columns` and `tolerance` where the test outputs the field by its own name. A name the picker made from the field, such as `across_channel__orders`, keeps its name. There are two places for it:
 
 | Where | Who reads it | Who writes it |
 | --- | --- | --- |
@@ -57,7 +57,7 @@ A test is `model_type: test`. Nothing reads it: it isn't in pickers, completions
 | --- | --- | --- |
 | `name` | yes | Unique within the file. |
 | `model_type` | yes | `test` |
-| `description` | no | What you checked the answer against. Kater never writes it. |
+| `description` | no | What you checked the answer against. It is never written for you. |
 | `tags` | no | Model tags, for selecting tests with `--select tag:KEY=VALUE`. |
 | `model` | yes | The model the test tests, `<kind>.<name>`: `semantic.NAME` or `kater_dataset.NAME`. Every test of one file names the same model. A connection workspace's tests name none: they read its root. |
 | `question` | no | The model's business question the test answers, word for word. `kater test generate --from-questions` writes it for each question, and `--question TEXT` for one. |

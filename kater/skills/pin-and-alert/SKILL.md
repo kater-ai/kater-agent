@@ -13,7 +13,7 @@ A chart offers four things, and each does one thing. Say what each does, and use
 | --- | --- | --- | --- |
 | "Draw a line at 3", "mark the day we launched" | Add marker | Draws a line. It tells nobody. | `kater chart marker add` |
 | "Keep this on my Home", "pin this" | Pin | Keeps a chart or a figure in Pinned on their Home, with its value current. | `kater pin add` |
-| "Tell me when ROAS drops below 3" | Alert me when | Kater checks the figure each night and tells them. | `kater alert add` |
+| "Tell me when ROAS drops below 3" | Alert me when | Checks the figure each night and tells them. | `kater alert add` |
 | "Add this to the project" | Add to | Puts it in a project, a dashboard, an app or a workflow. | `kater add-to`, `kater project metric add` |
 
 A figure is one field at one row of a query, written `<field>[:<row key>]`, such as `platform_roas:TikTok Ads`. A query is its workspace's path and its name.
@@ -57,9 +57,9 @@ kater pin add QUERY --chart NAME
 kater pin remove QUERY --figure platform_roas:TikTok Ads
 ```
 
-Only the person sees their pins, so the `kater` tool runs these with no question. Pinning an object, such as a dashboard or an app, is its own Pin on its page, and it shows in the same Pinned. A pin never tells anyone. Each figure answers `pending` until Kater has read it: say so, and do not run a query to check it.
+Only the person sees their pins, so the `kater` tool runs these with no question. Pinning an object, such as a dashboard or an app, is its own Pin on its page, and it shows in the same Pinned. A pin never tells anyone. Each figure answers `pending` until it is read: say so, and do not run a query to check it.
 
-A figure's values are the query's data, so a pin of a figure and an alert need execute access on the query, as a run does. Without it, Kater refuses with "You don't have execute access to this query or source.", and `kater pin list` and `kater alert list` leave out the figures of each query the person cannot run. Taking out a pin or an alert needs no execute access.
+A figure's values are the query's data, so a pin of a figure and an alert need execute access on the query, as a run does. Without it, the refusal is "You don't have execute access to this query or source.", and `kater pin list` and `kater alert list` leave out the figures of each query the person cannot run. Taking out a pin or an alert needs no execute access.
 
 ## Alerts
 
@@ -75,11 +75,11 @@ kater alert remove ALERT
 - **What it starts on.** `--when` is `below:<value>`, `above:<value>`, `change:<percent>` or `normal`, for outside its normal range. `--better` is `higher`, `lower` or `none`. What you leave out takes the recommended value: a marker on the figure first, else the value worked out from its weeks. `kater alert recommend` shows that and why. Most people do not know what number to write, so offer the recommendation.
 - **What it holds.** The alert holds the values it was set with. They do not change by themselves. A level from a marker follows it: a move of either moves the other.
 - **Where it tells them.** Every alert is a row of their Inbox. `--tell-in` adds `slack`, `email` or `brief`, once for each place, and `inbox` alone means the Inbox only. That is the person's choice, so never pick it for them: left out, it starts from where their newest alert goes. Slack needs the organisation's Slack and their own account connected, and the command says when it does not.
-- **When it tells them.** Kater checks each alert every night. It tells the person once for each crossing, and one figure speaks once on one morning, also when it is in their project too.
+- **When it tells them.** Each alert is checked every night. It tells the person once for each crossing, and one figure speaks once on one morning, also when it is in their project too.
 - **Any figure.** `--every` covers each figure of the query. It takes `normal` or `change:<percent>`, since one value cannot fit every figure.
 - **The `kater` tool** runs these with no question, since an alert is the person's own. Set one only when they asked for it, and say what it will do. An alert whose level moves a marker for everyone goes through `kater_apply`.
 
-`kater alert list` reads what Kater stored and runs no query. Each row gives `sentence`, `status` and where it tells them. The person sees the same table at `/alerts`.
+`kater alert list` reads what is stored and runs no query. Each row gives `sentence`, `status` and where it tells them. The person sees the same table at `/alerts`.
 
 ## An alert or a watch
 

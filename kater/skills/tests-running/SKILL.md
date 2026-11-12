@@ -22,7 +22,7 @@ kater test generate semantic.ad_reporting --window union__date_day=2026-07-01..2
 ```
 
 - **5 tests by default, one of each shape:** picker → rows, picker + Kater SQL → rows, Kater SQL → refused, picker with operations → rows, and picker → same as native SQL. A shape the file already has isn't written again, and a shape the model can't take, such as a refusal on a model with no rules, is skipped.
-- **The native side is left empty.** Kater never writes native SQL: that test reports `incomplete` until you write it, pointed at whatever you trust, such as the dbt mart.
+- **The native side is left empty.** Native SQL is never written for you: that test reports `incomplete` until you write it, pointed at whatever you trust, such as the dbt mart.
 - **`--count N`** takes fewer shapes in order, or adds coverage picks: each the query that covers the most of what's still uncovered, which is every measure, grain, kind of dimension (date, category, name, ID, raw number), operation family and declared rule. Ties go to the coarser grain, then fewer fields. It never sweeps every combination.
 - **One settled window.** Every pick reads the same closed range: the one the file's tests already read, or else the latest complete month that ended at least 30 days ago.
 - **Deterministic.** A rerun on an unchanged model picks the same queries and writes nothing it already wrote.

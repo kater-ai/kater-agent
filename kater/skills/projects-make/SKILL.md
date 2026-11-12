@@ -44,17 +44,17 @@ kater new project paid_social_conversion \
   --metric "<workspace path>/<query>.conversion_rate:Paid Social=Paid Social conversion" \
   --metric "<workspace path>/<query>.sum__visits:Paid Social" \
   --asked "Why did Paid Social drop?" \
-  --why "Kater found that Paid Social conversion fell from 2.4% to 1.6% in two weeks, while its visits stayed the same. This project follows Paid Social conversion until it is back above 2%, or until Jun 28."
+  --why "Paid Social conversion fell from 2.4% to 1.6% in two weeks, while its visits stayed the same. This project follows Paid Social conversion until it is back above 2%, or until Jun 28."
 kater timeline log <project folder> --kind note --title "Paid Social conversion fell after the new landing page" \
   --capture "/app/<app key>/viewing?tab=<page>&slide=<slide>&select=<query name>:<from>..<to>" \
   --link "/workspace/<workspace path>?view=dashboard" --link-title "Paid Social conversion dashboard" --file -
 ```
 
-NAME is the project's title in words or its folder name. Give `--title` with the title as the page shows it, such as "Paid Social conversion": left out, the title is NAME in words, "Paid social conversion". The folder takes its name from the title, `paid_social_conversion`, and a new title with `kater project set --title` moves the folder in the same change. Every file that names the project names it by its folder, and Kater rewrites them in the same change. Give `--app` once for each app and `--metric` once for each metric, the goal's first.
+NAME is the project's title in words or its folder name. Give `--title` with the title as the page shows it, such as "Paid Social conversion": left out, the title is NAME in words, "Paid social conversion". The folder takes its name from the title, `paid_social_conversion`, and a new title with `kater project set --title` moves the folder in the same change. Every file that names the project names it by its folder, and the same change rewrites them. Give `--app` once for each app and `--metric` once for each metric, the goal's first.
 
-When the person starts from a type in New, give it with `--start` and its choices, and Kater writes the goal from them:
+When the person starts from a type in New, give it with `--start` and its choices, and the goal is written from them:
 
-- `--start target --metric <metric> --target-value 3.5 --ends 2026-11-30`: "Get <metric> to 3.5 by Nov 30". The target goes on the first metric. A range is `--target-value "2.0 to 2.4"`: "Get <metric> between 2 and 2.4 by Nov 30". Leave `--target-value` out when the person has no number: the target is then the best fit, which Kater reads from the metric's normal range each week, its top when higher is better and its bottom when lower is. Do not make up a number for them.
+- `--start target --metric <metric> --target-value 3.5 --ends 2026-11-30`: "Get <metric> to 3.5 by Nov 30". The target goes on the first metric. A range is `--target-value "2.0 to 2.4"`: "Get <metric> between 2 and 2.4 by Nov 30". Leave `--target-value` out when the person has no number: the target is then the best fit, which is read from the metric's normal range each week, its top when higher is better and its bottom when lower is. Do not make up a number for them.
 - `--start test --decision "Move $2,000 a week from Meta to TikTok" --metric <metric> --readout-weeks 4`: the readout is the end date.
 - `--start launch --goal "The spring sale" --starts 2026-11-01 --metric <metric>`.
 
@@ -65,13 +65,13 @@ The answer gives the project's `id`, `url`, its page from the portal's root (`/p
 The project's first timeline row tells everyone why the project starts, so write it for a reader who did not see the conversation:
 
 - `--asked` is the question the project starts from, in the words of the person who asked it. The row shows it first: "Sam asked: “Why did Paid Social drop?”".
-- `--why` follows, in two or three short sentences: "Kater found … . This project follows … until … ." Say what you found, with the key figures and their weeks, then what the project follows and until when. Do not repeat the question, the goal or the metrics: the row lists them after it.
+- `--why` follows, in two or three short sentences: "… fell from … to … . This project follows … until … ." Say what you found, with the key figures and their weeks, then what the project follows and until when. Do not repeat the question, the goal or the metrics: the row lists them after it.
 
 A metric is named from its field's label in its query, after its row key, such as "Paid Social Visits". To give it a name of your own, add `=<name>`, as the first `--metric` above does.
 
 The first row holds no attachment. When the project starts from a chart, log a note right after `kater new project`, as above, with the figures behind what you found and a picture of the chart as the person sees it, with `--capture` (see [Attach pictures, links and files](vfs://guides/projects-timeline.md#attach-pictures-links-and-files)).
 
-Kater reads each metric's weeks when the project is made, so its tiles and the goal's chart fill soon after, and then again each week. Until that read ends, the page shows that they load.
+Each metric's weeks are read when the project is made, so its tiles and the goal's chart fill soon after, and then again each week. Until that read ends, the page shows that they load.
 
 List a whole app with `--app` when the goal is about all of it, such as a weekly deck the team reads: the project then shows the app's snapshots and its timeline. List only one chart with `--chart APP:QUERY` when the goal is about one figure of an app, such as a question about one chart: the app's folder from the content root, a colon, and the query its page draws there, such as `--chart "<app folder>:<workspace path>/<query name>"`. A chart brings only itself: the app's timeline, snapshots and sharing stay with the app. `kater place` on the app's page lists the queries its pages draw. Give `--workspace` and `--query` for a workspace or a query of the person's own.
 
@@ -111,8 +111,8 @@ kater project set connections/<connection>/users/<email>/projects/paid_social_co
 ```
 
 - `kater project metric set <project> <name>` changes one metric: `--label`, `--better higher|lower|none`, `--alert below:<value>|above:<value>|change:<percent>|none`, `--reach <value>:<day>|none` (the target) and `--goal`, which makes it the goal's metric. What you leave out stays as it is. `kater project show` lists each metric's name.
-- `kater project metric add <project> <query> --figure <field>[:<row key>]` adds figures of one query, one `--figure` for each. `--label` is the field as people read it, which each figure's label puts after its row key, such as Email Conversion rate. Recommend `--better` and `--alert` from the goal and the figures' weeks, as Add to does in Kater; left out, a figure has `better: none` and alerts outside its normal range. `--reach` gives each figure a target, which the query's charts draw as a line, and `--goal` makes the first figure the goal's. `--every` adds every figure of the query, and Kater adds each new row of it as it arrives. The first figure of a project is the goal's, and a figure the project holds already writes nothing.
+- `kater project metric add <project> <query> --figure <field>[:<row key>]` adds figures of one query, one `--figure` for each. `--label` is the field as people read it, which each figure's label puts after its row key, such as Email Conversion rate. Recommend `--better` and `--alert` from the goal and the figures' weeks, as Add to does in Kater; left out, a figure has `better: none` and alerts outside its normal range. `--reach` gives each figure a target, which the query's charts draw as a line, and `--goal` makes the first figure the goal's. `--every` adds every figure of the query, and each new row of it is added as it arrives. The first figure of a project is the goal's, and a figure the project holds already writes nothing.
 - `kater project metric remove <project> <name>` takes one metric off. The goal's metric stays while there are others: make another one the goal first.
 - `kater project set <project>` changes `--title`, `--goal`, `--starts`, `--ends` (`none` takes a date off), `--summary-from <app>` or `--tags`. Each `--tags` is `key=value` or a bare key, and together they replace the project's tags. `--tags none` takes them all off.
 
-`--why` is the reason the timeline shows on the settings row, with what changed. Write it for the people on the project. Each command writes one commit, and the row names it as the person's agent, such as "Sally's agent changed the project's settings". A new metric also comes from the next snapshot's proposal, from the person's own settings, or from Add to on an app's card, a dashboard tile or the workspace editor's chart, which keeps the answer each figure came from as its baseline. A figure whose query no app or listed dashboard of the project draws still gets a week each week: Kater reads the query once a week for the project.
+`--why` is the reason the timeline shows on the settings row, with what changed. Write it for the people on the project. Each command writes one commit, and the row names it as the person's agent, such as "Sally's agent changed the project's settings". A new metric also comes from the next snapshot's proposal, from the person's own settings, or from Add to on an app's card, a dashboard tile or the workspace editor's chart, which keeps the answer each figure came from as its baseline. A figure whose query no app or listed dashboard of the project draws still gets a week each week: the query is read once a week for the project.

@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/migrate-tableau.md`.
 
 # Migrate a Tableau dashboard
 
-How to move one Tableau dashboard into Kater and check its numbers, step by step, for the `migrate` skill. Kater has no migration command. You get everything from Tableau yourself, read the workbook yourself, build with the `kater` CLI, and check each tile yourself under the rules below. The person reads your report, so every verdict names the files it compared. Run this in the person's own terminal, in their local copy (`kater git clone`). Through the Kater MCP alone, say that and stop. Kater ships no migration scripts: write the fetch, the comparison and the report writer yourself in the capture, and do not ask for them in a note or a decision.
+How to move one Tableau dashboard into Kater and check its numbers, step by step, for the `migrate` skill. There is no migration command. You get everything from Tableau yourself, read the workbook yourself, build with the `kater` CLI, and check each tile yourself under the rules below. The person reads your report, so every verdict names the files it compared. Run this in the person's own terminal, in their local copy (`kater git clone`). Through the Kater MCP alone, say that and stop. No migration scripts come with Kater: write the fetch, the comparison and the report writer yourself in the capture, and do not ask for them in a note or a decision.
 
 ## Ask once, before you build
 
@@ -28,8 +28,8 @@ Read each part when you reach its step.
 2. **Read the workbook** and write the gap list: [read the workbook](vfs://guides/migrate-tableau-workbook.md). Then ask once, as above.
 3. **Build** the model, the queries, the charts and the board: [the maps from Tableau to Kater](vfs://guides/migrate-tableau-maps.md).
 4. **Check each tile and write the report:** [the check and the report](vfs://guides/migrate-tableau-check.md).
-5. **Offer a feature request** for each gap that Kater cannot do yet, as "Feature requests" below says.
+5. **Offer a feature request** for each gap that is not in Kater yet, as "Feature requests" below says.
 
 ## Feature requests
 
-For each gap that Kater cannot do yet, offer a feature request with `kater_send_feedback`, as [send feedback](vfs://guides/send-feedback.md) says, with `kind: feature_request`. Name the Tableau feature and what the sheet shows, such as "Tableau's scatter of CPC against spend by campaign". Never put a number, a value or a file of the capture in it.
+For each gap that is not in Kater yet, offer a feature request with `kater_send_feedback`, as [send feedback](vfs://guides/send-feedback.md) says, with `kind: feature_request`. Name the Tableau feature and what the sheet shows, such as "Tableau's scatter of CPC against spend by campaign". Never put a number, a value or a file of the capture in it.

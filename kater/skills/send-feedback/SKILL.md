@@ -7,12 +7,12 @@ This skill is Kater's guide `vfs://guides/send-feedback.md`.
 
 # Send feedback
 
-When Kater itself does something wrong, or the person wishes Kater did something, send it to Kater with `kater_send_feedback`. One call sends it. A bug goes to Kater's engineers at once. A feature request or a question goes to Kater's team, who read every one. Feedback is not content: it goes to Kater, and nothing is written in a connection.
+When something in Kater goes wrong, or the person wishes for something that is not in Kater, send it to Kater with `kater_send_feedback`. One call sends it. A bug goes to Kater's engineers at once. A feature request or a question goes to Kater's team, who read every one. Feedback is not content: it goes to Kater, and nothing is written in a connection.
 
 ## When to offer it
 
-- **A bug: Kater does something wrong.** A page, a chart, a command or a tool gives an error, an order or an answer that it should not give. Examples: a chart sorts months in alphabetical order, or `kater git push` fails on a file name with a space.
-- **A feature request: the person wishes Kater did something.** Examples: "I wish Kater could email me the dashboard as a PDF each Monday", or "Can Kater show this as a map?" when Kater cannot. First check that Kater cannot do it already, with `kater start` and Kater's skills. When it can, do it, and do not send a request.
+- **A bug: something in Kater goes wrong.** A page, a chart, a command or a tool gives an error, an order or an answer that it should not give. Examples: a chart sorts months in alphabetical order, or `kater git push` fails on a file name with a space.
+- **A feature request: the person wishes for something that is not in Kater.** Examples: "I wish I could get the dashboard by email as a PDF each Monday", or "Can I see this as a map?" when that is not possible. First check with `kater start` and Kater's skills that it is not possible already. When it is possible, do it, and do not send a request.
 - **A question about Kater** that you cannot answer from the guides, or when the person is not sure what it is: send it as `other`.
 - **Not for the person's own data or work.** A wrong figure in the warehouse, a definition that is missing or a query you can fix is not feedback. Help with those as usual.
 - **Look first.** For a bug, read the tab in front with `kater here`, and run what the person ran, so you can say what happens and why.
@@ -20,7 +20,7 @@ When Kater itself does something wrong, or the person wishes Kater did something
 
 ## Ask first, then send it in one call
 
-Ask the person in words before you call the tool, with the title and one line of what you send. For example: "This looks like a bug in Kater. Do you want me to send it to Kater's engineers?" or "Kater can't do that yet. Do you want me to send it to Kater's team as a feature request?" Call the tool only after they say yes. Their chat may ask them again before the tool runs. That is the same yes, so do not ask again after it.
+Ask the person in words before you call the tool, with the title and one line of what you send. For example: "This looks like a bug in Kater. Do you want me to send it to Kater's engineers?" or "That is not in Kater yet. Do you want me to send it to Kater's team as a feature request?" Call the tool only after they say yes. Their chat may ask them again before the tool runs. That is the same yes, so do not ask again after it.
 
 ```json
 {
@@ -41,7 +41,7 @@ Ask the person in words before you call the tool, with the title and one line of
 - `expected` and `steps` are for a bug, when you know them.
 - `impact` is `stops`, `workaround` or `small`, from what the person says.
 - `ran` names each query you ran for it, with the request id its answer gave, and `page_urls` each Kater page it is about. At most 5 of each.
-- Write short sentences, and use the names that Kater shows: workspaces, queries, fields, tabs.
+- Write short sentences, and use the names that show in Kater: workspaces, queries, fields, tabs.
 
 ## What it attaches
 
@@ -53,9 +53,9 @@ Never attach rows from `kater answer`, query results, file contents, credentials
 
 ## After it is sent
 
-- The tool answers the report's id, its link and what happens next, such as "Kater received BUG-1042. Kater's engineers have it now." Tell the person that in one sentence, with the link.
-- The same title sent again within 10 minutes is the same report: Kater sends nothing new, and the answer says so. Do not send it again.
+- The tool answers the report's id, its link and one sentence on what happens next. Tell the person that in one sentence, with the link.
+- The same title sent again within 10 minutes is the same report: nothing new is sent, and the answer says so. Do not send it again.
 - When an open report of the organization asks the same, the tool sends nothing and names it, such as "Your organization already sent a report that asks the same: BUG-1001". Its error has the code `already_sent` and lists each such report in `open_reports`, with its id, title and status. Tell the person, and offer to add what is new to it with `kater report comment BUG-1001 --text "..."`. Only when they say theirs asks something else, call the tool again with `new: true`.
 - When the tool refuses, tell the person its words. An organisation can keep feedback to its admins or its data team.
-- The person hears about each change by email, or by Slack DM if their team uses Kater in Slack. You do not need to check it again for them. When the person asks, `kater report show ID` gives its status and activity, and `kater report list` lists their organization's reports, in the queue's order. A report is Sent, Reviewing, Done (Kater fixed it) or Closed (it closed without a fix).
+- The person hears about each change by email, or by Slack DM if their team uses Kater in Slack. You do not need to check it again for them. When the person asks, `kater report show ID` gives its status and activity, and `kater report list` lists their organization's reports, in the queue's order. A report is Sent, Reviewing, Done (it is fixed) or Closed (it closed without a fix).
 - Only when the person asks, and through `kater_apply`, change a report they sent, or any report when they are an admin: `kater report close ID --comment WHY` when they no longer need it, `kater report reopen ID` to open a Closed report again, and `kater report severity ID --impact LEVEL --reason WHY` when it matters more or less now. A higher level needs the reason. A Done report stays Done: if the bug is back, the person selects It still happens on its page.
