@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/lessons.md`.
 
 # Lessons
 
-A lesson is what you learn while you work that makes the next session better: fewer calls, fewer refusals, and answers the way the person wants them. Every later session reads it at its start, so keep each lesson short, put it in one place, and record only what lasts.
+A lesson is what you learn while you work that makes the next session better: fewer calls, fewer refusals, and answers the way the person wants them. The next time the file is read, the lesson is in front of you: a person's `about.md` at the start of each conversation, and a skill's or workflow's `lessons.md` when that skill or workflow is used. So keep each lesson short, put it in one place, and record only what lasts.
 
 ## When to record a lesson
 
@@ -27,7 +27,7 @@ What to do, then why, in plain words: "Round revenue to whole dollars: the perso
 
 Before you add a line, read the file. When a line says the same thing, change that line. When a line no longer holds, replace it. Never keep two lines that disagree, and never start a second file.
 
-A lesson file has a size limit, because every session reads it: a person's `about.md` holds at most 4,000 characters, and a `lessons.md` at most 2,000. A write over the limit is refused with the code `too_long`, such as "Your about.md would be 4,310 characters, over 4,000." Then rewrite the file shorter: merge the lines that say the same thing, remove what no longer holds, and write it again. Never move lines to a second file.
+A lesson file has a size limit, because it is read whole each time and takes the room of the work: a person's `about.md` holds at most 4,000 characters, and a `lessons.md` at most 2,000. A write over the limit is refused with the code `too_long`, such as "Your about.md would be 4,310 characters, over 4,000." Then rewrite the file shorter: merge the lines that say the same thing, remove what no longer holds, and write it again. Never move lines to a second file.
 
 ## Where each lesson goes
 
