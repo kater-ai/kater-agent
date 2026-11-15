@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/daily-brief.md`.
 
 # The Daily brief
 
-The Daily brief is Kater's own brief for one person: the things that stand out today in everything they can read, the projects they follow, what waits for them, what their alerts said, and the figures they keep. It is written in code from a ranking kept each night. No model writes it, and no file holds it. Each morning at the person's time, it opens a row in their inbox, and a Slack DM or an email of it when they choose.
+The Daily brief is Kater's own brief for one person: the things that stand out today in everything they can read, the projects they follow, what waits for them, what the numbers they follow said, and those numbers. It is written in code from a ranking kept each night. No model writes it, and no file holds it. Each morning at the person's time, it opens a row in their inbox, and a Slack DM or an email of it when they choose.
 
 ## Read it
 
@@ -17,9 +17,9 @@ Run `kater brief` when the person asks what is in their brief, for their Daily b
 2. **What moved** (`moved`): each card in one line.
 3. **My projects** (`projects`): each project in one line with its state, such as "Its test ended and it has no readout".
 4. **Needs me** (`needs_me`): the count of each kind and its newest title.
-5. **Alerts** (`alerts`): each figure whose alert goes to the brief and that spoke in the last day. It is there only when it has rows.
-6. **Pinned** (`figures`): the figures they pinned, the ones that stand out first.
-7. **Recommended** (`recommended`): the figures selected for them that they did not pin. It is there only while Also select figures from what I use is on.
+5. **Alerts** (`alerts`): each followed number that tells the brief and spoke in the last day. It is there only when it has rows.
+6. **Following** (`figures`): the numbers they follow, the ones that stand out first.
+7. **Recommended** (`recommended`): the figures selected for them that they do not follow. It is there only while Also select figures from what I use is on.
 
 The brief and For you give a person a figure that an app shows when they can read that app and its workspace. A figure that no app shows comes from its workspace's data, so it reaches only a person with execute access on that workspace, as a run does.
 
@@ -29,9 +29,9 @@ To talk a card through, show where it points with `kater open --new` and its `op
 
 ## Change it
 
-The person changes their brief on its page in Kater, with Edit brief: its figures, its projects, its sections, its time and days, and Slack or email.
+The person changes their brief on its page in Kater, with Edit brief: its projects, its sections, its time and days, and Slack or email.
 
-- **Pinned**: the person's pins, the same list as Pin on a chart. Add a figure with `kater pin add QUERY --figure FIELD[:ROW]`, and take one out with `kater pin remove`. Its value is the one last stored.
+- **Following**: the numbers the person follows, the same list as the star on a chart. Add one with `kater follow add QUERY --figure FIELD[:ROW]`, and take one out with `kater follow remove`. Its value is the one last stored. See [follow](vfs://guides/follow.md).
 - **Projects I follow**: the brief's projects, in their `about.md`, so their agent reads the same ones. Each item is the project's title, then its folder from the content root in backticks (the person's own folder is `connection.folder` of `kater_start`), such as ``- TikTok budget test (`connections/<connection>/users/<email>/projects/tiktok_budget_test`)``.
 
 Record a project the person asks to follow under Projects I follow, as the about-me skill says. The brief reads it at its next read.

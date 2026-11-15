@@ -41,4 +41,8 @@ A standard dataset restates the keys it reads from its one table as its own. Its
 
 Write a key on the dataset where the field comes from, never on a semantic model, workspace or query. For a synced table, ask a person to accept a suggested foreign key in their own terminal, with `kater sync --resource-type db_dataset --foreign-key orders.customer_id`; do not edit the generated DDL. See [physical datasets](vfs://guides/dataset__db.md) and [key filters](vfs://guides/filters.md#keys-filter-as-ids).
 
+## A column's own grain
+
+A field that reads such a column as it is (see the reads in [A date's own grain](vfs://guides/dataset__db.md#a-dates-own-grain)) keeps its timeframe, such as the `-- @timeframe__month` that sync wrote above a DATE kept by month: its Timeframe step offers only that grain and coarser, and `KATER__MONTH` on it is not needed. A Kater dataset never writes the line, and a line there is refused.
+
 `kater model show REF` gives the object's composed card. To inspect each field's authoritative key, use `kater model inspect MODEL_FILE --feature contract --json`: `inspection.contract.output.fields` carries each field's `key` with its `kind` and `dataset`. A field with no key omits that property.

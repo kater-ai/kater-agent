@@ -11,7 +11,7 @@ A part of [Sandbox](vfs://guides/sandbox.md).
 
 ## Charts
 
-A chart belongs to a statement that reads one model, on the `query` route, or one workspace, on the `workspace` route. The Sandbox draws it with the chart shell, the same one Explore, the editor and dashboards use: its pills change the statement, and its type and settings change the chart. It's kept in the file's `charts:` frontmatter, one entry per charted statement, so it's there the next time the file opens:
+A chart belongs to a statement that reads one model, on the `query` route, or one workspace, on the `workspace` route. The Sandbox draws it with the chart shell, the same one Explore, the editor and dashboards use: its pills change the statement, and its type and settings change the chart. It is kept in the file's `charts:` frontmatter, one entry per charted statement, so it is there the next time the file opens:
 
 ```yaml
 charts:
@@ -20,7 +20,7 @@ charts:
   chart: {version: 2, kind: bar, type: axis, title: Spend by platform, category: platform, values: [sum__spend], series: union__currency, presentation: {orientation: vertical}}
 ```
 
-- **`statement` and `fingerprint`** are the index and fingerprint a run returns in its `statement`. The fingerprint lets the entry find its statement again after statements move. Quote it, since one that's all digits would read as a number. A new entry can leave `fingerprint` out: the first save gives it the fingerprint of the statement it names.
+- **`statement` and `fingerprint`** are the index and fingerprint a run returns in its `statement`. The fingerprint lets the entry find its statement again after statements move. Quote it, since one that is all digits would read as a number. A new entry can leave `fingerprint` out: the first save gives it the fingerprint of the statement it names.
 - **`kind`** is the chart as drawn, and **`type`** the type the reader chose: `axis` for bars, lines and areas together, or a kind. Left out, the chart is the best fit for the rows.
 - **Column names** are the statement's outputs. A bare name matches as the warehouse folds it, so `platform` and `PLATFORM` both name the output `platform`; a quoted one, such as `"Total Spend"`, matches exactly. The Sandbox writes them in lower case.
 - **One entry a statement.** A second entry for the same statement is refused.
@@ -32,7 +32,7 @@ charts:
 | `multiples` | Small multiples | `category`, `values`, `series` |
 | `pie` | Part of whole | `category`, `value`, and optionally `percentage` |
 | `breakdown` | Breakdown | `category`, `value`, and optionally `percentage` |
-| `metrics`, `stats` | Metric row, Stat cards | `values`, and optionally a percent-change `comparison`. Over more than one row, the figures are the latest period's, and each draws every row under it as a sparkline, which `presentation.sparkline: false` hides |
+| `metrics`, `stats` | Metric row, Stat cards | `values`, and optionally a percent-change `comparison`. One row, or one row for each date: a second row for a date, or more than one row and no date, is refused. Over more than one date, the figures are the latest date's, and each draws every date under it as a sparkline, which `presentation.sparkline: false` hides |
 | `table` | Table | `columns`; left out, every output |
 | `insight` | Text | `template`: its words in Markdown, with **bold** and *italic*, and a `<kater-value field="…"></kater-value>` tag for each figure, by the output's name. The fields its tags name are its values, so it needs no `values` |
 | `treemap`, `sunburst`, `sankey`, `radar`, `movers`, `funnel`, `peak`, `cohort`, `radial`, `progress`, `target`, `status`, `updates` | Their own | `encodings`: each of the kind's encodings by name, such as a treemap's `levels` and `value` or a flow's `source` and `target`, with its output or outputs |
@@ -53,6 +53,8 @@ charts:
 | `prior` | For `metrics` and `stats`: the output the value is read against, such as the week before's, which the statement returns | No comparison with a prior period |
 
 `title` and `description` are the reader's own, and `presentation` holds the chart's whole style, in the chart spec's own keys, such as `orientation`, `stacking` or `legend`. No key is added to it: a `bar` with no `orientation` stands upright, so a chart opened in the Sandbox and saved with no change saves as it was. `stacked: true` is short for `stacking: stacked` on a `bar`, `area` or `composed` chart. A key the kind does not take is refused, with the key's name.
+
+**Formats.** `formats` gives a column the chart draws its own number format, by the column's name, written as a `-- @format` is: `formats: {sum__spend: "currency('USD', 0)"}`. A currency is a code, or a column the statement returns that holds each row's code, like `currency(currency_code, 0)`, and a format for a column the chart does not draw is left out. A column with none shows its query field's format. A chart saved from a tile keeps the formats its tile showed.
 
 **The tooltip.** With no setting, a chart's tooltip shows its own fields. `tooltip` adds at most 6 fields after them, each by its output's name: `bar`, `line`, `area`, `composed`, `pie`, `radar`, `peak`, `ranked`, `multiples`, `treemap`, `sunburst` and `sankey` take it. A treemap or a sunburst shows the added fields on a part that is one row, not on a part that holds many. A dimension gives its output and `distinct`, the output that counts its values in each mark, so a mark that holds more than one shows "3 values". `presentation.tooltip` changes the rest: `hide` lists the chart's own fields that the tooltip leaves out, `labels` renames a field in the tooltip only, an added field's too, and `text` puts words above the rows, in Markdown with a `<kater-value field="…"></kater-value>` tag for each figure, as an `insight`'s template does. `presentation.tooltip: false` shows no tooltip. A field that the statement does not return, or a seventh field, is refused:
 
@@ -83,8 +85,8 @@ charts:
 A statement becomes a saved query in a workspace, where stakeholders can reuse it, through Add to, the same Add to as every chart's. `kater add-to FILE --statement N` lists where it can go, and the same line with `--to` adds it, through `kater_apply` once the person agrees where.
 
 - **It is a draft.** A statement has no file of its own, so Add to writes it as a query in each place first, with the parameters its file declares for it. What it reads comes from the file, and so does the chart the file's `charts:` keeps for the statement. `--no-chart` adds the query alone, and `--label` is a title the person wrote for the query and its chart, which names them. Without it neither has a label, so both show Kater's words, and the query is named from the statement's title.
-- **Where it can go.** `kater add-to FILE --statement N` lists every place on its Dashboards tab: the workspace it reads, when it reads one, then each workspace over the same shared model you can change, each with its `fit` (`fits`, `pending` while it is checked, `refused` with its reason, or `other_model` for a workspace over another model, which only `--search` shows), the model's Explore page (`explore`) and where a new workspace would go (the tab's `new`). The fits are kept by the statement's text, so a second read of the same text answers at once.
-- **Adding.** `kater add-to FILE --statement N --to workspace:<folder> --to new:dashboards --name "<name>"`, through `kater_apply`, adds to all of them in one commit: the query, and with a chart, the chart and its tile on the dashboard. It waits for Kater's worker, and answers each place, `added`, `already_there` or `refused` with why.
+- **Where it can go.** `kater add-to FILE --statement N` lists every place on its Dashboards tab: the workspace it reads, when it reads one, then each workspace over the same shared model you can change, each with its `fit` (`fits`, `pending` while it is checked, `refused` with its reason, or `other_model`, with its reason, for a workspace that reads another shared model or none, which only `--search` shows), the model's Explore page (`explore`) and where a new workspace would go (the tab's `new`). The fits are kept by the statement's text, so a second read of the same text answers at once.
+- **Adding.** `kater add-to FILE --statement N --to workspace:<folder> --to new:dashboards --name "<name>"`, through `kater_apply`, adds to all of them in one commit: the query, and with a chart, the chart and its tile on the dashboard. It waits for a background job, and answers each place, `added`, `already_there` or `refused` with why.
 - **Its conditions.** The query keeps the statement's own conditions in its SQL, and it reads the place's root, so every filter of the place's dashboard narrows it too.
 - **One model, or one workspace.** A join or warehouse SQL reads more than one model, so no workspace takes it, and Add to refuses it. Read one shared model, or one workspace, to add it.
 - **A saved chart** is a file of its workspace, `charts/<name>.sql`. It is named as a query is, `<workspace>/<name>` or its id (`rel1_…`), never by its file. A chart and a query of one name in a workspace are two objects, and a command about charts reads the chart.

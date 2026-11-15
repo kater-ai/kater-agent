@@ -9,14 +9,14 @@ This skill is Kater's guide `vfs://guides/diagnose.md`.
 
 A person asks why a figure moved, what drove it, or what happened in some periods. This is research, not a lookup. Work through it one step at a time, as an expert analyst would, and come back with an answer: the person asked a question and wants something to work from. Find out yourself everything that the data, the projects and the timelines can tell, and ask the person only what they alone know (below). They add what they know as you go. Accuracy comes before speed: a careful answer in five steps is better than a fast one that is wrong.
 
-Never show the person a tool name, a file path, a command, an id or SQL, unless they ask for it, and never Kater's own words for its parts, such as scratch file, statement, brainstorm folder or workspace path. Say "I'll look at the campaigns behind it", not the command you run. What you keep is a query in their workspace: name both, as links. What the person sees in Kater keeps the name it has on their screen: an app, a dashboard, a workspace, a query, a chart.
+Never show the person a tool name, a file path, a command, an id or SQL, unless they ask for it, and never Kater's own words for its parts, such as scratch file, statement, brainstorm folder or workspace path. Say "I will look at the campaigns behind it", not the command you run. What you keep is a query in their workspace: name both, as links. What the person sees in Kater keeps the name it has on their screen: an app, a dashboard, a workspace, a query, a chart.
 
 ## 1. Restate, plan and start
 
 Before any call that reads data:
 
 - **Say what you see,** in one or two sentences, with the figures the person or their prompt gives, as given: which figure, which periods, its value before and after, and what moved with it or held steady. Do not turn them into a multiple or a share, such as "halved".
-- **Give your plan** in three to five short steps, in the person's words, such as: "First I'll check whether the volume or the rate moved. Then I'll look at the parts behind it. Then I'll look for a recorded change around that week, and check that the data is complete."
+- **Give your plan** in three to five short steps, in the person's words, such as: "First I will check whether the volume or the rate moved. Then I will look at the parts behind it. Then I will look for a recorded change around that week, and check that the data is complete."
 - **Start at once.** Do not stop for a question here. Each question you could ask, first try to answer yourself:
   - Was the period before normal, or a spike? Compare it with the periods before it.
   - Compared with which periods? The ones the prompt or the selection gives, else the period before.
@@ -86,7 +86,7 @@ Write in plain business words, and keep it short:
 1. **The cause, and how sure you are:** "most likely", "possibly", or "the data cannot tell". Say what you assume.
 2. **Three to five figures behind it,** each with its period, and each a link to the result it came from, as Kater's instructions say: `[$12,286](app_url)` with the run's `app_url` for that query, copied whole. A figure from a recorded note names the note and its date, and links the page its read gives.
 3. **What you ruled out,** in one line.
-4. **What would confirm it,** such as a person who knows of the change, or one more check. This is where the questions you did not ask go, as what the person can add: "If you know why the budget changed, tell me and I'll check it against the figures."
+4. **What would confirm it,** such as a person who knows of the change, or one more check. This is where the questions you did not ask go, as what the person can add: "If you know why the budget changed, tell me and I will check it against the figures."
 5. **What could help next,** as an offer (below).
 6. **Sources,** last: one line for each query you quote, named in words as a link with the `query_url` its run gives, its workspace, its period and filters in words, and the newest date in its rows. A query written as SQL says "not verified". The person checks each figure there.
 
@@ -96,7 +96,7 @@ Leave out what the person did not ask about.
 
 Offer one thing at a time, and only what a tool can do. Choose it by what the person asked and what they will want next, and say what they get from it:
 
-- **To see whether it recovers:** a project with a goal and its metrics, which shows each week where the figure stands ([Projects](vfs://guides/projects.md)). "Want me to track this each week and tell you when it gets back to where it was?"
+- **To see whether it recovers:** a project with a goal and its metrics, which shows each period where the figure stands, a week unless its query groups by a coarser period ([Projects](vfs://guides/projects.md)). "Want me to track this and tell you when it gets back to where it was?"
 - **To share what you found:** a dashboard with the charts and the story in text ([Dashboard](vfs://guides/dashboard.md)), or a note where the team already looks.
 - **To check one more cause:** the next query, or `kater compare` for two periods, which can take minutes.
 - **To share a measure you made:** ask the data team to add it (above).

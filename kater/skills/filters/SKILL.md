@@ -49,7 +49,7 @@ A filter operation writes its predicate as a `KATER__` call: the operation's id 
 
 Both named functions must be direct AND conjuncts of WHERE. Parentheses around a conjunct are allowed. They cannot appear under OR or NOT, in HAVING/QUALIFY/JOIN ON, inside CASE/measure conditions, or nested in one another. Unwrapped Kater parameters in these conditions are also rejected. The compiler reports the authored owner, parameter, and source span; it does not move or wrap a predicate automatically because doing so can change its logic or aggregation grain.
 
-The label is optional and always the third argument, written `label='…'`. A third argument of any other shape fails with `invalid_filter_arguments`. The label is the condition in words, and the filter bar names its pill with it. So write it as a short sentence about the rows, such as `label='First touch is known'`. A definition card lists an always-applied filter's condition as its SQL under Always filtered.
+The label is optional and always the third argument, written `label='…'`. A third argument of any other shape fails with `invalid_filter_arguments`. A label names the filter by what it is about, such as `label='Reporting period'` or `label='Traffic source'`. It never says what the filter keeps, and never reads as a sentence about the rows, such as `label='Order ID is set'`, `label='US dollars'` or `label='Engaged sessions only'`: the pill and the sentence under a chart's title add the condition after the name, so such a label reads "Order ID is set is not empty". Leave the label out when the field's own label is the name: a filter that names one field, with no label of its own, reads that field's label, so a relabel of the field reaches every pill and every chart sentence. A label that carries a condition's words or names a window of complete periods gets the hint `filter_label_states_condition`; a label that only says a value, such as `label='US dollars'`, reads as a name to the hint, so write what the filter is about instead. A label that repeats its field's label gets `filter_label_repeats_field`: the fix of each takes the label out. A definition card lists an always-applied filter's condition as its SQL under Always filtered.
 
 These rules govern Kater constructs. The warehouse's own variables, bindings, predicates, and scripting in a custom SQL dataset follow the custom SQL execution contract; they are not declarations of Kater inputs. `FILTER(array, lambda)` is the warehouse's own array function, in Snowflake and DuckDB alike.
 
@@ -68,20 +68,16 @@ FROM kater_dataset.sales AS sales
 WHERE
   -- @description Restrict sales to the selected regions.
   -- @ai_context Use for geographic comparisons.
-  OPTIONAL_FILTER('region', KATER__IS_ONE_OF(region, 'AMER', 'EMEA'), label='Region', on=TRUE)
-  AND REQUIRED_FILTER(
-    'amount',
-    KATER__IS_GREATER_THAN(amount, 0),
-    label='Amount'
-  )
+  OPTIONAL_FILTER('region', KATER__IS_ONE_OF(region, 'AMER', 'EMEA'), on=TRUE)
+  AND REQUIRED_FILTER('amount', KATER__IS_GREATER_THAN(amount, 0))
   AND OPTIONAL_FILTER(
     'channel',
     KATER__IS_EQUAL_TO(channel, 'paid'),
-    label='Channel'
+    label='Traffic source'
   )
 ```
 
-A new filter is named by its field, such as `channel`, with `_2`, `_3` and so on when the name is taken, and labelled with its field's label: the pill shows the condition beside it. A set of values is written once each, in order, with at least one value and at most 1,000. A relative date is written as Kater's date functions, such as `KATER__IS_BETWEEN(order_date, KATER__AGO(3, 'month'), KATER__TODAY())`, so it moves with the day the query runs. An operation's target can give the name, the label, the description, the AI context, Required and On by default in the same write (`name`, `label`, `description`, `ai_context`, `required`, `on`). Every query that reads the root gets these filters.
+A new filter is named by its field, such as `channel`, with `_2`, `_3` and so on when the name is taken, and carries no label of its own: its pill reads its field's label and shows the condition beside it. A set of values is written once each, in order, with at least one value and at most 1,000. A relative date is written as Kater's date functions, such as `KATER__IS_BETWEEN(order_date, KATER__AGO(3, 'month'), KATER__TODAY())`, so it moves with the day the query runs. An operation's target can give the name, the label, the description, the AI context, Required and On by default in the same write (`name`, `label`, `description`, `ai_context`, `required`, `on`). Every query that reads the root gets these filters.
 
 An optional filter's default is in its own call: `on=TRUE` starts it on for a reader who chose nothing for it and for every job, and without `on=` it starts off, at every layer. Above, the region filter starts on and the channel filter starts off. A reader's own switch wins over the default on the page they are on. No other file switches a filter: a dashboard keeps no `filters:`. A new optional filter that an operation writes starts on unless its target sends `on: false`, and a required filter made optional starts on, so its rows stay. `kater filter set --on` or `--off` writes `on=TRUE` or takes it out, in place. A required filter is always on and takes no `on=`.
 
@@ -105,7 +101,6 @@ WHERE
   OPTIONAL_FILTER(
     'status',
     KATER__IS_EQUAL_TO(sales.status, 'shipped'),
-    label='Status',
     on=TRUE
   )
 ```
@@ -114,7 +109,7 @@ A change to a filter keeps its name, so every reader's choices and every place t
 
 A filter's value is static when its predicate reads no parameter and parameterized when it reads one or more. Every filter an operation writes is static. A filter its author writes as other SQL, such as a week that a reader selects, may read a parameter its author declares. A required filter is always static: a parameterized required filter fails with `parameterized_required_filter`, even when every parameter has a default, and `kater filter set --required` refuses to make one required. Moving a pre-aggregation shared predicate to an outer query may change results; compare the results deliberately before migrating authored content.
 
-Write a shared model's required filter with `edit.model`'s `clauses.required_filters` (`kater model edit MODEL --path FILE --clauses JSON`): `{kind: add, predicate, label?, name?}` over a condition you write, or `{kind: add, field, operation_id, parameters}` with a `filters.*` operation from that field's menu, as a field's Always filter writes it; `{kind: remove, name}` takes one out. The writer writes `REQUIRED_FILTER('name', condition, label='…')` as a condition of WHERE, on its own line, and names it by its field and labels it with the field's label when they're left out. A measure can't be filtered this way: filter by a value each row has.
+Write a shared model's required filter with `edit.model`'s `clauses.required_filters` (`kater model edit MODEL --path FILE --clauses JSON`): `{kind: add, predicate, label?, name?}` over a condition you write, or `{kind: add, field, operation_id, parameters}` with a `filters.*` operation from that field's menu, as a field's Always filter writes it; `{kind: remove, name}` takes one out. The writer writes `REQUIRED_FILTER('name', condition, label='…')` as a condition of WHERE, on its own line, and names it by its field when the name is left out, and gives it no label of its own. A measure cannot be filtered this way: filter by a value each row has.
 
 ## Moving a filter
 

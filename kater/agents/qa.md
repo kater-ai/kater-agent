@@ -19,7 +19,7 @@ skills:
 ## Skills
 
 - **Review analysis:** when a run is complete enough to check before reporting.
-- **Run plan, its check step:** when a plan's phase says it's built, check that each Done when has its check's result in the row's Notes before it's Done.
+- **Run plan, its check step:** when a plan's phase says it is built, check that each Done when has its check's result in the row's Notes before it is Done.
 - **Check** (`/check`): trace one number back to its source.
 - **Test model** (`/test-model`): lock in answers the person trusts as tests of a shared model.
 

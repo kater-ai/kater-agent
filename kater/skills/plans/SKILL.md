@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/plans.md`.
 
 # Plans
 
-A plan is a topic note in your [brainstorm folder](vfs://guides/brainstorm.md) that gets to a goal in phases. Each phase is small enough that someone with no other context can build it from its brief and prove it's done. Write one when a goal takes more than one change, such as a workspace and its queries, a dashboard over them, then an app. One analytical question is [deep analysis](vfs://guides/deep-analysis.md) instead, and one query is [build query contract](vfs://guides/build-query-contract.md).
+A plan is a topic note in your [brainstorm folder](vfs://guides/brainstorm.md) that gets to a goal in phases. Each phase is small enough that someone with no other context can build it from its brief and prove it is done. Write one when a goal takes more than one change, such as a workspace and its queries, a dashboard over them, then an app. One analytical question is [deep analysis](vfs://guides/deep-analysis.md) instead, and one query is [build query contract](vfs://guides/build-query-contract.md).
 
 Three skills do the work:
 
@@ -104,14 +104,14 @@ The person's own folder is `connection.folder` of `kater_start`. Run one phase: 
 
 - **The title is the desired state,** in the person's words, never their request.
 - **The `Status:` line** starts with `open`, `answered`, `applied` or `dropped`, so the Sandbox and `kater scratch list` read it, then says where the plan is: `open, planning`, `open, ready to run`, `open, P2 running`, `open, P2 blocked`, `applied, all 3 phases done`.
-- **The opening paragraph** says who it's for, why, and what will be true when it's done.
+- **The opening paragraph** says who it is for, why, and what will be true when it is done.
 
 ## A phase anyone can run
 
 Each brief stands alone apart from this plan. Someone given only "Run phase P2" and the plan must be able to build it.
 
 - **One concern.** A phase ends in something you can check, such as a query that runs, a dashboard that opens or a page that draws. Five Build bullets is a lot.
-- **Smallest working slice first.** P1 makes the core figure run end to end; later phases add to it. Never plan a dashboard over a query that doesn't exist yet in the same phase.
+- **Smallest working slice first.** P1 makes the core figure run end to end; later phases add to it. Never plan a dashboard over a query that does not exist yet in the same phase.
 - **Name everything.** Every object by its full path or `${...}` ref, every guide by its path, and every decision by its number. Never "the ROAS query" or "the usual workspace".
 - **Say how, not just what.** Name the guide for each kind of object, and the command where one is known, such as `kater add-to` or `kater compare`. Changes go through typed operations, as `public-creation-workflow.md` says.
 - **Done when is a tool's verdict.** `kater compile` passes, `kater run` returns the rows the goal needs, `kater compare` says `same`, the page opens at its address, or the person said yes. Never "looks right" or "is reasonable".
@@ -123,7 +123,7 @@ Each brief stands alone apart from this plan. Someone given only "Run phase P2" 
 ## Decisions and approval
 
 - **Settled** decisions name who settled them and when. **Proposed** ones carry the recommendation, and a phase that relies on one builds it.
-- **Approval to run** is its own decision: which phases, and that it covers the writes "Leaving the folder" names. Until it's there, phases build only inside `brainstorm/`.
+- **Approval to run** is its own decision: which phases, and that it covers the writes "Leaving the folder" names. Until it is there, phases build only inside `brainstorm/`.
 - **Open questions** never block P1. One that blocks a later phase says which.
 
 ## Running a phase

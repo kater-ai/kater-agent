@@ -27,7 +27,7 @@ Each statement is written from picks, never typed. This is the whole path for on
    ```
 
    The scratch `namespace` names you by your `user_id`, which is `person.user_id` of `kater_start`; your email names only your folder in `path`. It saves nothing. Its answer's `sql` is the statement, and its `parameters` are what the statement's conditions read.
-2. **Put it in the file** with `kater scratch append --request-file -`: `{"connection": "<connection>", "path": "<the same path>", "title": "July 2026 spend by platform", "sql": "<the answer's sql>", "parameters": <the answer's parameters>}`. A file that isn't saved yet is made.
+2. **Put it in the file** with `kater scratch append --request-file -`: `{"connection": "<connection>", "path": "<the same path>", "title": "July 2026 spend by platform", "sql": "<the answer's sql>", "parameters": <the answer's parameters>}`. A file that is not saved yet is made.
 3. **Run it** with `kater run --select <the path>`.
 
 `picks` takes `fields`, `conditions`, `group`, `order` and `limit`, with the names `query.new` uses. `kater query fields WORKSPACE` lists the fields you can pick. [Conditions](vfs://guides/sandbox-scratch-files.md#conditions) shows each condition's `parameters`.
@@ -38,7 +38,7 @@ A question such as "How much did we spend on ads last week?" is a lookup. Answer
 
 Write it as a query in one of the person's own workspaces that reads the measure, with `kater query fields WORKSPACE`, then `kater query new WORKSPACE --request-file -` with the picks below and no `namespace`: the command sends the workspace that WORKSPACE names. When none of their workspaces reads it, make one on the shared model that holds it with create_workspace. The query is saved at once and changes nothing that exists, so do not ask first.
 
-- **Group by the period,** with `timeframes.set` on the date (`unit: week` for a week), and keep only the newest complete one with an `is_within_last` condition with `amount: 1`, `unit` the period, `complete: true` and `end: latest`, so a source that runs behind today still gives its newest full period.
+- **Group by the period,** with `timeframes.set` on the date (`unit: week` for a week, when the field offers it; when it offers only a coarser unit, such as month, the figure is kept by that unit: show it at the finest unit offered and say so, and never rebuild it from another source to get the finer one, nor offer or point to another source for it, since that figure counts something else; see [A date's own grain](vfs://guides/dataset__db.md#a-dates-own-grain)), and keep only the newest complete one with an `is_within_last` condition with `amount: 1`, `unit` the period, `complete: true` and `end: latest`, so a source that runs behind today still gives its newest full period.
 - **Add the period before and the change** as two picks of the measure with `comparisons.previous_period`, `by` the date, one with `output: value` and one with `output: percent_change`. The comparison moves the window back by itself, so do not widen the condition.
 - **Say which period it is,** with its dates, as "the newest full week in your data". When the period the person named is not complete or not in the data yet, such as this week, say so in one line, and never give a part of a period as the whole.
 - **Add the main split as a second query,** such as spend by platform with the same picks, and run both in one `kater run --select QUERY QUERY`. The person sees the parts too.

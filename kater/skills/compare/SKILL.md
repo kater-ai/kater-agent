@@ -17,10 +17,10 @@ Use this when the person asks how a period compares with another, such as this m
 
 ## Procedure
 
-1. **Find the metric's definition,** as [brief me](vfs://guides/brief-me.md) does: a verified field, read from the shared models or from a saved query that returns it unchanged. A metric that has only an unverified definition is compared only when the person agrees, and the answer says it's unverified.
+1. **Find the metric's definition,** as [brief me](vfs://guides/brief-me.md) does: a verified field, read from the shared models or from a saved query that returns it unchanged. A metric that has only an unverified definition is compared only when the person agrees, and the answer says it is unverified.
 2. **Set the periods** to exact dates of the same length, and say them. A period still under way is compared over the same elapsed days of the other, as the calendar comparison's `matching_elapsed` coverage does.
 3. **Write the statements** in `brainstorm/compare_<metric>/compare.sql`, opening the topic's note, `brainstorm/compare_<metric>.md`, with its title and `Status: open`:
-   - **Statement 0:** the metric for the period, the period it's compared with and the change, computed in the statement with a calendar comparison (vfs://guides/period-comparisons.md).
+   - **Statement 0:** the metric for the period, the period it is compared with and the change, computed in the statement with a calendar comparison (vfs://guides/period-comparisons.md).
    - **One statement per dimension,** at most three that the model offers and the person would split by, such as channel or platform: the same comparison by that dimension, ordered by the size of the change.
 4. **Run them** with `kater run --select FILE`.
 5. **Show it.** One line for the overall change, then the dimension that moved it most as a table, from the run. Say plainly when a run was truncated or failed. A split that explains the change is a hypothesis until `/deep-analysis` tests it.

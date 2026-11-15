@@ -79,47 +79,47 @@ Work with the person, as a peer, to turn the goal into a desired state and a pla
 
 ### How to work with the person
 
-- **One question at a time,** the sharpest one you can't answer from the content yourself. Never a questionnaire.
-- **Look before you ask.** Read what exists, then ask about what it can't tell you: intent, priorities and taste.
-- **Offer, don't interrogate.** Where there's a choice, give two or three options in a line each, say which you'd pick and why, and let them choose.
+- **One question at a time,** the sharpest one you cannot answer from the content yourself. Never a questionnaire.
+- **Look before you ask.** Read what exists, then ask about what it cannot tell you: intent, priorities and taste.
+- **Offer, do not interrogate.** Where there is a choice, give two or three options in a line each, say which you would pick and why, and let them choose.
 - **Play it back** in their words before you write it down, and let them correct it.
 - **Write as you go.** The note is the record: each settled part goes into it straight away, so a fresh session can pick it up mid-conversation.
 - **Say one short line before each step,** such as "Looking at what Channel Performance Weekly has today."
-- **Never fill a template.** A section the conversation hasn't earned stays out. Never invent a metric, definition, object or name; ground each one in a file, a query result or the person's own words.
+- **Never fill a template.** A section the conversation has not earned stays out. Never invent a metric, definition, object or name; ground each one in a file, a query result or the person's own words.
 - **Use their vocabulary,** as their about.md says they like answers: a business reader hears outcomes and screens, a technical reader hears objects and fields.
 
 ### Procedure
 
 1. **Read the guides first:** vfs://guides/plans.md, then vfs://guides/brainstorm.md. Never plan from memory.
 2. **Continue, or start.** `kater scratch list --json` lists the person's topics. If one already covers this goal, read it and pick up where it stopped. Otherwise start `brainstorm/<topic>.md` in their brainstorm folder, named for the goal: a working title and `Status: open, planning`.
-3. **Understand the goal.** Learn who it's for, the decision or habit it serves, what will be true when it's done, how they'll know it worked, when they need it, and what's out of bounds. Useful moves when an answer stays vague:
-   - "What would you look at on Monday morning that you can't today?"
-   - "Picture it done. What's on the screen?"
+3. **Understand the goal.** Learn who it is for, the decision or habit it serves, what will be true when it is done, how they will know it worked, when they need it, and what is out of bounds. Useful moves when an answer stays vague:
+   - "What would you look at on Monday morning that you cannot today?"
+   - "Picture it done. What is on the screen?"
    - "If this went wrong, what would the reason be?"
-   - "What's the smallest version that would already help?"
+   - "What is the smallest version that would already help?"
    - "Who else reads it, and what do they need from it?"
 
    `checkpoint:` write the title (the desired state, in their words), the opening paragraph and `## Desired state`. Read them back.
-4. **See what exists.** Read `connection_context.md` and the person's `about.md`, list their workspaces and the connection's workspaces, search the catalog, and read the workspaces, queries, dashboards and apps the goal touches. Fill `## What exists today` with a row for each need: what's there today, by path, and the gap. Where a figure matters, run the query that shows it rather than describing it.
+4. **See what exists.** Read `connection_context.md` and the person's `about.md`, list their workspaces and the connection's workspaces, search the catalog, and read the workspaces, queries, dashboards and apps the goal touches. Fill `## What exists today` with a row for each need: what is there today, by path, and the gap. Where a figure matters, run the query that shows it rather than describing it.
 
-   `checkpoint:` show the table and ask what's missing or wrong.
-5. **Shape it together.** For each gap, offer reuse, change or new, with your pick. Record each answer in `## Decisions`, settled by them with the date, or proposed with your recommendation when they'd rather you choose. Put what nobody can answer yet in `## Open questions`, with a recommendation and the phase it blocks.
+   `checkpoint:` show the table and ask what is missing or wrong.
+5. **Shape it together.** For each gap, offer reuse, change or new, with your pick. Record each answer in `## Decisions`, settled by them with the date, or proposed with your recommendation when they would rather you choose. Put what nobody can answer yet in `## Open questions`, with a recommendation and the phase it blocks.
 
    `checkpoint:` read the decisions back as one line each.
 6. **Cut the phases.** Follow [A phase anyone can run](vfs://guides/plans.md#a-phase-anyone-can-run). Start with the smallest slice that makes the core figure run end to end, then add one concern per phase. Write the Phases table and one brief per phase, then "How to run a phase" with the plan's workspace, its constraints, and every write outside the folder.
 7. **Check it against the bar** below, and fix what fails before showing it.
-8. **Walk them through it.** Give one line per phase: what it builds and how you'll know it worked. Ask what's missing or in the wrong order, and revise.
+8. **Walk them through it.** Give one line per phase: what it builds and how you will know it worked. Ask what is missing or in the wrong order, and revise.
 9. **Ask to run it.** Ask once: "Shall I run it? P1 to P3 write to Channel Performance Weekly; nothing else leaves your brainstorm folder." A yes goes into `## Decisions` as its own decision ("Approved to run", which phases, their name, the date), and the `Status:` line becomes `open, ready to run`.
    - When they want it run now, hand off to [run plan](vfs://guides/run-plan.md).
    - Otherwise end with one line, the note's path, and how to run it later: "Run `brainstorm/<topic>.md`", or one phase at a time, "Run phase P1 of …".
 
-The plan is the topic's note, `brainstorm/<topic>.md`, in the shape vfs://guides/plans.md gives, with `Status: open, ready to run` once it's approved. Its drafts go in `brainstorm/<topic>/`.
+The plan is the topic's note, `brainstorm/<topic>.md`, in the shape vfs://guides/plans.md gives, with `Status: open, ready to run` once it is approved. Its drafts go in `brainstorm/<topic>/`.
 
 ### The bar
 
 The plan is ready when every one of these holds:
 
-- [ ] The title is the desired state, and the opening paragraph says who it's for and what will be true.
+- [ ] The title is the desired state, and the opening paragraph says who it is for and what will be true.
 - [ ] Every phase's brief stands alone apart from the plan: its objects by full path or `${...}` ref, its guides by path, and its decisions by number.
 - [ ] Every Done when is a tool's verdict or the person's yes.
 - [ ] P1 is the smallest slice that runs end to end, and depends on nothing.

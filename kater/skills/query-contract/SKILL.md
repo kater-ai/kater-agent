@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/query-contract.md`.
 
 # Query contracts
 
-A saved query belongs to its complete workspace path, including connection, verified/personal location, owner, and nested workspace name. Query identity adds its model name. Same-named models under two users are distinct. The compiler model contract is compiler-owned; edit SQL rather than a derived interface.
+A saved query's key is its workspace's key and its own name, and a workspace's key is its scope and its name, never its folder ([model layer rules](vfs://guides/model-layer-rules.md)), so two people's queries of one name are distinct. The compiler model contract is compiler-owned; edit SQL rather than a derived interface.
 
 Save a query with `publish_query_contract`. A `kater` command, a tool and an answer name a query as `<workspace>/<name>`: its workspace's folder from the content root and its name (the person's own folder is `connection.folder` of `kater_start`), such as `connections/<connection>/users/<email>/workspaces/<workspace>/<name>`, or by its id (`rel1_…`). A mention names it by `<workspace>/<name>` alone. Never name a query by its file: a file of `query_contracts/` can hold several queries and is not named after them. `list_accessible_workspaces` gives each query's `<workspace>/<name>` and id, and `kater query list <workspace>` gives the file that declares each one (`path`).
 
@@ -59,7 +59,7 @@ Editing consumes local role/type, current settings, and exact occurrence/configu
 
 ## Filter by this number and Top N
 
-A number measure in a query, one it reads from its source or one it declares, offers `filter_by_this_number`: a fixed condition on its value, written in HAVING, or Top N or Bottom N, written in QUALIFY. A SELECT with either can't pass a measure through, so the same edit evaluates every measure the SELECT passes through, keeping its name and label, and groups by the SELECT's row values when it has no GROUP BY. A HAVING or QUALIFY written by hand beside a measure passed through, such as `HAVING ad_reporting.sum__spend > 100000`, reads that measure the same way, with the warning `measure_evaluated_beside_clause` and a fix that writes its `EVAL`. "Regions with over $1,000 in sales", then Top N on the same query:
+A number measure in a query, one it reads from its source or one it declares, offers `filter_by_this_number`: a fixed condition on its value, written in HAVING, or Top N or Bottom N, written in QUALIFY. A SELECT with either cannot pass a measure through, so the same edit evaluates every measure the SELECT passes through, keeping its name and label, and groups by the SELECT's row values when it has no GROUP BY. A HAVING or QUALIFY written by hand beside a measure passed through, such as `HAVING ad_reporting.sum__spend > 100000`, reads that measure the same way, with the warning `measure_evaluated_beside_clause` and a fix that writes its `EVAL`. "Regions with over $1,000 in sales", then Top N on the same query:
 
 ```sql
 SELECT
@@ -76,7 +76,7 @@ QUALIFY
 
 Top N and Bottom N keep ties, so the top 10 can hold more than ten rows. A query with no ORDER BY gets one by the measure's place in the SELECT, `ORDER BY 2 DESC NULLS LAST` here for Top N and `ASC NULLS LAST` for Bottom N, so the rows come out in the order they rank; a query that already sorts keeps its own sort.
 
-Top N and Bottom N take `partition_by`, the query's fields they rank within, written as their OVER: `KATER__IS_IN_TOP(EVAL(sales.revenue), 10) OVER (PARTITION BY sales.currency)` keeps the top 10 regions of each currency, so a measure that can't be added up across currencies is never ranked across them. Applying the same condition to the same measure again changes it in place, so Top 10 applied as Top 5 keeps the top 5. `edit.model`'s `workspace_inputs` take one out with `remove_condition`, by its clause and its place there as the input bar lists it; once no HAVING or QUALIFY condition is left, a measure a window of the query reads as it's passed through is passed through again.
+Top N and Bottom N take `partition_by`, the query's fields they rank within, written as their OVER: `KATER__IS_IN_TOP(EVAL(sales.revenue), 10) OVER (PARTITION BY sales.currency)` keeps the top 10 regions of each currency, so a measure that cannot be added up across currencies is never ranked across them. Applying the same condition to the same measure again changes it in place, so Top 10 applied as Top 5 keeps the top 5. `edit.model`'s `workspace_inputs` take one out with `remove_condition`, by its clause and its place there as the input bar lists it; once no HAVING or QUALIFY condition is left, a measure a window of the query reads as it is passed through is passed through again.
 
 A number custom calculation the query computes offers the six fixed conditions, never Top N or Bottom N, since ranking it would run one window inside another. The condition goes in QUALIFY, which applies after the window runs, and the same edit writes the `EVAL`s. "Revenue (Rank) is at most 3":
 
@@ -98,7 +98,7 @@ A query that reads another query gets each custom calculation as the value that 
 
 | Written in the reader | Result |
 | --- | --- |
-| `q.revenue_rank`, in a SELECT that doesn't group | the same custom calculation |
+| `q.revenue_rank`, in a SELECT that does not group | the same custom calculation |
 | `q.revenue_rank` in a grouped SELECT, or `GROUP BY q.revenue_rank` | a dimension, a grouping key |
 | `WHERE q.revenue_rank <= 3`, or an optional filter on it | a filter on the finished values |
 | `RANK() OVER (ORDER BY q.running_revenue DESC)` | a new custom calculation |

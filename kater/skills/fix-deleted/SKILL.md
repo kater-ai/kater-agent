@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/fix-deleted.md`.
 
 # Delete, restore and fix what reads something deleted
 
-Every delete in Kater goes to the Trash for 30 days, from every place: the portal, Files, `kater rm`, a push, an agent and VS Code. A delete is one change. The object goes with its own parts, such as a query's charts, and each object that reads it stays. Each part of those objects changes as the plan says: Remove, Replace with another object, or Leave as is, which shows Not available until someone fixes it. Restore brings the delete back. Needs a fix in the Trash lists each deleted object that something still reads, with the suggested fix.
+Every delete in Kater goes to the Trash, from every place: the portal, Files, `kater rm`, a push, an agent and VS Code, and stays there for the days that `kater rm PATH --dry-run` says. A delete is one change. The object goes with its own parts, such as a query's charts, and each object that reads it stays. Each part of those objects changes as the plan says: Remove, Replace with another object, or Leave as is, which shows Not available until someone fixes it. Restore brings the delete back. Needs a fix in the Trash lists each deleted object that something still reads, with the suggested fix.
 
 You run the same plans as the portal's dialogs, with the `kater` tool. Each command has `--dry-run`, which prints the plan and changes nothing. Run each command without `--dry-run` only with kater_apply, and only after the person says yes. The `kater` tool refuses it.
 
@@ -27,10 +27,10 @@ When the verdict says Not quite ready to fix yet, no fix is set for a part, such
 
 A reference also breaks with no delete behind it: a change takes a field out of a query, or a kept figure is lost. `kater trash list --fix` lists each one with its word, who changed it and when, each file and line that reads it, and the suggested fix. `kater check references` lists the same and exits 1 when there is anything on the list. Only these two lists name who changed it: never name that person anywhere else.
 
-1. **Run `kater trash fix <id> --dry-run`.** Without `--how` it takes the suggested fix: Replace, or Put back for a field, a chart or a query that a change took away. `--how replace --with <name>`, `--how put-back`, `--how remove` and `--how keep` select another.
+1. **Run `kater trash fix <id> --dry-run`.** Without `--how` it takes the suggested fix: Replace, or Put back for a field, a chart or a query that a change took away. `--how replace --with <name>`, `--how put-back`, `--how read-again`, `--how remove` and `--how keep` select another.
 2. **Tell the person what will change, and wait.** Then run the same line without `--dry-run`, with kater_apply. It makes one change, and `kater undo <change>` takes it back. Put back never writes what does not compile: when it refuses, nothing changed, and its words say what to do next.
 
-A figure that says Not kept has no answer to read. For a reader who may change the entry, Read it again on the figure reads it now and says the day. `kater trash fix <id> --how remove` removes the figure. On a metric's baseline it removes only the baseline, and the metric stays.
+A figure that says Not kept has no answer to read. For a reader who may change the entry, Read it again on the figure, or `kater trash fix <id> --how read-again`, reads it now and says the day. Only a person asks for it: it runs the figure's query. `kater trash fix <id> --how remove` removes the figure. On a metric's baseline it removes only the baseline, and the metric stays.
 
 At the first check of the references, only an Admin sees the breaks from before. With an Admin, fix or delete what they want first. Then run `kater trash send-owners` with kater_apply, once they say yes: each owner gets one row in their Kater inbox.
 

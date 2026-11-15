@@ -1,6 +1,6 @@
 ---
 name: workflows
-description: "Workflows. Use it when the person asks for: \"Each Friday, check …\", \"Brief me each Monday\", a watch on a query that no chart draws, or an app's weekly snapshot: steps or a check Kater runs for the person on a schedule or when asked."
+description: "Workflows. Use it when the person asks for: \"Each Friday, check …\", \"Brief me each Monday\", a watch on a query that no chart draws, or an app's weekly snapshot: steps or a check that runs for the person on a schedule or when asked."
 ---
 
 This skill is Kater's guide `vfs://guides/workflows.md`.
@@ -56,7 +56,7 @@ An analysis or a build that a person asks for, such as a [deep analysis](vfs://g
 ## Making one
 
 1. Work out what each run does, and which objects it works with. Find each object's ref: `kater app list`, `kater project list`, or the workspace's path.
-2. Select the kind. "Save this app's numbers each week" is a snapshot workflow on that app. "Brief me each Monday" is a brief: follow [digest](vfs://guides/digest.md). "Tell me when ROAS drops below 3" is an alert when a chart draws the figure, with no workflow: see [pin and alerts](vfs://guides/pin-and-alert.md). For a query that no chart draws, or a check at a time of their own, it is a watch: follow [watch](vfs://guides/watch.md), which adds the metric's query to the person's workspace first. Anything else is a general workflow.
+2. Select the kind. "Save this app's numbers each week" is a snapshot workflow on that app. "Brief me each Monday" is a brief: follow [digest](vfs://guides/digest.md). "Tell me when ROAS drops below 3" is a follow when a chart draws the number, with no workflow: see [follow](vfs://guides/follow.md). For a query that no chart draws, or a check at a time of their own, it is a watch: follow [watch](vfs://guides/watch.md), which adds the metric's query to the person's workspace first. Anything else is a general workflow.
 3. Write its steps, one sentence each (a watch has none), with a mention for each object, such as `1. Open @[TikTok budget test](project:connections/<connection>/users/<email>/projects/tiktok_budget_test) at a daily budget of $1,500.` A snapshot workflow's steps are `kater snapshot draft` on the app, the words from the packet, then `kater snapshot save`: see vfs://guides/projects-documents.md.
 4. Show the person its name, its kind, its steps and when it runs, in their words ("Every Friday, 9:00 AM New York time", or "Once, now" for a snapshot workflow with no schedule). Make it with `kater new workflow` only after they say yes.
 5. When it has a schedule, it runs from then on. Say when it runs next and where its result arrives, and offer to run it now with `kater workflow run <key>`. Never set up a task in the person's own agent unless they ask that their agent run it ([schedule workflow](vfs://guides/schedule-workflow.md), In their own agent).

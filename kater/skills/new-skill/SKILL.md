@@ -17,12 +17,12 @@ Use this when the person repeats the same request, or asks for a command of thei
 
 ## Procedure
 
-1. **Learn what it does.** Ask, one at a time and only what you can't infer: what it's for, what they'll say to start it, what it needs from them each time, its steps, and what a good result looks like. When they make it from a chat, start from what they just did with you.
+1. **Learn what it does.** Ask, one at a time and only what you cannot infer: what it is for, what they will say to start it, what it needs from them each time, its steps, and what a good result looks like. When they make it from a chat, start from what they just did with you.
 2. **Reuse before writing.** `kater ai-tools list` lists every skill they can use. If one already does this, say so and stop. When theirs builds on one, it names that skill rather than copying its steps.
 3. **Name it** in lower case with `-` between words, a letter first and at most 64 characters, short, a verb where one fits, such as `weekly-roas` or `check-spend`. A name the connection's AI tools have would hide that one for them, so pick another.
 4. **Draft it** in the shape below.
 5. **Write it, then tell.** It is their own file, so write it with no question to `connections/<connection>/users/<email>/ai_tools/skills/<name>.md`, with a `summary` such as "New command /weekly-roas". Show what you wrote, and say they can change it or say undo. The Ask panel loads it, and each change to it, from their next new conversation.
-6. **Say how to use it:** `/<name>` in Ask, on the Agents page under Personal, and in their own agent's prompts, where it shows as soon as it's written (`/mcp__plugin_kater_kater__<name>` in Claude Code with Kater's plugin). Offer to run it once now.
+6. **Say how to use it:** `/<name>` in Ask, on the Agents page under Personal, and in their own agent's prompts, where it shows as soon as it is written (`/mcp__plugin_kater_kater__<name>` in Claude Code with Kater's plugin). Offer to run it once now.
 
 ## The shape
 
@@ -59,7 +59,7 @@ One sentence: what it does.
   - `summary`: one line under the title.
   - `icon`: a Kater object's kind, drawn with its own mark and colour (`app`, `workspace`, `measure`, `semantic`), else one of these [lucide](https://lucide.dev/icons/) icons: `arrow-right-left`, `badge-check`, `bell`, `book-open`, `calendar-clock`, `chart-column`, `chart-line`, `chart-pie`, `compass`, `flask-conical`, `lightbulb`, `list-checks`, `map`, `megaphone`, `newspaper`, `pencil-line`, `search`, `shopping-cart`, `sparkles`, `square-slash`, `target`, `trending-down`, `trending-up`, `user`, `users`. Any other name wears the skill's own mark.
   - `ask`: the words it starts with, after `/<name>`. Words that stop mid-sentence, such as `Why did`, wait for the person to finish them.
-  - `inputs`: what they can say each time, each a `name` and a `description` that says what happens when it's left out. `required: true` only when the command can't ask for it.
+  - `inputs`: what they can say each time, each a `name` and a `description` that says what happens when it is left out. `required: true` only when the command cannot ask for it.
 
   It has no `group`: their own commands are under Yours.
 - **Its steps follow the rules** every answer does (the company's `rules.md`): figures only from runs, drafts in the brainstorm folder, nothing written anywhere else without a yes.

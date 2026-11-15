@@ -13,7 +13,7 @@ A scheduled workflow is one file in Kater, which holds its steps and its `schedu
 
 - **Snapshot:** saves the numbers and words of one app (`writes`), and its draft waits in the owner's inbox.
 - **Brief:** a page and an answer for its owner each time (`kind: brief`), as [Monday Brief](vfs://guides/monday-brief.md) writes. [digest](vfs://guides/digest.md) works one out.
-- **Watch:** one metric that no chart draws, checked against its line (`kind: watch`), with an inbox row only when it crosses. [watch](vfs://guides/watch.md) works one out. A figure on a chart takes an alert instead, with no workflow (vfs://guides/pin-and-alert.md).
+- **Watch:** one metric that no chart draws, checked against its line (`kind: watch`), with an inbox row only when it crosses. [watch](vfs://guides/watch.md) works one out. A number on a chart takes a follow instead, with no workflow (vfs://guides/follow.md).
 - **General:** any steps the person writes, with its answer in their inbox.
 
 What each kind's file holds and every `kater workflow` command are in vfs://guides/workflows.md.
@@ -42,7 +42,7 @@ Use this when the person wants a workflow to run on its own, or wants to change,
 When the person asks that their own agent's scheduler run the workflow in place of its schedule in Kater, such as to keep it on their own computer, save `kater workflow save <key> --runs-in agent`. The schedule is then kept, but the workflow does not run in Kater. The task runs `prompt` from `kater workflow show <key>`, which only the owner gets, the same words as Copy prompt on the workflow's page. Give it to the scheduler as it is: it names the workflow's file, so the agent reads the steps again at each run.
 
 - **You have a tool that creates or changes scheduled tasks,** such as `/schedule` in Cowork: after their yes, set up or change the task with it.
-- **You don't, or the task is in another agent:** give them the prompt and the one setting to change there. Claude Cowork: **Scheduled**, the task, **Frequency** (hourly, daily, weekly or weekdays, no cron). Codex: **Automations**, the automation's custom schedule (cron). Cursor: cursor.com/automations, the **Scheduled** trigger's **Custom (cron)**.
+- **You do not, or the task is in another agent:** give them the prompt and the one setting to change there. Claude Cowork: **Scheduled**, the task, **Frequency** (hourly, daily, weekly or weekdays, no cron). Codex: **Automations**, the automation's custom schedule (cron). Cursor: cursor.com/automations, the **Scheduled** trigger's **Custom (cron)**.
 
 Never say a task is set up, changed or stopped until it is. Then each change of its schedule or name needs the task changed too. `kater workflow save <key> --runs-in kater` gives the runs back to Kater: tell them to delete the task, so the workflow does not run twice.
 
@@ -77,4 +77,4 @@ A scheduled run follows the rules every answer does (the company's `rules.md`), 
 
 - The workflow is someone else's: only its owner changes it. Offer a copy of their own, as step 3 says.
 - The schedule runs more than once an hour, such as every 30 minutes: offer the nearest hourly one.
-- With `runs_in: agent`, the Kater tools aren't connected to the agent that runs the task, so it can't read the workflow at each run: say so, and point to the steps that connect it, or offer to run it in Kater (`runs_in: kater`).
+- With `runs_in: agent`, the Kater tools are not connected to the agent that runs the task, so it cannot read the workflow at each run: say so, and point to the steps that connect it, or offer to run it in Kater (`runs_in: kater`).

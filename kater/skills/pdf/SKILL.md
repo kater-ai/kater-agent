@@ -77,7 +77,7 @@ When a tag drawn static still cannot show something whole, such as a chart whose
 | `report-steps` (`ol`) | Numbered next steps |
 | `report-facts` (`dl`) | Labels and their values |
 | `report-badge` with `data-tone` | A short status label |
-| `report-keep` | Anything that must not split across a page break (tags and sections already don't) |
+| `report-keep` | Anything that must not split across a page break (tags and sections already do not) |
 | `report-signoff` | Prepared by and reviewed by lines |
 | `data-watermark="Draft"` on a sheet | A diagonal word across it |
 | `data-height="short|medium|tall"` on a chart or KPI tag | A card height of 256, 320 or 384 pixels, so a sheet's budget is known. `tall` holds nine horizontal bars or a pie. When a KPI's figures or a Text chart's words need more room, the card grows to show all of them |
@@ -124,7 +124,7 @@ A report is a document: a workflow writes its words with each run. Put each sent
 
 - Every figure, period and goal on the sheets comes from a query. Return the period the report covers as a column and show it with `<kater-value>`; never type a month or a number into the page.
 - Find the report's month from the rows: the latest complete month in the data. Never take it from a parameter. A report sets none, so a date parameter runs at its default and the report stays on that month.
-- Give each query its own window as a `REQUIRED_FILTER` over whole months, ending with the latest complete month. `end` is the day after the latest day the data reports before the current month, as the field picker writes a window that ends at the latest reported date. A month whose last day is in the data counts as complete, and a row dated in a later month doesn't move the window:
+- Give each query its own window as a `REQUIRED_FILTER` over whole months, ending with the latest complete month. `end` is the day after the latest day the data reports before the current month, as the field picker writes a window that ends at the latest reported date. A month whose last day is in the data counts as complete, and a row dated in a later month does not move the window:
 
 ```sql
 REQUIRED_FILTER(

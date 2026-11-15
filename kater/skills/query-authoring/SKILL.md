@@ -26,7 +26,7 @@ A saved query that other people read, through a dashboard's tile, an app's chart
    kater query fields WORKSPACE
    ```
 
-   It lists each field by the name a pick takes, under a menu of the operations the field offers. Each operation's parameters are one signature, such as `timeframes.set(unit: year|quarter|month|week|day)`. For a query that reads another query (rule 6), add `--source <workspace>/<first>`. To list fewer fields, add `--search WORDS`, `--kind measure` or `--from MODEL`.
+   It lists each field by the name a pick takes, under a menu of the operations the field offers. Each operation's parameters are one signature, such as `timeframes.set(unit: year|quarter|month|week|day)`. For a query that reads another query (rule 6), add `--source <workspace>/<first>`. To list fewer fields, add `--search WORDS`, `--kind measure` or `--from MODEL`. A date kept coarser than its type lists only the units it can be selected at, and a request for a finer one is refused: say what the refusal says and show the finest unit it offers ([A date's own grain](vfs://guides/dataset__db.md#a-dates-own-grain)).
 3. Ask for one operation only when a parameter chooses a field, or when a call fails. In a pick, a field parameter, such as `by` or `partition_by`, names a field the query picks. On a saved query, `kater operation list FILE --field FIELD --operation ID` lists the fields that each field parameter takes, the other parameters, and the `target` for `edit.model`.
 
 ## 2. Pick fields. Do not write SQL.

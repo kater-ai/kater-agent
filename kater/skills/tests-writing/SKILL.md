@@ -49,7 +49,7 @@ GROUP BY
   ad_reporting.union__currency
 ```
 
-A test is `model_type: test`. Nothing reads it: it isn't in pickers, completions, the Catalog or Explore. It compiles through the sandbox (`compile_through: sandbox` in the [model-layer rules](vfs://guides/model-layer-rules-promotion.md)): each path compiles as a query in the in-memory workspace Explore builds, rooted in the model and named after it. SQL that reads `semantic.ad_reporting` reads it through that root, so a test behaves exactly as a stakeholder's query does: grouping, `KATER__` conditions and `NOT_ADDITIVE_ACROSS` apply.
+A test is `model_type: test`. Nothing reads it: it is not in pickers, completions, the Catalog or Explore. It compiles through the sandbox (`compile_through: sandbox` in the [model-layer rules](vfs://guides/model-layer-rules-promotion.md)): each path compiles as a query in the in-memory workspace Explore builds, rooted in the model and named after it. SQL that reads `semantic.ad_reporting` reads it through that root, so a test behaves exactly as a stakeholder's query does: grouping, `KATER__` conditions and `NOT_ADDITIVE_ACROSS` apply.
 
 ## Keys
 
@@ -61,7 +61,7 @@ A test is `model_type: test`. Nothing reads it: it isn't in pickers, completions
 | `tags` | no | Model tags, for selecting tests with `--select tag:KEY=VALUE`. |
 | `model` | yes | The model the test tests, `<kind>.<name>`: `semantic.NAME` or `kater_dataset.NAME`. Every test of one file names the same model. A connection workspace's tests name none: they read its root. |
 | `question` | no | The model's business question the test answers, word for word. `kater test generate --from-questions` writes it for each question, and `--question TEXT` for one. |
-| `draft` | no | `true` until you've checked the answer. Drafts run and report. A draft can leave out `expect` while you write it: its first run that returns rows records them. |
+| `draft` | no | `true` until you have checked the answer. Drafts run and report. A draft can leave out `expect` while you write it: its first run that returns rows records them. |
 | `as_of` | no | The day the test takes as today, such as `'2026-09-27'`, or a date and time. It pins relative dates. |
 | `inputs` | no | Only in a connection workspace: `parameters` and `filters`, what the root runs with. |
 | `given` | no | A fixture: each table the model reads, with the rows it holds instead. Every other table it reads is empty. |
@@ -103,7 +103,7 @@ expect:
 
 ## Every test pins a fixed row set
 
-Each side of a test that runs filters the model's date field to the same closed range, so the answer doesn't move as data loads:
+Each side of a test that runs filters the model's date field to the same closed range, so the answer does not move as data loads:
 
 - a picker condition, `operation: is_between` with `range: ['2026-07-01', '2026-07-31']`
 - a WHERE in Kater SQL: `BETWEEN` two dates, or `KATER__IS_BETWEEN`
@@ -111,7 +111,7 @@ Each side of a test that runs filters the model's date field to the same closed 
 - a relative window, pinned by `as_of`: `is_within_last` with `complete: true`, or bounds that count from `CURRENT_DATE`
 - in a connection workspace, a root filter the test's `inputs` turn on over a closed range
 
-A test without one, or whose sides read different ranges, is refused when it's saved and when it runs. A range that ends within 30 days of today gets a warning, because ad platforms restate recent conversions. A refused test only compiles, so it needs no range. A fixture's tables hold only the rows it gives, so its answer can't move, and it needs none either.
+A test without one, or whose sides read different ranges, is refused when it is saved and when it runs. A range that ends within 30 days of today gets a warning, because ad platforms restate recent conversions. A refused test only compiles, so it needs no range. A fixture's tables hold only the rows it gives, so its answer cannot move, and it needs none either.
 
 ## Relative dates: `as_of`
 
@@ -140,7 +140,7 @@ picker:
 
 ## Fixture tests: `given`
 
-A fixture test runs the model on rows you give, like a dbt unit test. It pins behaviour no real window shows, such as a case the data doesn't have yet:
+A fixture test runs the model on rows you give, like a dbt unit test. It pins behaviour no real window shows, such as a case the data does not have yet:
 
 ```yaml
 name: account_with_two_currencies_counts_spend_twice
@@ -204,7 +204,7 @@ GROUP BY
 - **A picker writes a query in the workspace,** reading its root, and SQL reads `workspace.<root>`. A `same_as.sql` can read the root or any shared model.
 - **Save as test** asks where the test goes: your own tests of the shared model the root reads, the shared layer's file if you edit the shared models, or, from a query in a connection workspace, the workspace itself.
 
-`kater test generate` scaffolds only shared models' tests. A workspace's show what its root adds on top of the model, so they're written by hand or saved from a query.
+`kater test generate` scaffolds only shared models' tests. A workspace's show what its root adds on top of the model, so they are written by hand or saved from a query.
 
 ## How answers compare
 
@@ -212,5 +212,5 @@ GROUP BY
 - **Numbers compare at the precision a stakeholder sees:** each field's `@format`, cents for `currency(…, 2)` and whole numbers for `number(0)`. Without a format, relative 1e-9 applies. `tolerance` overrides both for a column.
 - **Order matters only when the query orders.** Without ORDER BY, rows compare as a multiset, and a row that matches none is paired with its closest row, so a moved number shows as that one cell. With a LIMIT, the runner warns when the first row past the cut ties with the last row kept.
 - **Dates are ISO strings; NULL is `null`.** The runner warns above 100 expected rows.
-- **Values must fit the types the query declares.** On a warehouse run, each value must fit the physical type its output declares, as the query's own run keeps it. A value in another type fails the test with "Query values do not fit amount's declared physical type.", even when it reads the same, such as a `ROUND` that returns a DOUBLE where the output declares DECIMAL(18,0). A local run doesn't check this, because DuckDB's types stand in for the warehouse's there.
+- **Values must fit the types the query declares.** On a warehouse run, each value must fit the physical type its output declares, as the query's own run keeps it. A value in another type fails the test with "Query values do not fit amount's declared physical type.", even when it reads the same, such as a `ROUND` that returns a DOUBLE where the output declares DECIMAL(18,0). A local run does not check this, because DuckDB's types stand in for the warehouse's there.
 - **`same_as` compares data, not SQL.** Both sides become CTEs of one warehouse query, joined on `key` with a FULL OUTER JOIN, which returns only the rows that differ. Columns pair by name, and a column on one side only is ignored. The other side's values are cast to the Kater field's type. Keys must be unique on each side. Neither side takes a LIMIT unless every side orders by the same fields.
