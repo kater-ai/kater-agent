@@ -46,7 +46,7 @@ Status: open
 - **Say up front what answers it, and stop there.** If you run out of road first, report what is still open.
 - **A folder only when it needs one.** Checks, copies and pages go in a folder of the same name beside the note, such as `brainstorm/promote_roas/checks.sql`. A topic with only a plan is just its note.
 - **Pick a topic up again** from `kater scratch list --json`, whose `topics` give each one's note, folder, title and status.
-- **A finding can outlive its topic.** A fact about the user goes in their `about.md`, under the heading it fits: Role, Projects I follow, How I like answers or Who I work with; write it with no question and tell them. A fact about the data belongs in `connection_context.md`, which is everyone's, so propose it with `kater propose`. [lessons.md](vfs://guides/lessons.md) says where each lesson goes.
+- **A finding can outlive its topic.** A fact about the user goes in their `about.md`, under the heading it fits: Role, How I like answers or Who I work with; write it with no question and tell them. A fact about the data belongs in `connection_context.md`, which is everyone's, so propose it with `kater propose`. [lessons.md](vfs://guides/lessons.md) says where each lesson goes.
 - **Skills with steps use topics too.** A skill with steps, such as [deep analysis](vfs://guides/deep-analysis.md), writes each run's plan to `brainstorm/<slug>.md`, and any other files to `brainstorm/<slug>/`, as its steps say. It tracks the run in flight in `brainstorm/skill-status.yaml` ([skill steps](vfs://guides/skill-steps.md)).
 
 ## The loop
