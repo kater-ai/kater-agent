@@ -75,7 +75,7 @@ It writes the field and runs the query with it, and saves nothing. Its answer th
 
 A field can preview and still carry a warning in `diagnostics`: the compiler saying how it is better made, such as "does not depend on the other rows of the result … Declare it as a DIMENSION, or as a MEASURE to reuse it at any grain" for a ratio sent as a calculation. Follow it and preview again before you show anything.
 
-Then say what was not shown: "10 of 48 rows" when `rows.more` is set; why there are no rows when `rows_problem` says so, since the field is written either way; a filter's "Keeps 4 of 12 rows" from `kept`. Then ask: "Add it to spend_by_platform?" Nothing is written before the answer.
+Then say what was not shown: "10 of 48 rows" when `rows.more` is set; why there are no rows when `rows_problem` says so; a filter's "Keeps 4 of 12 rows" from `kept`. A field whose `state` is `disabled` cannot be added as it is, since the warehouse refuses to run it: say its `reason` and change the field. Otherwise ask: "Add it to spend_by_platform?" Nothing is written before the answer.
 
 ## Apply on yes
 

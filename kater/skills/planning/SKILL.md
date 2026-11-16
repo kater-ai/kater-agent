@@ -53,7 +53,7 @@ Profile through governed queries. Use returned aggregate evidence to describe se
 
 An `exists` row names the current compatible identity. A `needs-change` or `scaffolded` row is not runnable until the Developer records a successful build. Connection-wide changes retain their privileged authoring path; do not use [deep analysis](vfs://guides/deep-analysis.md) to create a duplicate semantic model merely because a workspace needs to select it.
 
-For every planned output, state whether it inherits a source identity, declares a new named measure, dimension or custom calculation, or changes only an AS label. Record complete model/workspace namespaces in dependencies and bindings. Name any unnamed output that another analytical model must consume, and review all external dependents when changing a declaration name.
+For every planned output, state whether it inherits a source identity, declares a new named measure, dimension or custom calculation, or changes only an AS label. Record complete model/workspace namespaces in dependencies and bindings. Give a name of your own to any output that another analytical model must consume and whose made name is not the one it should read, and review all external dependents when changing a declaration name.
 
 ## Recurring checks
 
