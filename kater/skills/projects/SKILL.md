@@ -1,13 +1,13 @@
 ---
 name: projects
-description: "Projects. Use it when the person asks for: \"Follow this goal over time\", apps grouped around a goal, with the metrics that measure it and one timeline; What waits for the person: a draft to review, a takeaway to act on, a question to answer."
+description: "Projects. Use it when the person asks for: \"Follow this goal over time\", apps grouped around a goal, with the figures that measure it and one timeline; What waits for the person: a draft to review, a takeaway to act on, a question to answer."
 ---
 
 This skill is Kater's guide `vfs://guides/projects.md`.
 
 # Projects
 
-A project is a goal, the metrics that measure it, a list of apps and one timeline. A person makes one to keep the story of some apps in one place: what each run of a document said, what the team decided, and what happened. An app stays in its own folder, and it can be in several projects.
+[Key concepts](vfs://guides/concepts.md) says what a project is. A person makes one to keep the story of some apps in one place: what each run of a document said, what the team decided, and what happened. An app stays in its own folder, and it can be in several projects.
 
 ## What a project holds
 
@@ -19,7 +19,7 @@ A project is kept in one file, `projects/<name>/kater.project.yaml`, in its owne
 - **Tags.** Optional. Each key has a list of its values, such as `topic: [paid_media]`, as a workspace's, a query's and an app's tags are written. A search finds the project by them.
 - **Apps.** The apps it groups, each by its folder from the content root, such as `connections/<connection>/users/<email>/apps/retention_scorecard`.
 - **Charts.** One chart of an app in place of the whole app: the app's folder and the query its page draws there. The project page shows it with the app's title for it, and opens the app at it.
-- **Metrics.** The numbers the project is judged by. Each is one query, one field and one row, read as one number a period and tracked by one of the periods Compare reads by (its Track by; `kater project metric add --help` lists them). Week is the default when the query allows it, else the finest period it allows. A query that already groups by a period is tracked by that period or a coarser one: a query grouped by month is tracked by month, quarter or year, never by week, and a query grouped by no date is tracked by its workspace's comparison date. A figure with no date at all, in a workspace with no comparison date, cannot be tracked. Its periods are what its query answers, with the query's own conditions and each optional filter as its file sets it (`on=`, see [filters](vfs://guides/filters.md)), never a person's own switch on a card, so a metric reads the same for everyone and may differ from a card a person has filtered. One metric is the goal's. Each metric's usual range and status are computed from its periods, the last full period against the periods before it, so nobody has to set a level. A metric's target draws as a line on each chart of its query, and its owner hears about its alert in their Inbox: see [follow](vfs://guides/follow.md).
+- **Figures.** The numbers the project is judged by. Each is one query, one field and one row, read as one number a period and tracked by one of the periods Compare reads by (its Track by; `kater project figure add --help` lists them). Week is the default when the query allows it, else the finest period it allows. A query that already groups by a period is tracked by that period or a coarser one: a query grouped by month is tracked by month, quarter or year, never by week, and a query grouped by no date is tracked by its workspace's comparison date. A figure with no date at all, in a workspace with no comparison date, cannot be tracked. Its periods are what its query answers, with the query's own conditions and each optional filter as its file sets it (`on=`, see [filters](vfs://guides/filters.md)), never a person's own switch on a card, so a figure reads the same for everyone and may differ from a card a person has filtered. One figure is the goal's. Each figure's usual range and status are computed from its periods, the last full period against the periods before it, so nobody has to set a level. A figure's target draws as a line on each chart of its query, and its owner hears about its alert in their Inbox: see [follow](vfs://guides/follow.md).
 
 The timeline of a project holds its own entries and the entries of each app it lists that the reader can read, newest first, in weeks.
 
@@ -27,7 +27,7 @@ In Markdown you write, such as a timeline entry, a project's goal or a workflow'
 
 ## The words
 
-- **Document.** An app that a snapshot workflow writes, on a schedule, such as a weekly deck, or one time, such as a deck whose numbers stay as they were on the day it was made. Each run of it is a snapshot. Workflows, their four kinds (snapshot, brief, watch and general) and the `kater workflow` commands are in vfs://guides/workflows.md.
+- **Document.** An app that a snapshot workflow writes, on a schedule, such as a weekly deck, or one time, such as a deck whose numbers stay as they were on the day it was made. Each run of it is a snapshot. Workflows, their three kinds (snapshot, brief and general) and the `kater workflow` commands are in vfs://guides/workflows.md.
 - **Tool.** An app a person works in, such as a budget planner. It has no snapshots. Its entries say what someone did with it.
 - **Snapshot.** One run of a document: the page as it was, its figures pinned to the rows they came from, and its words, a few takeaways and a sentence or two for each part of the page. The workflow's owner keeps it, and then it is an entry on the timeline. Nobody changes it after that, and it is view-only in the web app. A dashboard has a snapshot each week too: the board as it drew that week, with its charts, looks, labels, numbers and theme. It stays the same whatever happens to the live dashboard, its charts, its queries or its fields afterwards, and only the live dashboard shows a broken chart, so fix the live dashboard and never a snapshot.
 - **Entry.** One file on a timeline: a snapshot, a readout, a decision, a change, an event, a note or a question. A reply is an entry `on` another one. Only the person who wrote a note, a question or a reply can change its words, with `kater timeline edit <entry path> --file -`, or remove it, with `kater timeline remove <entry path>`. Show the change, and run it with `kater_apply` only after they say yes. A removed entry stays in the history, and its replies stay on the timeline. The owner of a workflow takes one of its snapshots, kept or quiet, off the timeline with `kater timeline remove <entry path>` or `kater snapshot discard <run>`: run it with `--dry-run` first, show them the decisions and replies that sit on the week and stay on the timeline, and run it after they say yes; `kater undo <change>` puts it back. Every other entry stays as it was written: to correct a decision, a readout or someone else's entry, add an entry `on` it that says what changed.
@@ -40,7 +40,7 @@ Read the part for what you do:
 
 - **Read, make, share or change a project:** [read, make and change a project](vfs://guides/projects-make.md).
 - **Add an entry, a picture, a link, a file, a conversation or a decision to the timeline:** [the timeline](vfs://guides/projects-timeline.md).
-- **Make a document, write a snapshot's words, or propose metrics for a goal:** [documents, snapshots and proposed metrics](vfs://guides/projects-documents.md).
+- **Make a document, write a snapshot's words, or propose figures for a goal:** [documents, snapshots and proposed figures](vfs://guides/projects-documents.md).
 - **Talk through what waits for the person:** "The inbox" below.
 
 ## The inbox

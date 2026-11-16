@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/plans.md`.
 
 # Plans
 
-A plan is a topic note in your [brainstorm folder](vfs://guides/brainstorm.md) that gets to a goal in phases. Each phase is small enough that someone with no other context can build it from its brief and prove it is done. Write one when a goal takes more than one change, such as a workspace and its queries, a dashboard over them, then an app. One analytical question is [deep analysis](vfs://guides/deep-analysis.md) instead, and one query is [build query contract](vfs://guides/build-query-contract.md).
+A plan is a topic note in your [brainstorm folder](vfs://guides/brainstorm.md) that gets to a goal in phases. Each phase is small enough that someone with no other context can build it from its brief and prove it is done. Write one when a goal takes more than one change, such as a workspace and its queries, a dashboard over them, then an app. One analytical question is [deep analysis](vfs://guides/deep-analysis.md) instead, and one query is [build a query](vfs://guides/build-query.md).
 
 Three skills do the work:
 
@@ -52,9 +52,9 @@ The person's own folder is `connection.folder` of `kater_start`. Run one phase: 
 
 ### P1. Weekly sales by region
 
-**Goal.** One saved query returns net sales by region for each of the last five weeks.
+**Goal.** One query returns net sales by region for each of the last five weeks.
 
-**Read first:** `vfs://guides/query-contract.md`, and the workspace's `workspace.sql`.
+**Read first:** `vfs://guides/query.md`, and the workspace's `workspace.sql`.
 
 **Build:**
 
@@ -66,7 +66,7 @@ The person's own folder is `connection.folder` of `kater_start`. Run one phase: 
 
 - `kater compile` on the workspace passes.
 - `kater run --select <workspace>/weekly_sales_by_region` returns 5 weeks for each region.
-- `kater compare` of the scratch statement and the saved query says `same`.
+- `kater diff` of the scratch statement and the query says `same`.
 
 **Out of scope:** the chart and the region filter, which are P2.
 
@@ -99,7 +99,7 @@ The person's own folder is `connection.folder` of `kater_start`. Run one phase: 
 
 ## Later
 
-- A watch that flags a region whose sales drop by a quarter week on week.
+- A follow on each region's sales, with a line that tells when they drop by a quarter week on week.
 ````
 
 - **The title is the desired state,** in the person's words, never their request.
@@ -113,8 +113,8 @@ Each brief stands alone apart from this plan. Someone given only "Run phase P2" 
 - **One concern.** A phase ends in something you can check, such as a query that runs, a dashboard that opens or a page that draws. Five Build bullets is a lot.
 - **Smallest working slice first.** P1 makes the core figure run end to end; later phases add to it. Never plan a dashboard over a query that does not exist yet in the same phase.
 - **Name everything.** Every object by its full path or `${...}` ref, every guide by its path, and every decision by its number. Never "the ROAS query" or "the usual workspace".
-- **Say how, not just what.** Name the guide for each kind of object, and the command where one is known, such as `kater add-to` or `kater compare`. Changes go through typed operations, as `public-creation-workflow.md` says.
-- **Done when is a tool's verdict.** `kater compile` passes, `kater run` returns the rows the goal needs, `kater compare` says `same`, the page opens at its address, or the person said yes. Never "looks right" or "is reasonable".
+- **Say how, not just what.** Name the guide for each kind of object, and the command where one is known, such as `kater add-to` or `kater diff`. Changes go through typed operations, as `public-creation-workflow.md` says.
+- **Done when is a tool's verdict.** `kater compile` passes, `kater run` returns the rows the goal needs, `kater diff` says `same`, the page opens at its address, or the person said yes. Never "looks right" or "is reasonable".
 - **Prove it in the folder first.** A change to real content is drafted and checked in `brainstorm/<topic>/`, then applied.
 - **Name every write outside the folder,** in Build and in "Leaving the folder". Scheduling or arming anything is its own phase, and it always asks.
 - **A choice only the person can make** is a Decision before the phases start, or the first bullet of the phase that needs it, which then stops and asks.

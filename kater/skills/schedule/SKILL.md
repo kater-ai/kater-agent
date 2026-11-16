@@ -7,9 +7,9 @@ This skill is Kater's guide `vfs://guides/schedule.md`.
 
 # Schedule a Slack DM
 
-A schedule sends one saved query’s fresh figures to its owner in Slack. It does not run an AI model, write a digest, send to a channel, or send only when a condition changes. The Kater Slack app must be installed. The owner must be a confirmed organisation member with a connected Slack account and current access to the query and its sources.
+A schedule sends one query’s fresh figures to its owner in Slack. It does not run an AI model, write a digest, send to a channel, or send only when a condition changes. The Kater Slack app must be installed. The owner must be a confirmed organisation member with a connected Slack account and current access to the query and its sources.
 
-To hear only when a metric crosses a line, make a watch instead, and to write a page again on a schedule, a brief (vfs://guides/workflows.md, [digest](vfs://guides/digest.md)). A brief's run keeps each linked figure (a `<kater-source>` with `origin="link"`, `"file"` or `"person"`) and its `read-at` as they are, never writes a new date for a figure it did not read, and names each figure it kept and the day it was read in its final message.
+To hear only when a number meaningfully changes, or crosses a line, follow it instead ([follow](vfs://guides/follow.md)), and to write a page again on a schedule, a brief (vfs://guides/workflows.md, [digest](vfs://guides/digest.md)). A brief's run keeps each linked figure (a `<kater-source>` with `origin="link"`, `"file"` or `"person"`) and its `read-at` as they are, never writes a new date for a figure it did not read, and names each figure it kept and the day it was read in its final message.
 
 ## Write the file
 
@@ -26,7 +26,7 @@ how: slack
 paused: false
 ```
 
-`run` names one saved query as `<workspace>/<name>`: the workspace's folder from the content root, then the query's name as its file declares it, never the query's file. The query uses its saved defaults. `to` must be the email that owns the schedule folder. `how` is always `slack`. Give an explicit IANA time zone, such as `America/Los_Angeles`. Infer it only from the person’s known settings. Ask if it is not known. Never guess it from the server’s time zone. `days` uses full lowercase names. `time` is a quoted 24-hour `HH:MM` string. `paused` is optional and defaults to false. The file name names the schedule; do not add a `name` field.
+`run` names one query as `<workspace>/<name>`: the workspace's folder from the content root, then the query's name as its file declares it, never the query's file. The query uses its saved defaults. `to` must be the email that owns the schedule folder. `how` is always `slack`. Give an explicit IANA time zone, such as `America/Los_Angeles`. Infer it only from the person’s known settings. Ask if it is not known. Never guess it from the server’s time zone. `days` uses full lowercase names. `time` is a quoted 24-hour `HH:MM` string. `paused` is optional and defaults to false. The file name names the schedule; do not add a `name` field.
 
 For a fixed interval, replace `days` and `time` with `every_minutes`, an integer from 1 to 1440. Do not combine the two forms. An interval runs on UTC minute boundaries. A calendar schedule follows its local time zone. A repeated local minute at a daylight-saving change sends once. A local time that does not exist is skipped.
 

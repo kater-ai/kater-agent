@@ -7,34 +7,33 @@ This skill is Kater's guide `vfs://guides/schedule-workflow.md`.
 
 # Schedule a workflow
 
-A scheduled workflow is one file in Kater, which holds its steps and its `schedule` ([workflows](vfs://guides/workflows.md#what-a-workflow-is)). It runs at each time, as its owner, and the owner reads the result in their inbox. Nothing else is set up: no task in the person's own agent, no copy of the schedule anywhere else. There are four kinds:
+A scheduled workflow is one file in Kater, which holds its steps and its `schedule` ([workflows](vfs://guides/workflows.md#what-a-workflow-is)). It runs at each time, as its owner, and the owner reads the result in their inbox. Nothing else is set up: no task in the person's own agent, no copy of the schedule anywhere else. There are three kinds:
 
 **Lessons.** When `kater ai-tools list` names `lessons` for this skill, read that file before you start and follow it: it is what this organisation learned using this skill. Record a new lesson about using it there, as vfs://guides/lessons.md says.
 
 - **Snapshot:** saves the numbers and words of one app (`writes`), and its draft waits in the owner's inbox.
 - **Brief:** a page and an answer for its owner each time (`kind: brief`), as [Monday Brief](vfs://guides/monday-brief.md) writes. [digest](vfs://guides/digest.md) works one out.
-- **Watch:** one metric that no chart draws, checked against its line (`kind: watch`), with an inbox row only when it crosses. [watch](vfs://guides/watch.md) works one out. A number on a chart takes a follow instead, with no workflow (vfs://guides/follow.md).
 - **General:** any steps the person writes, with its answer in their inbox.
 
 What each kind's file holds and every `kater workflow` command are in vfs://guides/workflows.md.
 
 ## When to use
 
-Use this when the person wants a workflow to run on its own, or wants to change, pause or stop one that does: "schedule my Monday brief", "move it to 9", "add ROAS to it", "stop the daily watch". To work out what a new one covers first, use [digest](vfs://guides/digest.md) for a recurring brief or [watch](vfs://guides/watch.md) for a metric that crosses a line; each hands back here to schedule it.
+Use this when the person wants a workflow to run on its own, or wants to change, pause or stop one that does: "schedule my Monday brief", "move it to 9", "add ROAS to it", "stop the daily brief". To work out what a new one covers first, use [digest](vfs://guides/digest.md) for a recurring brief; it hands back here to schedule it. To hear when a number crosses a line, follow it instead, with no workflow (vfs://guides/follow.md).
 
 ## Procedure
 
-1. **Find the workflow.** `kater workflow list` lists each one the person can read, with when it runs, its state and its last run; `--app <folder>` or `--project <folder>` keeps those of one app or project. A workflow with no schedule gets one. With none that fits, work out a new one with digest.md or watch.md, or write it with them in the shape below.
+1. **Find the workflow.** `kater workflow list` lists each one the person can read, with when it runs, its state and its last run; `--app <folder>` or `--project <folder>` keeps those of one app or project. A workflow with no schedule gets one. With none that fits, work out a new one with digest.md, or write it with them in the shape below.
 2. **Say where each change goes.** Each is one `kater workflow` command, and the next run follows it:
    - **Its steps,** such as another metric or a shorter brief: `kater workflow save <key> --file -`.
    - **When it runs:** `kater workflow save <key> --cron "<cron>" --timezone <zone>`. A workflow runs at most once an hour.
    - **Its name:** `kater workflow save <key> --label "<name>"`.
-   - **A watch's line or metric:** `kater workflow save <key> --line <number>`, `--direction below|above`, `--metric <query>.<field>` or `--alert inbox|slack`. A watch has no steps to change: they are written from these.
+   - **A watch's line or metric,** for a watch that exists: `kater workflow save <key> --line <number>`, `--direction below|above`, `--metric <query>.<field>` or `--alert inbox|slack`. A watch has no steps to change: they are written from these.
    - **Pause or resume:** `kater workflow pause <key>`, `kater workflow resume <key>`. A paused workflow's times are skipped, and a resume does not run the times it skipped.
    - **Stop for good:** `kater workflow save <key> --no-schedule`, so it runs only when someone asks. A snapshot workflow always has a schedule: pause it.
 3. **Their own, or shared.** They change only their own, in their own folder (`connection.folder` of `kater_start`), `connections/<connection>/users/<email>/ai_tools/workflows/`. A shared workflow, in the connection's `ai_tools/workflows/`, is the organisation's template that nobody runs: to schedule it, make one of their own with `kater new workflow "<Name>" --start brief|general --cron <when> --timezone <zone> --file -`, whose steps follow the shared file ("Follow `connections/<connection>/ai_tools/workflows/<name>.md`, with these changes: …"). A Monday brief starts from [Monday Brief](vfs://guides/monday-brief.md), whose own file a person copies. Or ask the data team to change the shared one for everyone. To start from a workflow that does not follow the original's later changes, or from one that another person shared with them, `kater workflow duplicate <key> --label "<name>"` copies it into their own folder. The copy starts paused, so change it, then `kater workflow resume <key>`.
 4. **Show the change and ask once:** its name, its steps and when it runs, in words. After a yes, run the `kater workflow` command.
-5. **Check it.** `kater workflow show <key>` shows the schedule in words, who runs it and the next run, and `key_words` says which model key writes its words. When the organisation has no key for scheduled workflows, say how its runs end, as `key_words` says, and that an admin adds a key on AI settings. A watch needs no model key: its metric is checked with code. Then say when it runs next and where its result arrives: a snapshot's draft, a brief's page and answer, or a general workflow's answer in their inbox, a watch's row only when it crosses, and each run on the Workflows page.
+5. **Check it.** `kater workflow show <key>` shows the schedule in words, who runs it and the next run, and `key_words` says which model key writes its words. When the organisation has no key for scheduled workflows, say how its runs end, as `key_words` says, and that an admin adds a key on AI settings. A watch that exists needs no model key: its metric is checked with code. Then say when it runs next and where its result arrives: a snapshot's draft, a brief's page and answer, or a general workflow's answer in their inbox, a watch's row only when it crosses, and each run on the Workflows page.
 6. **Run it now, when they want to see it work.** `kater workflow run <key>` starts a run and prints its id; `kater runs show <run>` reads it. It does not take the place of the next scheduled run.
 
 ## In their own agent, only when they ask
@@ -48,7 +47,7 @@ Never say a task is set up, changed or stopped until it is. Then each change of 
 
 ## The shape
 
-`kater new workflow` writes the frontmatter from its options and the steps from `--file`, a Markdown file, or `--file -` to read them from stdin. A general workflow's file looks like this, and a brief's has `kind: brief` too. A watch's file has `kind: watch` and a `watch` block, which `--start watch` writes with its steps ([workflows](vfs://guides/workflows.md#what-a-workflow-is)).
+`kater new workflow` writes the frontmatter from its options and the steps from `--file`, a Markdown file, or `--file -` to read them from stdin. A general workflow's file looks like this, and a brief's has `kind: brief` too. A watch that exists has `kind: watch` and a `watch` block ([workflows](vfs://guides/workflows.md#what-a-workflow-is)).
 
 ````markdown
 ---

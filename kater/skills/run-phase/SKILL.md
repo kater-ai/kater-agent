@@ -26,7 +26,7 @@ Build one phase of a plan and prove it is done. The plan is a topic note in a br
 5. **Build each bullet in order,** through the guide for each object and the typed operations vfs://guides/public-creation-workflow.md names. Draft and check a change to real content in `brainstorm/<topic>/` first, then apply it.
    - **Writes:** a write outside the folder that the phase names goes ahead under the approval. Any other write is a change to the plan: stop and ask.
    - **Choices:** where the brief leaves a choice to the person, stop and ask. Where it is yours, take the smallest one that meets the goal, and say so in Notes.
-6. **Check every Done when** with the tool it names: `kater compile`, `kater run`, `kater compare`, the page at its address, or the person's yes. Fix what fails within the brief, and check again.
+6. **Check every Done when** with the tool it names: `kater compile`, `kater run`, `kater diff`, the page at its address, or the person's yes. Fix what fails within the brief, and check again.
 7. **Close it.**
    - **Done:** set Status `Done <date>`. Write Notes with what differs from the brief, each check with its command and verdict (row counts, never rows), and what is left open.
    - **Cannot finish:** set Status `Blocked (<why>)`, keep what works, and write the exact next step in Notes.

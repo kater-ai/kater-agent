@@ -13,7 +13,7 @@ Write a skill of the person's own: a short procedure that the agent follows when
 
 ## When to use
 
-Use this when the person repeats the same request, or asks for a command of their own. A procedure everyone should get belongs in the connection's `ai_tools/`, which the data team changes. A procedure that should run on its own, such as every Monday, is a scheduled workflow, not a command: use [digest](vfs://guides/digest.md) for a recurring brief, [watch](vfs://guides/watch.md) for a metric that crosses a line, or [schedule workflow](vfs://guides/schedule-workflow.md) to schedule any workflow ([workflows](vfs://guides/workflows.md)).
+Use this when the person repeats the same request, or asks for a command of their own. A procedure everyone should get belongs in the connection's `ai_tools/`, which the data team changes. A procedure that should run on its own, such as every Monday, is a scheduled workflow, not a command: use [digest](vfs://guides/digest.md) for a recurring brief, or [schedule workflow](vfs://guides/schedule-workflow.md) to schedule any workflow ([workflows](vfs://guides/workflows.md)).
 
 ## Procedure
 

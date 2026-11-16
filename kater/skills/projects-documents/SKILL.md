@@ -1,11 +1,11 @@
 ---
 name: projects-documents
-description: "Projects: documents, snapshots and proposed metrics. Use it when the person asks for: What changed in an app this week, its takeaways and figures."
+description: "Projects: documents, snapshots and proposed figures. Use it when the person asks for: What changed in an app this week, its takeaways and figures."
 ---
 
 This skill is Kater's guide `vfs://guides/projects-documents.md`.
 
-# Projects: documents, snapshots and proposed metrics
+# Projects: documents, snapshots and proposed figures
 
 A part of [Projects](vfs://guides/projects.md).
 
@@ -35,14 +35,14 @@ A change to a document's page shows at Live and in the snapshots taken after it.
 
 - At most three takeaways, then a sentence or two for each part of the page (each `<kater-words>` name).
 - Cite each figure by its number, `{f01}`, or `{f01.before}` for the period before. Never type a number.
-- A project's metric in the packet has its own `grain` and the `period` its value is for. Name the period by its grain, such as "Email revenue, by month: $41,230 in Oct 2026, below normal". Never call a month or a year a week. A weekly snapshot of a project with a monthly metric reads the same month until the next month ends: say that its period is unchanged, never that the metric moved.
-- A project's metric in the packet may have an `at_decision` and an `at_snapshot`: what it was at the project's newest decision and snapshot, what it is now, and whether that is a meaningful change. Say it in its `words`. Never judge the change yourself.
+- A project's figure in the packet has its own `grain` and the `period` its value is for. Name the period by its grain, such as "Email revenue, by month: $41,230 in Oct 2026, below normal". Never call a month or a year a week. A weekly snapshot of a project with a monthly figure reads the same month until the next month ends: say that its period is unchanged, never that the figure moved.
+- A project's figure in the packet may have an `at_decision` and an `at_snapshot`: what it was at the project's newest decision and snapshot, what it is now, and whether that is a meaningful change. Say it in its `words`. Never judge the change yourself.
 - List in `facts` every figure an item reads. At least one of them has `checks`: it is a row of Compare, and the item's source. A reader selects the item's status to open that row with its two periods. Each item's rows are kept in the entry's `compare`.
 - Lead each item with its status: `new`, `changed`, `still_true` or `resolved`. Any but `new` names in `follows` the item of the last snapshot it follows.
 - Put in `entries` the ids of the entries an item names, such as an open decision.
 
 Save them with `kater snapshot save <run> --file -`. A refused save says each problem: fix them and save again. Only the workflow's owner keeps or discards a draft, after they read it.
 
-## Propose metrics for a goal
+## Propose figures for a goal
 
-Read the apps' queries and their periods with `kater run` first. Propose a metric only from a query that has one row a period, and say which period it is: a metric is tracked by that period or a coarser one, with `@<grain>` in `kater new project --metric` or `--grain` in `kater project metric add` when the query is not weekly (see [make a project](vfs://guides/projects-make.md)). For each, give the field, the row, which way is better, and its last value. Make the goal's metric the one the goal names.
+Read the apps' queries and their periods with `kater run` first. Propose a figure only from a query that has one row a period, and say which period it is: a figure is tracked by that period or a coarser one, with `@<grain>` in `kater new project --figure` or `--grain` in `kater project figure add` when the query is not weekly (see [make a project](vfs://guides/projects-make.md)). For each, give the field, the row, which way is better, and its last value. Make the goal's figure the one the goal names.

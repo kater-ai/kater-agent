@@ -16,7 +16,7 @@ Record the person's decision, or a decision an authorized policy makes, for a pr
 1. Confirm the dependent profiling node is complete and show the evidence-backed candidates, tradeoffs, and provisional nature in plain language.
 2. In a run a person watches, suspend at the decision node until the user selects or adjusts a supported value. Do not restart the analysis when they respond.
 3. In a scheduled run, which nobody answers, continue only when the artifact names the already-authorized selection policy and it covers the parameter. Record the selected value as provisional.
-4. Validate that the selected value is declared by the query contract or insight template. Persist it, its source, policy or user decision, rationale, timestamp, and dependent node identifiers in `## Parameter decision`.
+4. Validate that the selected value is declared by the query or insight template. Persist it, its source, policy or user decision, rationale, timestamp, and dependent node identifiers in `## Parameter decision`.
 
 ## Stop conditions
 

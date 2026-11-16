@@ -27,7 +27,7 @@ What to do, then why, in plain words: "Round revenue to whole dollars: the perso
 
 Before you add a line, read the file. When a line says the same thing, change that line. When a line no longer holds, replace it. Never keep two lines that disagree, and never start a second file.
 
-A lesson file has a size limit, because it is read whole each time and takes the room of the work: a person's `about.md` holds at most 4,000 characters, and a `lessons.md` at most 2,000. A write over the limit is refused with the code `too_long`, such as "Your about.md would be 4,310 characters, over 4,000." Then rewrite the file shorter: merge the lines that say the same thing, remove what no longer holds, and write it again. Never move lines to a second file.
+A lesson file has a size limit, because it is read whole each time and takes the room of the work: a person's `about.md` holds at most 4,000 characters, a `lessons.md` at most 2,000, and the company's `rules.md` and root `about.md` at most the size of one read, which their refusal says. A write over the limit is refused with the code `too_long`, such as "Your about.md would be 4,310 characters, over 4,000." Then rewrite the file shorter: merge the lines that say the same thing, remove what no longer holds, and write it again. Never move lines to a second file.
 
 ## Where each lesson goes
 

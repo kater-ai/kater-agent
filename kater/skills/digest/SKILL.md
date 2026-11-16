@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/digest.md`.
 
 ## Digest template
 
-A digest is an app page laid out as a brief someone reads first thing, such as a Monday brief of what moved in the metrics they watch. It reads in one column, insight first: the one thing that matters most, the week in figures, what moved, what held steady, and what to do this week. The page names the template on its root, and the runtime links the template's stylesheet before the page paints:
+A digest is an app page laid out as a brief someone reads first thing, such as a Monday brief of what moved in the metrics they follow. It reads in one column, insight first: the one thing that matters most, the week in figures, what moved, what held steady, and what to do this week. The page names the template on its root, and the runtime links the template's stylesheet before the page paints:
 
 ```html
 <html lang="en" kater-template="digest">
@@ -17,7 +17,7 @@ The template is a stylesheet and a script the runtime serves, never a copy in th
 
 ## Set up a recurring digest
 
-A digest is [brief me](vfs://guides/brief-me.md) on a schedule. When the person asks for their metrics on a schedule, such as `/digest` or "every Monday", draft it in their brainstorm folder, show one issue, then ask. Nothing is scheduled, armed or sent without their yes. For one brief now, use brief me. To hear only when a figure moves, follow it ([follow](vfs://guides/follow.md)), or use [watch](vfs://guides/watch.md) for a metric that no chart draws.
+A digest is [brief me](vfs://guides/brief-me.md) on a schedule. When the person asks for their metrics on a schedule, such as `/digest` or "every Monday", draft it in their brainstorm folder, show one issue, then ask. Nothing is scheduled, armed or sent without their yes. For one brief now, use brief me. To hear only when a figure moves, or crosses a line, follow it ([follow](vfs://guides/follow.md)).
 
 **Lessons.** When `kater ai-tools list` names `lessons` for this skill, read that file before you start and follow it: it is what this organisation learned using this skill. Record a new lesson about using it there, as vfs://guides/lessons.md says.
 
@@ -27,10 +27,10 @@ A digest is [brief me](vfs://guides/brief-me.md) on a schedule. When the person 
 4. **Say how it can run,** naming only what exists:
    - **A brief that runs on its own,** a workflow of kind `brief`, at its time, with its page in their brainstorm folder and its answer in their inbox ([workflows](vfs://guides/workflows.md)). [Monday Brief](vfs://guides/monday-brief.md) is the brief's template. After a yes, make their own with `kater new workflow "<Name>" --start brief --cron monday --timezone <zone> --file -`, such as "My Monday brief", whose step follows Monday Brief with the metrics and window you settled ("Follow vfs://guides/monday-brief.md, with these changes: …"). `--cron` also takes `weekday`, `friday`, `month` or a cron. It runs from then on, with the organisation's model key for scheduled workflows: there is no task to set up in their agent. [Schedule workflow](vfs://guides/schedule-workflow.md) changes, pauses or runs it.
    - **An app they open:** after a yes, the page becomes a draft app and moves to their apps ([brainstorm](vfs://guides/brainstorm.md), Draft apps). It reads fresh rows each time it opens.
-   - **A scheduled Slack DM:** one saved query's figures, sent only to its owner after approval, with no model writing each digest. Follow vfs://guides/schedule.md, and confirm the owner's time zone and Slack connection. Never promise email, another person's delivery, or a model-written digest.
+   - **A scheduled Slack DM:** one query's figures, sent only to its owner after approval, with no model writing each digest. Follow vfs://guides/schedule.md, and confirm the owner's time zone and Slack connection. Never promise email, another person's delivery, or a model-written digest.
 5. **Ask once** which to set up. After a yes, set up only that, and set the note's `Status:`.
 
-Stop when none of their metrics has a verified definition: say which lack one, and offer [build query contract](vfs://guides/build-query-contract.md) to define the first.
+Stop when none of their metrics has a verified definition: say which lack one, and offer [build a query](vfs://guides/build-query.md) to define the first.
 
 ## What a brief is for
 

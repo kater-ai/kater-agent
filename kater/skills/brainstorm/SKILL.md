@@ -58,23 +58,23 @@ Plan, try, check, show, ask, apply. Say one short line before each step, so the 
 3. **Check.** Run what answers the question. Record what ran and the verdicts in the note, not the rows. For a dashboard in a copy, look at the copy with `kater dashboard look COPY` and fix what it finds ([Look at it](vfs://guides/dashboard-look.md#look-at-it)).
 4. **Show.** Report in the shape below.
 5. **Ask.** One question: whether to apply it, and where.
-6. **Apply.** Only after a yes, through the call that writes it: `kater workspace apply COPY` for a change tried in a copy ([Applying a copy](#applying-a-copy)), `kater app apply DRAFT` for a draft app ([Draft apps](#draft-apps)), or `kater add-to FILE --statement N --to workspace:WORKSPACE` for a statement that becomes a workspace query. Then compare again, and set the note's `Status:`.
+6. **Apply.** Only after a yes, through the call that writes it: `kater workspace apply COPY` for a change tried in a copy ([Applying a copy](#applying-a-copy)), `kater app apply DRAFT` for a draft app ([Draft apps](#draft-apps)), or `kater add-to FILE --statement N --to workspace:WORKSPACE` for a statement that becomes a workspace query. Then diff again, and set the note's `Status:`.
 
 ## Checking
 
-Two answers are the same only when `kater compare` says so. Never compare rows yourself.
+Two answers are the same only when `kater diff` says so. Never decide it by reading rows yourself.
 
 ```text
-kater compare --left connections/<connection>/users/<email>/brainstorm/promote_roas/checks.sql#0 --right connections/<connection>/users/<email>/brainstorm/promote_roas/checks.sql#1
+kater diff --left connections/<connection>/users/<email>/brainstorm/promote_roas/checks.sql#0 --right connections/<connection>/users/<email>/brainstorm/promote_roas/checks.sql#1
 ```
 
-- **Sides.** Name each side by its complete path: a scratch statement as `FILE#N`, counting from 0, or a saved query as `<workspace>/<name>`, its workspace's folder and its name, never its file. With a workspace folder on both sides, their queries pair by name.
+- **Sides.** Name each side by its complete path: a scratch statement as `FILE#N`, counting from 0, or a query as `<workspace>/<name>`, its workspace's folder and its name, never its file. With a workspace folder on both sides, their queries pair by name.
 - **Verdicts.** Each pair is `same`, `different` with its first 50 differences, or `refused` with why, such as a side that does not compile. A refused pair does not stop the others. Across two workspaces, a query only one has is `only_left` or `only_right`, which makes the two different. Across a copy and the workspace it copies, `changed` marks each query the copy changed, and the card opens on one of them.
-- **Rows** pair on the dimensions both sides return, or on `--key`; with none, they compare as multisets. `--column LEFT=RIGHT` pairs columns of different names.
-- **Numbers** compare at their format's decimal places, as a stakeholder sees them. `--precision N` compares finer.
+- **Rows** pair on the dimensions both sides return, or on `--key`; with none, they diff as multisets. `--column LEFT=RIGHT` pairs columns of different names.
+- **Numbers** are diffed at their format's decimal places, as a stakeholder sees them. `--precision N` diffs finer.
 - **Inputs.** Each side runs at its defaults, with its own filters on. `--parameter NAME=VALUE` sets a parameter on every side that declares it.
 - **Record the verdict** in the note, such as "weekly ROAS from the measure vs the inline ratio: same, 13 rows". Never the rows.
-- **On screen.** In chat, a `kater compare` result draws itself: the verdict, each pair and the cells that differ. In the portal, a copy's own page draws it against the workspace it copies, from Compare in its banner, at `/workspace/<copy>?compare=open`.
+- **On screen.** In chat, a `kater diff` result draws itself: the verdict, each pair and the cells that differ. In the portal, a copy's own page draws it against the workspace it copies, from Diff in its banner, at `/workspace/<copy>?diff=open`.
 
 ## Reporting
 
@@ -88,7 +88,7 @@ One line, then the thing itself. Never a paragraph about it.
 
 ## Scratch statements
 
-A scratch file is any `.sql` file at any depth under `brainstorm/`: a worksheet of statements over shared models, one of your workspaces or the warehouse. Make each statement from picks, as the query-authoring skill makes a query: [Writing a statement](vfs://guides/sandbox-scratch-files.md#writing-a-statement) says how, and [Sandbox](vfs://guides/sandbox-running.md) says how to run one.
+A `.sql` file at any depth under `brainstorm/` is a scratch file ([Key concepts](vfs://guides/concepts.md)): a worksheet of statements over shared models, one of your workspaces or the warehouse. Make each statement from picks, as the query-authoring skill makes a query: [Writing a statement](vfs://guides/sandbox-scratch-files.md#writing-a-statement) says how, and [Sandbox](vfs://guides/sandbox-running.md) says how to run one.
 
 - **New ones go at the top,** as `unnamed_scratch_<n>.sql` (`kater new scratch`). A topic's checks go in the folder beside its note, such as `promote_roas/checks.sql` (`kater new scratch --folder promote_roas`).
 - **A file's identity is its path under `brainstorm/`,** so two topics can each hold a `checks.sql`.
@@ -97,15 +97,15 @@ A scratch file is any `.sql` file at any depth under `brainstorm/`: a worksheet 
 
 ## Copies
 
-A copy of a workspace is a real workspace in the topic's folder, `brainstorm/<topic>/workspaces/<name>/`, with its own `workspace.sql`, `query_contracts/` and `charts/`. Change it freely: the original is unchanged.
+A copy of a workspace is a real workspace in the topic's folder, `brainstorm/<topic>/workspaces/<name>/`, with its own `workspace.sql`, `queries/` and `charts/`. Change it freely: the original is unchanged.
 
-- **Make one with `kater brainstorm copy WORKSPACE --topic TOPIC`,** the workspace by its full path. Any workspace you can read in its connection can be copied, someone else's included. The copy keeps the original's name, so the two pair up in `kater compare`; `--name` gives it another. A name the topic already has is refused: work in that copy.
+- **Make one with `kater brainstorm copy WORKSPACE --topic TOPIC`,** the workspace by its full path. Any workspace you can read in its connection can be copied, someone else's included. The copy keeps the original's name, so the two pair up in `kater diff`; `--name` gives it another. A name the topic already has is refused: work in that copy.
 - **The answer** is the copy's path, how many files it copied and the errors of its one compile. A copy that does not compile is saved anyway, so fix it in place.
-- **Show it with `kater brainstorm show COPY`,** the copy's full path. It says what the copy changed since it was copied or last applied, and whether each file would apply, without compiling. In chat it draws with Compare and Apply, which the person runs there.
+- **Show it with `kater brainstorm show COPY`,** the copy's full path. It says what the copy changed since it was copied or last applied, and whether each file would apply, without compiling. In chat it draws with Diff and Apply, which the person runs there.
 - **`copied-from.yaml`** at the copy's root names the original and, for each file, its revision in the original and in the copy when the two last matched, which applying the copy reads. Leave it as it is.
 - **The original's apps stay with it.**
 - **Never for real work.** A copy is for trying a change. Answer the user's questions from their real workspace, and never choose a copy when you choose a workspace.
-- **It works like any workspace.** `kater compile --select COPY`, `kater run --select FILE`, `kater compare --left ORIGINAL --right COPY` and every typed edit work on it, each named by its full path.
+- **It works like any workspace.** `kater compile --select COPY`, `kater run --select FILE`, `kater diff --left ORIGINAL --right COPY` and every typed edit work on it, each named by its full path.
 - **Make a query in it** by [query authoring](vfs://guides/query-authoring.md), with the copy's full path as the workspace: `kater query fields COPY`, then `kater query new COPY --request-file -`, with no `namespace` in the request: the command sends the copy's. Change it with `kater model edit`, as the skill says.
 - **A save never fails.** A copy's file saves even when it does not compile, and the result's `errors` say what is wrong. A typed edit on a broken file refuses and says why.
 - **A scratch statement reads it by its full address,** `workspace."connections/<connection>/users/<email>/brainstorm/<topic>/workspaces/<name>".<root name>`, where the root name is the copy's folder name, which its `workspace.sql`'s `name` repeats. `sandbox.statement.write` with the copy as its `workspace` writes it for you. `workspace.<name>` reads your real workspace or a connection workspace, never a copy.
@@ -117,12 +117,12 @@ A copy of a workspace is a real workspace in the topic's folder, `brainstorm/<to
 After the user's yes, `kater workspace apply COPY` writes the copy's changes back to the workspace it copies, which its `copied-from.yaml` names. Show what it would write first.
 
 1. **Dry run.** `kater workspace apply COPY --dry-run`, with the copy's full path. Nothing is written. The answer lists each file the copy changed since it was copied, with its diff against the original and whether it would be written. A file only the original changed is not listed: it stays as the original has it.
-2. **Ask** with the diffs and the comparison's verdict in hand.
+2. **Ask** with the diffs and the diff's verdict in hand.
 3. **Apply** with the dry run's `apply` line, through kater_apply. It names the dry run's `--revision`, so it writes exactly what the dry run showed, and it is refused with `proposal_changed` when the copy or the original changed since.
-4. **Compare again.** `kater compare --left ORIGINAL --right COPY` should say every query the same. Then set the note's `Status: applied`.
+4. **Diff again.** `kater diff --left ORIGINAL --right COPY` should say every query the same. Then set the note's `Status: applied`.
 
 - **Drift.** A file that changed in the original since the copy is refused with `origin_changed` and both revisions, and there is no force: writing it would undo someone else's change. Copy the workspace again under another name (`--name`), make the change there, and apply that copy. The copy's other files still apply.
-- **The compile gate.** The copy's Kater SQL is compiled with the rest of the original first, as any save is. When a file does not compile there, nothing is written, and the answer names each file and its errors: fix it in the copy, compare again, then apply.
+- **The compile gate.** The copy's Kater SQL is compiled with the rest of the original first, as any save is. When a file does not compile there, nothing is written, and the answer names each file and its errors: fix it in the copy, diff again, then apply.
 - **Deletes.** A file the copy deleted is deleted from the original only when you name it with `--files`, by its path in the copy. A query that a chart left in the original still reads is not deleted.
 - **Some files.** `--files FILE`, repeatable, applies only those. A dry run's diffs share one budget; a diff left out is read by naming its file.
 - **Each file's outcome** is reported, and an apply is not all or nothing: a refused file leaves the others written. Afterwards the copy matches the original again, so a second apply sends only what changes after it.
@@ -136,20 +136,20 @@ When several queries in a workspace compute the same thing, such as ROAS, `kater
 1. **Propose.** `kater model promote FIELD --relation QUERY --scope COPY --dry-run`, with the copy's full path. Nothing changes. The result names the root field, each place that reads it instead (its query, CTE, line, and SQL before and after), and each field it leaves as is, with why.
 2. **Read the checks.** One compile of the copy proves that every query compiles, that each place keeps exactly its formula, and that nothing else changes. Its `result_check` runs each query the change reaches on the warehouse, as it is and as the change would leave it: a background job runs it, and the command waits for it. Writing the change follows the same check.
 3. **Write it** in the copy with the result's `apply` line, which names the dry run's `--revision`. It is refused if anything changed since the dry run.
-4. **Compare** the copy with its original with the result's `compare` line. Every query should be the same.
+4. **Diff** the copy with its original with the result's `diff` line. Every query should be the same.
 5. **Report** one line, such as "ROAS can be one measure. Same numbers in all 6 queries.", then the card the result draws: the root field's definition, each place it replaces with Same numbers, and what is left as is. Then ask, and after a yes apply the copy to its original ([Applying a copy](#applying-a-copy)).
 
 - **A place** reads the workspace's fields and computes the same formula, in a query's own SELECT or in one of its CTEs. A query's field that computes it from columns its CTEs pass on is a place too: the CTE that reads the workspace gains the root's field as a column, each CTE after it passes it on, and the field reads it. Sameness is the formula the compiler finds, never the SQL's text.
 - **Left as is:** a field over the same inputs that computes something else, such as a 13-week ROAS over a window or a total of a CTE's weekly rows, and one that computes it from a CTE's columns, where the root's field cannot be read.
 - **The name** is the field's own, unless another field in the workspace has it, such as the field itself when its query keeps it; then it is the column the formula is computed in. `--name` picks another, and a name another field has is refused. `--label` sets its label.
 - **Only the root of the same workspace.** A field that uses a window, a custom calculation or a parameter stays in its query. A shared model's field is the data team's change, not this one.
-- **On a real workspace** the dry run works the same, but it has nothing to compare with, and writing it goes through kater_apply after a yes.
+- **On a real workspace** the dry run works the same, but it has nothing to diff with, and writing it goes through kater_apply after a yes.
 
 ## Notes and pages
 
 - **A note** is a `.md` file, such as a topic's `promote_roas.md`.
 - **A page** is an `.html` file in the topic's folder, such as `brainstorm/journey_flow/pages/flow.html`. Write it as an app page ([apps](vfs://guides/app.md)) with no manifest: rows come only through Kater tags, and no figure is typed in. It wears Kater's default theme. A spike's page may also draw sample rows ([Sample rows](#sample-rows)).
-- **A comparison on a page** is a `<kater-compare left="SIDE" right="SIDE">`, each SIDE a query as `<workspace>/<query>` (never its file), a scratch statement as `FILE#N` or a workspace folder, such as a query and the same query in your copy. It draws the verdict and the cells that differ, and compares again each time the page opens ([apps](vfs://guides/app-data.md#comparisons), Comparisons).
+- **A diff on a page** is a `<kater-diff left="SIDE" right="SIDE">`, each SIDE a query as `<workspace>/<query>` (never its file), a scratch statement as `FILE#N` or a workspace folder, such as a query and the same query in your copy. It draws the verdict and the cells that differ, and diffs again each time the page opens ([apps](vfs://guides/app-data.md#diffs), Diffs).
 - **Tags name a query by its full path,** `query="connections/<connection>/users/<email>/workspaces/<workspace>/<query>"`: any query you can read in the page's connection. A page reads only the queries its own tags name.
 - **Its address** in the portal is `/sandbox/brainstorm/<connection>/<email>/<path inside brainstorm/>`, such as `/sandbox/brainstorm/snowflake_prod_connection/yvonne@kater.ai/journey_flow/pages/flow.html`. A note opens there too, as Markdown. Only you, admins and people you share it with can open either, and every open copy reloads when you save the file.
 - **Check a page before you report it.** `kater brainstorm show PATH`, with the page's full path, says whether each tag draws: its query exists, compiles and returns every field the tag names, and a chart along an axis gets one value for each point. A tag that cannot says why, and nothing runs in the warehouse. Fix every tag that cannot draw, then report.

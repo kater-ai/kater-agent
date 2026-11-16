@@ -7,9 +7,9 @@ This skill is Kater's guide `vfs://guides/sandbox.md`.
 
 # Sandbox
 
-The Sandbox is where a person tries something without choosing a workspace, a model or a layer first. Make statements in a scratch file, against any shared semantic model or Kater dataset, one of your workspaces, or the warehouse, and run them with `kater run --select FILE`. A statement is made the way a query is, from picks ([Writing a statement](vfs://guides/sandbox-scratch-files.md#writing-a-statement)). When an answer is worth keeping, add its statement to a workspace.
+[Key concepts](vfs://guides/concepts.md) says what the Sandbox is. A person tries something there without choosing a workspace, a model or a layer first. Make statements in a scratch file, against any shared semantic model or Kater dataset, one of your workspaces, or the warehouse, and run them with `kater run --select FILE`. A statement is made the way a query is, from picks ([Writing a statement](vfs://guides/sandbox-scratch-files.md#writing-a-statement)). When an answer is worth keeping, add its statement to a workspace.
 
-**An agent answers from a workspace, not from here.** An answer in a chat is a query in one of the person's own workspaces, written with `kater query new` and run, so each figure it cites is a saved query of governed fields ([A figure over a period](#a-figure-over-a-period)). An agent writes a scratch statement only to try a field it is unsure of, and never quotes or cites one.
+**An agent answers from a workspace, not from here.** An answer in a chat is a query in one of the person's own workspaces, written with `kater query new` and run, so each figure it cites is a query of governed fields ([A figure over a period](#a-figure-over-a-period)). An agent writes a scratch statement only to try a field it is unsure of, and never quotes or cites one.
 
 ## A statement in three calls
 

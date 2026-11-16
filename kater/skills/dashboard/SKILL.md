@@ -7,7 +7,7 @@ This skill is Kater's guide `vfs://guides/dashboard.md`.
 
 # Dashboard Reference
 
-A workspace's dashboard is one file, `dashboard.yaml`, at the workspace root beside `workspace.sql`. It declares everything needed to draw the dashboard the same way every time: the template, where every tile sits and how big it is, and the key takeaways. The dashboard is drawn from the file alone; nobody writes code for it. It reads this workspace only; anything that combines workspaces is an app.
+A workspace's dashboard is one file, `dashboard.yaml`, at the workspace root beside `workspace.sql`. It declares everything needed to draw the dashboard the same way every time: the template and where every tile sits and how big it is. Its key takeaways are not in the file: they are Compare's rows for the figures its tiles draw ([the file](vfs://guides/dashboard-file.md)). The dashboard is drawn from the file alone; nobody writes code for it. It reads this workspace only; anything that combines workspaces is an app.
 
 Every workspace has one. Creating a workspace scaffolds it, it is scaffolded again the first time it is found missing, and the file cannot be deleted. Only a reader's own filters and open tab are kept outside the file, for that reader. The file keeps no filters, and neither does a chart: each filter's default is in its call ([filters](vfs://guides/filters.md)).
 
@@ -17,7 +17,7 @@ A dashboard made from a template (`--start overview`, `operations`, `realtime` o
 
 ## Operations
 
-Reach these through the `kater dashboard ACTION`, `kater dashboard text add` and `kater chart draw` commands and `kater insight run`, or the web app and VS Code panel, which call the same operations. A command whose request names only the workspace, the query or the chart takes it as its first argument in place of `--request-file`: a workspace by its folder or its id, the dashboard by its workspace or its own id (`rel1_…`), a query or a chart as `<workspace>/<name>` or its id, such as `kater dashboard open WORKSPACE` or `kater chart read <workspace>/<chart>`. A file is never one.
+Reach these through the `kater dashboard ACTION`, `kater dashboard text add` and `kater chart draw` commands, or the web app and VS Code panel, which call the same operations. A command whose request names only the workspace, the query or the chart takes it as its first argument in place of `--request-file`: a workspace by its folder or its id, the dashboard by its workspace or its own id (`rel1_…`), a query or a chart as `<workspace>/<name>` or its id, such as `kater dashboard open WORKSPACE` or `kater chart read <workspace>/<chart>`. A file is never one.
 
 | Operation | Use |
 | --- | --- |
@@ -32,12 +32,12 @@ Reach these through the `kater dashboard ACTION`, `kater dashboard text add` and
 | `chart.draw` | Draw a saved chart again from its kind and the columns each role reads, as [make each tile answer one question](vfs://guides/dashboard-tiles.md#make-each-tile-answer-one-question) shows. The chart's spec and SQL are written for you. `tooltip` adds fields to its tooltip, and `presentation.tooltip` renames, hides or adds words: see [the tooltip](vfs://guides/dashboard-tiles.md#the-tooltip). |
 | `chart.marker.add` | Draw a line on a chart, at a value, at a statistic of a measure or at a date, or a band between two: `kater chart marker add QUERY --chart NAME --value FIELD=NUMBER`. See [markers](vfs://guides/follow.md#markers). |
 | `dashboard.look` | Draw the dashboard as you see it and answer its problems, a line for each tile and its picture: `kater dashboard look WORKSPACE`. See [Look at it](vfs://guides/dashboard-look.md#look-at-it). |
-| `insight.run` | Run an insight template over one of the workspace's queries under given inputs. Test a takeaway with it before saving. |
+| `dashboard.takeaways` | The key takeaways: Compare's rows that stand out for the figures the dashboard's tiles draw, strongest first, each with the words of Compare's check. Answers `pending` until the workspace's check for the two periods is stored, and `kater compare --workspace WORKSPACE` starts that check and waits for it. A takeaway is never written to the file. |
 
 Write the file through `dashboard.save` rather than `write_file`. A hand edit still works: the board draws it as the next save stores it, and the next `dashboard.open` or `compile` reports any problem in it.
 
 ## The steps
 
-1. **Write the file:** its template, its tiles and its takeaways, as [the file](vfs://guides/dashboard-file.md) says.
+1. **Write the file:** its template and its tiles, as [the file](vfs://guides/dashboard-file.md) says.
 2. **Make each tile answer one question:** [make each tile answer one question](vfs://guides/dashboard-tiles.md).
 3. **Look at it** after each change, and fix what the check reports: [look at it](vfs://guides/dashboard-look.md).

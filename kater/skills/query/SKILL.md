@@ -1,15 +1,15 @@
 ---
-name: query-contract
-description: "Query contracts. Use it when the person asks for: \"Save it\", \"so I can get the same numbers again\"."
+name: query
+description: "Queries. Use it when the person asks for: \"Save it\", \"so I can get the same numbers again\"."
 ---
 
-This skill is Kater's guide `vfs://guides/query-contract.md`.
+This skill is Kater's guide `vfs://guides/query.md`.
 
-# Query contracts
+# Queries
 
-A saved query's key is its workspace's key and its own name, and a workspace's key is its scope and its name, never its folder ([model layer rules](vfs://guides/model-layer-rules.md)), so two people's queries of one name are distinct. The compiler model contract is compiler-owned; edit SQL rather than a derived interface.
+A query's key holds its workspace's key and no folder ([Key concepts](vfs://guides/concepts.md), Identity), so two people's queries of one name are distinct. The compiler model contract is compiler-owned; edit SQL rather than a derived interface.
 
-Save a query with `publish_query_contract`. A `kater` command, a tool and an answer name a query as `<workspace>/<name>`: its workspace's folder from the content root and its name (the person's own folder is `connection.folder` of `kater_start`), such as `connections/<connection>/users/<email>/workspaces/<workspace>/<name>`, or by its id (`rel1_…`). A mention names it by `<workspace>/<name>` alone. Never name a query by its file: a file of `query_contracts/` can hold several queries and is not named after them. `list_accessible_workspaces` gives each query's `<workspace>/<name>` and id, and `kater query list <workspace>` gives the file that declares each one (`path`).
+Save a query with `publish_query`. A `kater` command, a tool and an answer name a query as `<workspace>/<name>`: its workspace's folder from the content root and its name (the person's own folder is `connection.folder` of `kater_start`), such as `connections/<connection>/users/<email>/workspaces/<workspace>/<name>`, or by its id (`rel1_…`). A mention names it by `<workspace>/<name>` alone. Never name a query by its file: a file of `queries/` can hold several queries and is not named after them. `list_accessible_workspaces` gives each query's `<workspace>/<name>` and id, and `kater query list <workspace>` gives the file that declares each one (`path`).
 
 Build a query through its operations, listed under [Public creation workflow](vfs://guides/public-creation-workflow.md): write it from the workspace's fields with `query.new` (`kater query new`), or from another query's fields with its `source`, or create it with `kater new query`, then add fields, filters and calculations with `edit.model`. `create_projection` writes a field over an expression you write: with no `name`, as `expression AS "Label"`, which takes the type its formula has; with a name, as a dimension, a measure or a custom calculation, such as the `segment` below. `field.declare` names an unnamed output. This page is the reference for the SQL they write, and for what no operation expresses.
 
@@ -26,7 +26,7 @@ Build a query through its operations, listed under [Public creation workflow](vf
 | `s.refunds / NULLIF(s.revenue, 0) AS "Refund rate"` or `s.region || s.channel` | Unnamed, with its formula's type; AS never invents a key. | dimension → dimension |
 | `RANK() OVER (ORDER BY EVAL(s.revenue) DESC) AS revenue_rank` | Unnamed custom calculation. | custom_calculation → custom_calculation |
 
-The roles are exactly declaration, evaluation, and custom_calculation; the last marks an unnamed output, whatever its type. Field types are exactly measure, dimension, and custom_calculation, and the formula decides which, not the wrapper. A custom calculation is a value computed over this query's result rows: a window, or anything built from one. A wrapper that disagrees with its formula gets a warning with a fix, and a `MEASURE` over a window is an error; see [windows and custom calculations](vfs://guides/window.md). One format or timeframe step around a single field keeps its identity ([dimensions](vfs://guides/dimension.md)); repeated operands, multi-input calculations, CASE, arithmetic and other transformations do not invent one. Invalid SQL, unresolved references, cycles, and illegal stages are diagnostics, never custom fallbacks.
+The roles are exactly declaration, evaluation, and custom_calculation; the last marks an unnamed output, whatever its type. Field types are exactly measure, dimension, and custom_calculation, and the formula decides which, not the wrapper. A wrapper that disagrees with its formula gets a warning with a fix, and a `MEASURE` over a window is an error; see [windows and custom calculations](vfs://guides/window.md). One format or timeframe step around a single field keeps its identity ([dimensions](vfs://guides/dimension.md)); repeated operands, multi-input calculations, CASE, arithmetic and other transformations do not invent one. Invalid SQL, unresolved references, cycles, and illegal stages are diagnostics, never custom fallbacks.
 
 ```sql
 SELECT

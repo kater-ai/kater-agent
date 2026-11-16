@@ -24,7 +24,7 @@ How to make a field on a query the way the new-field form does. The form, `kater
 ```json
 {
   "namespace": {"kind": "workspace", "scope": {"kind": "shared", "connection": "snowflake_prod_connection"}, "workspace": "AD_REPORTING"},
-  "document": {"path": "connections/snowflake_prod_connection/workspaces/ad_reporting/query_contracts/spend_by_platform.sql"},
+  "document": {"path": "connections/snowflake_prod_connection/workspaces/ad_reporting/queries/spend_by_platform.sql"},
   "kind": "custom_calculation",
   "field": "sum__spend",
   "make": "running_total"
@@ -57,7 +57,7 @@ Call `field.preview` with the same `namespace`, the `document` with the `revisio
 ```json
 {
   "namespace": {"kind": "workspace", "scope": {"kind": "shared", "connection": "snowflake_prod_connection"}, "workspace": "AD_REPORTING"},
-  "document": {"path": "connections/snowflake_prod_connection/workspaces/ad_reporting/query_contracts/spend_by_platform.sql", "revision": "<revision>"},
+  "document": {"path": "connections/snowflake_prod_connection/workspaces/ad_reporting/queries/spend_by_platform.sql", "revision": "<revision>"},
   "kind": "custom_calculation",
   "draft": "<draft>",
   "inputs": "<inputs>",
@@ -65,13 +65,13 @@ Call `field.preview` with the same `namespace`, the `document` with the `revisio
 }
 ```
 
-It writes the field and runs the query with it, and saves nothing. Its answer through the `kater` tool is a bounded summary: the field, its definition as Markdown, what it adds, and at most ten rows. Show the person five things, in this order:
+It writes the field and runs the query with it, and saves nothing. Its answer through the `kater` tool is a bounded summary: the field, its definition as Markdown, what it adds, and at most 10 rows. Show the person five things, in this order:
 
 1. **The label**, and what kind of field it is: "Spend (Running Total), a calculation".
 2. **What it is in words:** the definition's Expression and From lines.
 3. **The Kater SQL:** `field.expression`, in a code block.
 4. **What else it adds to the query:** each of `adds`, such as "Adds Reporting Date by month". An add with a `reason` is a dimension the field's measure cannot be added across: say its `reason` as it is, such as "Currency is added too, because Spend cannot be added across different values of Currency." Say so when it adds nothing. A dimension it adds changes what one row of the query is, so when charts read the query (`chart.list` with `{"source": {"name": "spend_by_platform", "model_type": "query", "namespace": …}}`), say they will show that too and ask whether to add it here anyway.
-5. **The first rows**, as a small table: `rows.columns` in their order, the `new` column marked, up to ten rows.
+5. **The first rows**, as a small table: `rows.columns` in their order, the `new` column marked, up to 10 rows.
 
 A field can preview and still carry a warning in `diagnostics`: the compiler saying how it is better made, such as "does not depend on the other rows of the result … Declare it as a DIMENSION, or as a MEASURE to reuse it at any grain" for a ratio sent as a calculation. Follow it and preview again before you show anything.
 
@@ -141,7 +141,7 @@ The person asks: "add a running total of spend to spend_by_platform".
    >
    > | Platform | Currency | Reporting Date | Spend (Running Total), new | Spend |
    > | --- | --- | --- | --- | --- |
-   > | (the first ten rows) | | | | |
+   > | (the first 10 rows) | | | | |
    >
    > Add it to spend_by_platform anyway?
 

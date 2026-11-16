@@ -13,7 +13,7 @@ Run declared follow-up contracts to test plausible drivers for bounded material 
 
 ## Procedure
 
-1. Confirm the diagnostic branch is declared, its upstream decision recorded bounded finding keys, and its follow-up query contract and parameters exist in the selected workspace.
+1. Confirm the diagnostic branch is declared, its upstream decision recorded bounded finding keys, and its follow-up query and parameters exist in the selected workspace.
 2. Invoke the exact diagnostic contract with only those approved finding keys and declared parameters. Record its run identity, truncation, returned fields, and concise evidence linked to each finding key.
 3. State what the diagnostic distinguishes and what remains uncertain. Label every explanation the evidence does not separate a hypothesis.
 4. Mark the diagnostic node complete only after its governed run and evidence are recorded. Route to verification, not to an improvised next query.

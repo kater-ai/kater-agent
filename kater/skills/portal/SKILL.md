@@ -59,7 +59,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | Files | `/files/<path>` | Opens any file or folder the person can read, as in an editor. | `tabs`, `sidebar`, `panel`, `history`, `change`, `connection` |
 | A link from outside Kater | `/to/<kind>/<ref>?view=<view>&at=<at>` | The one link to an object from outside Kater. It moves on to the object's page now, after a move or a rename. `/to/file/<path>?at=L<n>` opens a file on the page that shows it. | `view`, `at` |
 | Brainstorm page | `/sandbox/brainstorm/<connection>/<email>/<path>` | Reads one page or note of a person's brainstorm folder. | `tab`, `param.*`, `filters`, `off`, `op.*`, `val.*` |
-| Result | `/results/<result id>` | Reads a saved query result, with its chart. | `kind` |
+| Result | `/results/<result id>` | Reads a query result, with its chart. | `kind` |
 
 ### Apps and projects
 
@@ -67,7 +67,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | --- | --- | --- | --- |
 | Apps | `/apps` | Finds an app. `/apps/mine` shows their own apps, `/apps/shared-with-me` the apps shared with them. | `q`, `new` |
 | App | `/app/<connection>/users/<user id>/<name>/<mode>/<panel>`, `/app/<connection>/workspaces/<workspace>/<name>/<mode>/<panel>`, `/app/<connection>/users/<user id>/workspaces/<workspace>/<name>/<mode>/<panel>` | Reads an app (`viewing`) or edits it (`editing`), on one of its pages, with its filters. The panel is the toolkit's tab, such as `sources`, `history`, `snapshots` or `projects`. A snapshot is view-only, so the app opens in `viewing` there. An app is named by its key, `<connection>/users/<user id>/<name>`, or over a workspace `<connection>/workspaces/<workspace>/<name>` or `<connection>/users/<user id>/workspaces/<workspace>/<name>`, as `kater app list` gives it. | `tab`, `param.*`, `filters`, `off`, `op.*`, `val.*`, `select`, `slide`, `snapshot`, `snapshot_note`, `periods`, `share` |
-| Project | `/projects/<connection>/users/<user id>/<name>` | Follows a goal: where it stands, its metrics, its timeline and its apps. A project is named by its key, `<connection>/users/<user id>/<name>`, as `kater project list` gives it. | `entries`, `entry`, `view`, `share`, `metric` |
+| Project | `/projects/<connection>/users/<user id>/<name>` | Follows a goal: where it stands, its figures, its timeline and its apps. A project is named by its key, `<connection>/users/<user id>/<name>`, as `kater project list` gives it. | `entries`, `entry`, `view`, `share`, `figure` |
 | An old app or project address | `/app/<old address>`, `/projects/<old address>` | An address of an old shape, such as `/app/rel1_…` or `/projects/prj_…`, says it names no app or project the person can open, and nothing redirects it. The app's and the project's key opens it. | none |
 | Talk it through with AI | `/agent` | Hands an inbox item's prompt to the person's own agent. | `item` |
 | AI Tools | `/ai-tools/starters`, `/ai-tools/agents`, `/ai-tools/skills` | Finds a starter, reads Kater's agents and skills, or reads and edits the organisation's and their own, each named by its key: `connection`, `name` and, for a person's own, `user`. Kater's are read-only. | `connection`, `name`, `user`, `view`, `q` |

@@ -13,7 +13,7 @@ A person starts in one of two ways: from a goal, such as "get spend to a target 
 
 - `kater start` lists the goals and what you can make: each kind with its types. In a host that draws Kater's view, its answer is a card, and a click sends the person's words as their next message.
 - `kater start KIND TYPE` answers a type's choices, such as `kater start app deck`: each choice, its options with the recommended one first, the first line of the request, and the `kater new` line that makes it. `kater start KIND` with no type answers the kind's types. In a host that draws Kater's view, its answer is a card with one question for each choice and one button.
-- `kater start goal --shape SHAPE` answers what the person already has for a goal: the measure it is about, the dashboards whose queries read it, and the apps and workflows that read those dashboards. Give the measure with `--metric`, by its name or its label, such as `--metric spend`, and, for a goal with a source such as `update`, the dashboard, query or app with `--set source=PATH`. It reads files and compiled metadata only, and runs nothing on the warehouse.
+- `kater start goal --shape SHAPE` answers what the person already has for a goal: the measure it is about, the dashboards whose queries read it, and the apps and workflows that read those dashboards. Give the measure with `--metric`, by its name, such as `--metric spend`, and, for a goal with a source such as `update`, the dashboard, query or app with `--set source=PATH`. It reads files and compiled metadata only, and runs nothing on the warehouse.
 
 ## Ask only what the prompt did not set
 
@@ -42,4 +42,4 @@ Run `kater start goal --shape SHAPE` before you make anything for a goal. Then:
 - When two measures fit the words, ask which one, with those two as the options. When one fits, use it.
 - The answer names the starter that does the work, such as `/planning`. Follow it.
 
-Projects, their metrics and their timeline are in vfs://guides/projects.md. Workflows and schedules are in vfs://guides/workflows.md.
+Projects, their figures and their timeline are in vfs://guides/projects.md. Workflows and schedules are in vfs://guides/workflows.md.

@@ -33,4 +33,4 @@ Use this when the person asks what a number means, how it is calculated, or why 
 
 ## Stop conditions
 
-- Nothing defines it: say so, name the nearest fields `search_catalog` found, and offer [build query contract](vfs://guides/build-query-contract.md) to define it.
+- Nothing defines it: say so, name the nearest fields `search_catalog` found, and offer [build a query](vfs://guides/build-query.md) to define it.
