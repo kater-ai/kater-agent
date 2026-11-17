@@ -48,7 +48,7 @@ charts:
 | `label` | The value's own label, which the legend, the tooltip and a card show in place of its field's | The field's label |
 | `mark` | For `composed` only: `bar`, `line`, `area` or `scatter` | The first value draws as bars and the rest as lines |
 | `point` | A `scatter` mark's point: `circle`, `diamond`, `square` or `triangle` | A circle |
-| `axis` | For an axis chart: `left` or `right`. Give it to every value or to none | The chart places each value by its unit and its size: a percent beside a count, or a value more than 10 times another, reads against the right axis |
+| `axis` | For a kind with two value axes (`bar`, `line`, `area`, `composed`, `ranked`, `multiples` and `peak`): `left` or `right`. Give it to every value or to none | The chart places each value by its unit and its size: a percent beside a count, or a value more than 10 times another, reads against the right axis |
 | `stack` | The stack the value draws in: values in one stack pile up, and another stack stands beside it | The chart's own `stacking` |
 | `prior` | For `metrics` and `stats`: the output the value is read against, such as the week before's, which the statement returns | No comparison with a prior period |
 
