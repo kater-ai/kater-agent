@@ -37,6 +37,19 @@ Reach these through the `kater dashboard ACTION`, `kater dashboard text add` and
 
 Change a dashboard through `dashboard.edit`, and write a whole file that you wrote through `dashboard.save`, rather than `write_file`. A hand edit still works: the board draws it as the next save stores it, and the next `dashboard.open` or `compile` reports any problem in it.
 
+A `dashboard.edit` request, with the `expected_revision` that `dashboard.open` gave:
+
+```json
+{
+  "expected_revision": "0000000000000000000000000000000000000000000000000000000000000000",
+  "commands": [
+    {"type": "add-section", "label": "Sales (EU)"},
+    {"type": "add-tab"},
+    {"type": "add-text", "text": "Sales are up in the EU."}
+  ]
+}
+```
+
 ## The steps
 
 1. **Write the file:** its template and its tiles, as [the file](vfs://guides/dashboard-file.md) says.
