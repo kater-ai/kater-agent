@@ -30,9 +30,9 @@ Along with the offers in [Why a figure changed](vfs://guides/diagnose.md#7-offer
   ```bash
   kater add-to <file> --statement 0 --to new:dashboards --name "<workspace label>"
   kater add-to <file> --statement 1 --to workspace:<new workspace path>
-  kater dashboard fill <new workspace path> --request-file -
+  kater dashboard fill <new workspace path>
   kater dashboard text add <new workspace path> --before <chart name> --file -
   kater compile --select <new workspace path>
   ```
 
-  On a yes, run each line but `compile` with `kater_apply`. Each add takes about 30 seconds. The first answers the new workspace's path in its `Open it:` line. `dashboard fill` takes `{"charts": [{"chart": "<chart name>"}]}` on stdin, and sends the workspace its first argument names. Tell the story in text tiles as [A report on a fixed time window](vfs://guides/dashboard-file.md#a-report-on-a-fixed-time-window) says. In a local copy, `kater add-to` writes in Kater and brings the workspace into the copy.
+  On a yes, run each line but `compile` with `kater_apply`. Each add takes about 30 seconds. The first answers the new workspace's path in its `Open it:` line. `dashboard fill` puts the charts of the workspace's queries on its dashboard, after it runs each query that has no saved result, and names a query that cannot run. Tell the story in text tiles as [A report on a fixed time window](vfs://guides/dashboard-file.md#a-report-on-a-fixed-time-window) says. In a local copy, `kater add-to` writes in Kater and brings the workspace into the copy.

@@ -1,6 +1,6 @@
 ---
 name: portal
-description: "The Kater portal: every page, and how to take the person there. Use it when the person asks for: \"Where do I …\", \"take me to …\", \"show me … in Kater\", a page of Kater to open."
+description: "The Kater portal: every page, and how to take the person there. Use it when the person asks for: \"Where do I …\", \"take me to …\", \"show me … in Kater\", a page of Kater to open, or \"share this with …\"."
 ---
 
 This skill is Kater's guide `vfs://guides/portal.md`.
@@ -29,6 +29,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 | "Where do I see every conversation people had with Kater this week?" | `/admin/conversations?window=7` |
 | "Are people getting correct answers from Kater? What should I fix?" | `/admin/conversations`, which opens on What works and What to fix for the last 30 days. |
 | "Which conversations used fields the data team does not share?" | `/admin/conversations?verdict=outside` |
+| "Share this with the finance team." | Not a page: `kater access grant <path> --level viewer --user <email>`, and `--group <name>` for a group, one command for each, with `kater_apply` after the person says who and which level (`viewer`, `editor` or `manager`). `kater access show <path>` lists who has access now. Whoever the server does not let manage the path is refused with its words: say them as they are. Open Share only for a person who asks for the panel. |
 | "Who can open this workspace? Take me to where I change that." | The workspace's page with Share open: `kater open connections/<connection>/workspaces/<workspace> --set share=1`. An admin can also see every folder's access at `/admin/settings/access?path=<path>`. |
 | "What waits for me?" | `/inbox`, with `filter=needs` for only what needs the person |
 | "Where did the query I deleted go? Can I get it back?" | `/trash`, with `item=<trash id>` for one deleted object, and its Restore |

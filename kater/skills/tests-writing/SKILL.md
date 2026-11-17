@@ -107,7 +107,7 @@ Each side of a test that runs filters the model's date field to the same closed 
 
 - a picker condition, `operation: is_between` with `range: ['2026-07-01', '2026-07-31']`
 - a WHERE in Kater SQL: `BETWEEN` two dates, or `KATER__IS_BETWEEN`
-- a WHERE in native SQL: `BETWEEN` two dates, or a lower and an upper bound on one column
+- a WHERE in a plain query: `BETWEEN` two dates, or a lower and an upper bound on one column
 - a relative window, pinned by `as_of`: `is_within_last` with `complete: true`, or bounds that count from `CURRENT_DATE`
 - in a connection workspace, a root filter the test's `inputs` turn on over a closed range
 
@@ -213,4 +213,4 @@ GROUP BY
 - **Order matters only when the query orders.** Without ORDER BY, rows compare as a multiset, and a row that matches none is paired with its closest row, so a moved number shows as that one cell. With a LIMIT, the runner warns when the first row past the cut ties with the last row kept.
 - **Dates are ISO strings; NULL is `null`.** The runner warns above 100 expected rows.
 - **Values must fit the types the query declares.** On a warehouse run, each value must fit the physical type its output declares, as the query's own run keeps it. A value in another type fails the test with "Query values do not fit amount's declared physical type.", even when it reads the same, such as a `ROUND` that returns a DOUBLE where the output declares DECIMAL(18,0). A local run does not check this, because DuckDB's types stand in for the warehouse's there.
-- **`same_as` compares data, not SQL.** Both sides become CTEs of one warehouse query, joined on `key` with a FULL OUTER JOIN, which returns only the rows that differ. Columns pair by name, and a column on one side only is ignored. The other side's values are cast to the Kater field's type. Keys must be unique on each side. Neither side takes a LIMIT unless every side orders by the same fields.
+- **`same_as` compares data, not SQL.** Both sides become CTEs of one warehouse query, joined on `key` with a FULL OUTER JOIN, which returns only the rows that differ. Columns pair by name: the native side, a plain query that the warehouse runs as written, names each column `AS` the Kater output it claims to be, such as `AVG(conversions_value / spend) AS return_on_ad_spend`. A column on one side only is not compared: the run lists it in `diff.columns` under `only_left` or `only_right`, and its message names it: a pass covers only the key and the `diffed` columns, and stays a pass when it is kept, where readiness's Oracle line names the columns its last run compared. A test that pairs no column beside its key, or whose native side has an output with no name, is invalid until it does. The other side's values are cast to the Kater field's type. Keys must be unique on each side. Neither side takes a LIMIT unless every side orders by the same fields.

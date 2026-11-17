@@ -21,8 +21,8 @@ kater test generate semantic.ad_reporting --question "What was spend by platform
 kater test generate semantic.ad_reporting --window union__date_day=2026-07-01..2026-07-31
 ```
 
-- **5 tests by default, one of each shape:** fields → rows, fields + Kater SQL → rows, Kater SQL → refused, fields with operations → rows, and fields → same as native SQL. A shape the file already has is not written again, and a shape the model cannot take, such as a refusal on a model with no rules, is skipped.
-- **The native side is left empty.** Native SQL is never written for you: that test reports `incomplete` until you write it, pointed at whatever you trust, such as the dbt mart.
+- **5 tests by default, one of each shape:** fields → rows, fields + Kater SQL → rows, Kater SQL → refused, fields with operations → rows, and fields → same as a plain query. A shape the file already has is not written again, and a shape the model cannot take, such as a refusal on a model with no rules, is skipped.
+- **The native side is left empty.** Its plain query is never written for you: that test reports `incomplete` until you write it, pointed at whatever you trust, such as the dbt mart.
 - **`--count N`** takes fewer shapes in order, or adds coverage picks: each the query that covers the most of what is still uncovered, which is every measure, grain, kind of dimension (date, category, name, ID, raw number), operation family and declared rule. Ties go to the coarser grain, then fewer fields. It never sweeps every combination.
 - **One settled window.** Every pick reads the same closed range: the one the file's tests already read, or else the latest complete month that ended at least 30 days ago.
 - **Deterministic.** A rerun on an unchanged model picks the same queries and writes nothing it already wrote.
@@ -69,7 +69,7 @@ kater new test semantic.ad_reporting NAME --picker-file last_two_weeks.json --as
 
 `--workspace` writes a test of a connection workspace's root into its own test file, and `--from-query` there takes one of its queries as written. `--inputs-file`, `--given-file`, `--as-of` and `--question` set those keys, and `--record` runs the test with them.
 
-`--record` runs the test once and keeps its rows; with a picker and SQL both, they must agree. A `--draft` with none of `--record`, `--refused` or `--same-as-*` is a test to finish, as Files' New test starts one: write its SQL, and its first run that returns rows records them. `--refused` compiles the SQL and keeps the code the compiler refuses it with. After an intended model change, `kater test --update` re-records failing rows tests and prints each number that moved, so a reviewer approves numbers, not only SQL. It never touches `same_as` or `refused` tests.
+A `--same-as-*` test runs once as it is made, and its answer says whether the two sides agree, the two sides diffed as `kater diff` diffs them (`diff`: the columns both sides return and those of one side only, which its message also names, and each cell or row that differs). With `--dry-run` it keeps no test, and the answer's `message` says so and says where the plain query stays: a test you try, change and run again until you keep it by running the same line without `--dry-run`. A plain query written outside Kater is checked against a shared model this way: [check](vfs://guides/check.md), "A query written outside Kater", is the procedure. `--record` runs the test once and keeps its rows; with a picker and SQL both, they must agree. A `--draft` with none of `--record`, `--refused` or `--same-as-*` is a test to finish, as Files' New test starts one: write its SQL, and its first run that returns rows records them. `--refused` compiles the SQL and keeps the code the compiler refuses it with. After an intended model change, `kater test --update` re-records failing rows tests and prints each number that moved, so a reviewer approves numbers, not only SQL. It never touches `same_as` or `refused` tests.
 
 Every block is written with the SQL writer's frontmatter serializer, and saved through the write path, which formats its SQL and refuses a save that breaks a test: a path that does not compile, a missing range, or a malformed key. A draft saves as you write it: what keeps it from running is a warning until it is done. Recording or checking a draft changes only that block's `expect` or `draft`, through `source.patch`, and leaves every other line, comments included.
 
@@ -132,12 +132,12 @@ semantic.ad_reporting: 12 tests, last run 2026-09-27
   Measures     5 of 5 in a checked test
   Families     aggregations, timeframes, windows, filters, sort; not yet: calculate_at, derive
   Picker path  7 tests; every picker path matches
-  Oracle       matches DEMO_DB.ANALYTICS_AD_REPORTING.AD_REPORTING__AD_REPORT (45 rows), from SQL and from the picker
+  Oracle       matches DEMO_DB.ANALYTICS_AD_REPORTING.AD_REPORTING__AD_REPORT on sum__spend and sum__conversions_value (45 rows), from SQL and from the picker
   Refusals     Spend without Currency, Conversion Value without Currency pinned
   Ready to hand off: yes
 ```
 
-Ready means five things are true: every test's last run passed, and nothing it reads changed since it compiled; no drafts are left; every measure is in a checked test; at least one `same_as` test against native SQL passes; and every declared rule is pinned by a refused test. Known issues, what `kater test generate` could not write, are listed and never block it, and neither do the model's business questions no checked test answers yet, which a `Questions` line counts.
+Ready means five things are true: every test's last run passed, and nothing it reads changed since it compiled; no drafts are left; every measure is in a checked test; at least one `same_as` test against a plain query passes; and every declared rule is pinned by a refused test. Known issues, what `kater test generate` could not write, are listed and never block it, and neither do the model's business questions no checked test answers yet, which a `Questions` line counts.
 
 "Tested" only informs. A model's Catalog page and the workspace source picker show a chip such as "12 tests, passed Sep 27", and nothing is ever refused for a model without tests.
 
