@@ -1,6 +1,6 @@
 ---
 name: check
-description: "Prove a number or a query before it is shared. Use it when the person asks: check this number, why do two numbers disagree; or about SQL they wrote, such as a file or query of their own: check it against our definitions, are these definitions right, is this the same as our definitions, can I reuse anything."
+description: "Prove a number or a query before it is shared. Use it when the person asks: check this number, why do two numbers disagree; or about their own SQL, a script or query: is it right or wrong, why does it differ from Kater's, does it match our definitions, are these definitions right, can I reuse anything."
 ---
 
 This skill is Kater's guide `vfs://guides/check.md`.
@@ -13,7 +13,7 @@ Prove a number or a query before it is shared. Same or different is the warehous
 
 ## When to use
 
-Use this when the person doubts a number, sees two that disagree, or wants proof before they share one. When the number is in SQL the person wrote (a file of theirs open, or a query pasted), and they ask whether it is right, matches our definitions or can reuse something we have, follow [A query written outside Kater](#a-query-written-outside-kater). To explain a definition without checking a figure, use [explain](vfs://guides/explain.md). To keep a checked answer from drifting, use [test model](vfs://guides/test-model.md).
+Use this when the person doubts a number, sees two that disagree, or wants proof before they share one. When the number is in SQL the person wrote (a file of theirs open, or a query pasted), and they ask whether it is right, why it differs from Kater's, matches our definitions or can reuse something we have, follow [A query written outside Kater](#a-query-written-outside-kater). To explain a definition without checking a figure, use [explain](vfs://guides/explain.md). To keep a checked answer from drifting, use [test model](vfs://guides/test-model.md).
 
 ## Procedure
 

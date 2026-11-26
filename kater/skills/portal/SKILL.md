@@ -48,7 +48,7 @@ Read this when the person asks "where do I …", "take me to …", "show me … 
 
 | Page | Address | What a person does there | Keys |
 | --- | --- | --- | --- |
-| Home | `/` | Searches everything in the connection, fields included, lists the numbers and charts they follow in Following, opens what they pinned and opened last, and shows For you, the three things Kater's code picked for them that day. Its `q` can hold `key:value` filters, such as `type:field owner:me`, which the field draws as pills. | `q` |
+| Home | `/` | Searches everything in the connection, fields included, lists the numbers, charts and projects they follow in Following, opens what they pinned and opened last, and shows For you, the three things Kater's code picked for them that day. Its `q` can hold `key:value` filters, such as `type:field owner:me`, which the field draws as pills. | `q` |
 | Daily brief | `/brief` | Reads their daily brief, a page under Home that Kater's code writes each morning from the numbers they follow, their projects and what waits for them, or sets it up. | `brief`, `sources` |
 | Get started | `/get-started` | A new admin copies the prompt for their agent, which sets up their organisation, and follows the setup. Every member sees what is for everyone at the organisation and what is their own. | `install`, `step` |
 | Workspaces | `/workspaces` | Finds a workspace: their own, or one shared with them. | `show`, `q`, `layout`, `new`, `from` |

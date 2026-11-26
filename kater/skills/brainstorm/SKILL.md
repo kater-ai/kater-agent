@@ -122,10 +122,11 @@ After the user's yes, `kater workspace apply COPY` writes the copy's changes bac
 4. **Diff again.** `kater diff --left ORIGINAL --right COPY` should say every query the same. Then set the note's `Status: applied`.
 
 - **Drift.** A file that changed in the original since the copy is refused with `origin_changed` and both revisions, and there is no force: writing it would undo someone else's change. Copy the workspace again under another name (`--name`), make the change there, and apply that copy. The copy's other files still apply.
+- **Breaks.** When the copy takes away a name that something outside it reads, such as a field an app's tag reads, the apply is refused with the code `breaks` and writes nothing. The refusal names each break. Tell the person what breaks and that it goes to Needs a fix, and fix it in the copy when they want that. Apply again with `--break` (`allow_breaks`) only after their yes.
 - **The compile gate.** The copy's Kater SQL is compiled with the rest of the original first, as any save is. When a file does not compile there, nothing is written, and the answer names each file and its errors: fix it in the copy, diff again, then apply.
 - **Deletes.** A file the copy deleted is deleted from the original only when you name it with `--files`, by its path in the copy. A query that a chart left in the original still reads is not deleted.
 - **Some files.** `--files FILE`, repeatable, applies only those. A dry run's diffs share one budget; a diff left out is read by naming its file.
-- **Each file's outcome** is reported, and an apply is not all or nothing: a refused file leaves the others written. Afterwards the copy matches the original again, so a second apply sends only what changes after it.
+- **Each file's outcome** is reported, and an apply is not all or nothing: a refused file leaves the others written. A refusal for the whole apply, such as `breaks` or a file that does not compile, writes nothing. Afterwards the copy matches the original again, so a second apply sends only what changes after it.
 - **Who can apply.** Only someone who can write the original: the answer's `access` says whether you can.
 - **Apps.** The answer's `apps` are the apps that read the original. After an apply, show one with `kater brainstorm show APP`, which says whether each of its tags still draws, before you report.
 
