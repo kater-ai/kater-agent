@@ -33,6 +33,8 @@ How to make a field on a query the way the new-field form does. The form, `kater
 
 It answers `step`, the first step left open, with that step's choices in the form's own words, and the answer's `revision` is the query's. Where the chart is not a file, send the target it is instead of `document`: an unsaved query as `draft_query`, an Explore card as `card`, or a result's Explore recipe as `recipe`.
 
+A `status` of `refused` means the form makes or changes no field there, such as on a warehouse table: say its `problem`, do what its `next_step` says, and send nothing more for that field.
+
 1. **Start with** (`step: "field"`). `fields` lists what a new field can start with, a metric's first, each with `shown` when the query shows it. Send the one you mean as `field`, by its `name`.
 2. **Turn it into** (`step: "recipe"`). `recipes` lists what that field can become, grouped as the form groups them (Over time, Compare with, Against the rest, Row by row), each with a tiny before → after in made-up numbers: Running total `3 5 2 → 3 8 10`. Send its `make`.
 3. **Settings** (`step: "settings"`). Each setting has a `label`, one plain `hint`, whether it is `required`, its `fields` or `choices`, and its `value` now. They start where the form starts them: a running total runs along the query's date, or adds one by month when the query shows none (`adds`), and starts over for each of the query's other dimensions. Change one only when the person asked for something else, with `parameters`: a field by its `name`, `{"partition_by": ["platform"]}`, and a choice by its `value`, `{"order_direction": "desc"}`.

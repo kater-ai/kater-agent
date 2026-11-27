@@ -87,7 +87,7 @@ A statement is made the way a query is: from picks, not typed by hand. Read `vfs
 ## Statements
 
 - **Numbered from 0,** in file order, everywhere: `kater show --select FILE --statement N`, `kater diff`'s `FILE#N` and `charts:`.
-- **A title** is the run of `--` comment lines directly above a statement's first token, joined with spaces. A comment at the end of the previous statement's line is not one. Titles name results, and a query added to a workspace, so give every statement one.
+- **A title** is the first `--` line with words of the run of `--` lines directly above a statement's first token. The lines below it are the statement's own comments, so a statement can open with notes under its title. A comment at the end of the previous statement's line is not one. Titles name results, and a query added to a workspace, so give every statement one.
 - **A position** is a zero-based line and UTF-16 character, as `at` takes it. It belongs to the statement it falls in; one just after a `;` belongs to the next statement.
 
 ## Conditions
